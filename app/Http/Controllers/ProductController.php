@@ -8,15 +8,19 @@ use App\BCategory;
 
 class ProductController extends Controller
 {
-    public function getProducts()
+    public function getProducts(Request $request)
     {
-       //$categories = BCategory::where('id', 34)->with('p_categories')->get();
+       $category_id = $request->category_id;
 
-
-       $categories = BCategory::where('id', 34)->with(['p_categories' => function ($query) {
-       $query->with('many_products')->withCount('many_products'); //select most popular solution
+       $categories = BCategory::where('id',  $category_id)
+       ->with(['p_categories' => function ($query) {
+       $query->where('filter_type',1);
+       }])->with(['p_categories2' => function ($query) {
+       $query->where('filter_type',0); 
+       }])->with(['products' => function ($query) {
+       $query;
        }])->get();
 
-       return response()->json($categories);
+       return response()->json($categories);    
     }
 }

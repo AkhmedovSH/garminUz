@@ -6,8 +6,9 @@
         </a>
     </li>
 
-        <li><a href="{{route('bookcategories.index')}}"><i class="fa fa-list-ul"></i><span>Категории МЕНЮ</span></a></li>
-        <li><a href="{{route('productcategories.index')}}"><i class="fa fa-list-ul"></i><span>Категории Товаров</span></a></li>
+        <li><a href="{{route('menucategories.index')}}"><i class="fa fa-list-ul"></i><span>Категории МЕНЮ</span></a></li>
+        <li><a href="{{route('productcategories.index')}}"><i class="fa fa-list-ul"></i><span>Категории Фильтров</span></a></li>
+        <li><a href="{{route('products.index')}}"><i class="fa fa-sticky-note-o"></i><span>Продукты</span></a></li>
         <li><a href="{{route('posts.index')}}"><i class="fa fa-sticky-note-o"></i><span>Посты</span></a></li>
         <li><a href="{{route('slider.index')}}"><i class="fa fa-sticky-note-o"></i><span>Слайдер</span></a></li>
         <li><a href="{{route('coupons.index')}}"><i class="fa fa-sticky-note-o"></i><span>Купоны</span></a></li>

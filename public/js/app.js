@@ -54558,7 +54558,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54964,6 +54964,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['category_id'],
@@ -54986,7 +54994,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getCategories: function getCategories() {
             var _this2 = this;
 
-            axios.get('/products').then(function (res) {
+            axios.post('/products', { category_id: this.category_id }).then(function (res) {
+
                 _this2.categories = res.data;
             }).catch(function (err) {
                 return console.log(err);
@@ -55007,7 +55016,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "col-md-3" }, [
+    _c("div", { staticClass: "col-md-4" }, [
       _c(
         "ul",
         _vm._l(_vm.categories, function(user) {
@@ -55030,27 +55039,44 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-9" }, [
+    _c("div", { staticClass: "col-md-4" }, [
       _c(
         "ul",
         _vm._l(_vm.categories, function(user) {
           return _c(
             "li",
             { key: user.id },
-            _vm._l(user.p_categories, function(category) {
-              return _c(
-                "span",
-                { key: category.id },
-                _vm._l(category.many_products, function(product) {
-                  return _c("span", { key: product.id }, [
-                    _vm._v(
-                      "\n                     " +
-                        _vm._s(product.title) +
-                        "\n                     "
-                    )
-                  ])
-                })
-              )
+            _vm._l(user.p_categories2, function(category) {
+              return _c("span", { key: category.id }, [
+                _vm._v(
+                  "\n                 " +
+                    _vm._s(category.title) +
+                    " / " +
+                    _vm._s(category.many_products_count) +
+                    "\n                 "
+                )
+              ])
+            })
+          )
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-4" }, [
+      _c(
+        "ul",
+        _vm._l(_vm.categories, function(user) {
+          return _c(
+            "li",
+            { key: user.id },
+            _vm._l(user.products, function(product) {
+              return _c("span", { key: product.id }, [
+                _vm._v(
+                  "\n                     " +
+                    _vm._s(product.title) +
+                    "\n                 "
+                )
+              ])
             })
           )
         })

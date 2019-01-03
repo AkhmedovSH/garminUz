@@ -43,32 +43,30 @@ class BController extends Controller
             'parent_id' => 'required'
         ]);
         BCategory::create($request->all());
-        return redirect()->route('bookcategories.index');
+        return redirect()->route('menucategories.index');
     }
 
     public function edit($id)
     {
         $bcategory = BCategory::find($id);
-        $tags = PCategory::pluck('title', 'id')->all();
-        $selectedTags = $bcategory->p_categories->pluck('id')->all();
+        /* $tags = PCategory::pluck('title', 'id')->all();
+        $selectedTags = $bcategory->p_categories->pluck('id')->all(); */
         
-        return view('admin.bcategories.edit', compact('bcategory','tags','selectedTags'));
+        return view('admin.bcategories.edit', compact('bcategory'));
     }
 
 
     public function update(Request $request, $id)
     {
         $bcategory = BCategory::find($id);
+        $bcategory->update($request->all());
 
-
-        $bcategory->setTags($request->get('tags'));
-
-        return redirect()->route('bookcategories.index');
+        return redirect()->route('menucategories.index');
     }
 
     public function destroy($id)
     {
         BCategory::find($id)->delete();
-        return redirect()->route('bookcategories.index');
+        return redirect()->route('menucategories.index');
     }
 }

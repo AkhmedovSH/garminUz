@@ -10,34 +10,23 @@ use Illuminate\Support\Facades\Storage;
 
 class PCategory extends Model
 {
-    protected $table = 'p_categories';
-    protected $guarded = [];
+    protected $table = 'p_filters';
+    protected $fillable = ['title','filter_type'];
     
     use Sluggable;
-    public function many_products(){
-        return $this->hasMany(Product::class);
+    
+    public function menu_category(){
+        return $this->belongsTo(BCategory::class,'menu_category_id', 'id');
     }
 
-    public function products()
-    {
-        return $this->belongsToMany(
-            Product::class,
-            'product_categories',
-            'p_category_id',
-            'product_id'
-        );
-    }
-
-    public function bcategories()
-    {
+    public function menu_categories(){
         return $this->belongsToMany(
             BCategory::class,
-            'bookproduct_categories',
-            'product_category_id',
-            'book_category_id'
+            'm_category_p_filter',
+            'p_filter_id',
+            'm_category_id'
         );
     }
-
 
     public function sluggable()
     {
@@ -46,5 +35,30 @@ class PCategory extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public static function add($fields){
+        $category = new static;
+        $category->fill($fields);
+        $category->save();
+
+        return $category;
+    }
+
+    public function edit($fields){
+        $this->fill($fields);
+        $this->save();
+    }
+
+    public function setTags($ids){
+        if ($ids == null){ return; }
+        $this->menu_categories()->sync($ids);
+    }
+
+
+    public function getTagsTitles(){
+        return (!$this->p_categories->isEmpty())
+            ? implode(', ', $this->menu_categories->pluck('title')->all())
+            : 'Нет тегов';
     }
 }

@@ -12,7 +12,7 @@ Route::get('/product-category/{bcategory_id}', 'HomeController@bcategory')->name
 /*
     GET RESULT BY VUE COMPONENTS
 */
-Route::get('/products', 'ProductController@getProducts');
+Route::post('/products', 'ProductController@getProducts');
 
 
 
@@ -52,12 +52,13 @@ Route::group(['prefix'=> 'admin', 'namespace' => 'Admin', 'middleware' => 'role:
     Route::post('/edit_black_title', 'DashboardController@edit_black_title')->name('black_title');
 
     Route::resource('/categories','CategoriesController');
-    Route::resource('/bookcategories','BController');
+    Route::resource('/menucategories','BController');
     Route::resource('/tags','TagsController');
     Route::resource('/posts','PostsController');
     Route::resource('/slider','SliderController');
     Route::resource('/coupons','CouponsController');
     Route::resource('/productcategories', 'PCategoryController');
+    Route::resource('/products', 'ProductController');
 
     Route::resource('/users','UsersController');
     Route::get('/user/toggleBan/{user_id}','UsersController@toggleBan');

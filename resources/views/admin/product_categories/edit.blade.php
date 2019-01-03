@@ -19,8 +19,22 @@
                             <label for="exampleInputEmail1">Название</label>
                             <input type="text" name="title" class="form-control" id="exampleInputEmail1" value="{{$category->title}}">
                         </div>
+                        <div class="form-group">
+                            <label>Меню</label>
+                            {{Form::select('tags[]',
+                            $tags,
+                            $selectedTags,
+                            ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите теги'])
+                            }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Название</label>
+                            <select name="filter_type" id="" class="form-control select2">
+                                <option value="1">Series</option>
+                                <option value="0">Features</option>
+                            </select>
+                        </div>
                     </div>
-
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">

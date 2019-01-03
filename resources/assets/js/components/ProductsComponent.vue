@@ -1,6 +1,6 @@
 <template>
        <div>
-           <div class="col-md-3">
+           <div class="col-md-4">
                <ul>
                    <li v-for="user in categories" :key="user.id">
                          <span v-for="category in user.p_categories" :key="category.id">
@@ -9,17 +9,25 @@
                    </li>
                </ul>
            </div>
-           <div class="col-md-9">
-                <ul>
+           <div class="col-md-4">
+               <ul>
                    <li v-for="user in categories" :key="user.id">
-                         <span v-for="category in user.p_categories" :key="category.id">
-                            <span v-for="product in category.many_products" :key="product.id">
-                            {{ product.title }}
-                            </span>
+                         <span v-for="category in user.p_categories2" :key="category.id">
+                        {{ category.title }} / {{ category.many_products_count }}
                         </span>
                    </li>
                </ul>
            </div>
+           <div class="col-md-4">
+                <ul>
+                   <li v-for="user in categories" :key="user.id">
+                         <span v-for="product in user.products" :key="product.id">
+                            {{ product.title }}
+                        </span>
+                   </li>
+               </ul>
+           </div>
+           
        </div>
 </template>
 
@@ -41,8 +49,10 @@
                 .catch(err=>console.log(err));
              },
             getCategories() {
-                axios.get('/products').then(res =>{
+                axios.post('/products', {category_id: this.category_id}).then(res =>{
+                    
                     this.categories = res.data
+                   
                 }).catch(err=>console.log(err))
             },
          },  

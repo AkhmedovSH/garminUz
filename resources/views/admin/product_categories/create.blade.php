@@ -20,6 +20,10 @@
                             <label for="exampleInputEmail1">Название</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" name="title" placeholder="Название">
                         </div>
+                        <select name="parent_id" id="" class="form-control select2">
+                            <option value="0">Самостаятельня категория</option>
+                            @include('MenuItem2', ['items' => $m_builder->roots()])
+                        </select>
                     </div>
                 </div>
                 <!-- /.box-body -->

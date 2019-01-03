@@ -17,7 +17,7 @@
             <!-- Default box -->
             <div class="box">
                     {{Form::open([
-                        'route' => ['bookcategories.update', $bcategory->id],
+                        'route' => ['menucategories.update', $bcategory->id],
                         'files' => true,
                         'method' => 'put'
                     ])}}
@@ -26,21 +26,11 @@
                         @include('admin.errors')
                     </div>
                     <div class="box-body">
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Название</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1" name="title" value="{{ $bcategory->title }}" autocomplete="off">
                             </div>
-
-                            <div class="form-group">
-                                    <label>Теги</label>
-        
-                                    {{Form::select('tags[]',
-                                    $tags,
-                                    $selectedTags,
-                                    ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите теги'])
-                                    }}
-                                </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
