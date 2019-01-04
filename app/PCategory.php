@@ -15,9 +15,9 @@ class PCategory extends Model
     
     use Sluggable;
     
-    public function menu_category(){
+/*     public function menu_category(){
         return $this->belongsTo(BCategory::class,'menu_category_id', 'id');
-    }
+    } */
 
     public function menu_categories(){
         return $this->belongsToMany(
@@ -25,6 +25,18 @@ class PCategory extends Model
             'm_category_p_filter',
             'p_filter_id',
             'm_category_id'
+        );
+    }
+    
+
+    
+
+    public function filter_products(){ // for count opposite of filters
+        return $this->belongsToMany(
+            Product::class,
+            'p_filter_product',
+            'p_filter_id',
+            'product_id'
         );
     }
 

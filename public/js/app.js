@@ -55029,7 +55029,7 @@ var render = function() {
                   "\n                 " +
                     _vm._s(category.title) +
                     " / " +
-                    _vm._s(category.many_products_count) +
+                    _vm._s(category.filter_products_count) +
                     "\n                 "
                 )
               ])
@@ -55052,7 +55052,7 @@ var render = function() {
                   "\n                 " +
                     _vm._s(category.title) +
                     " / " +
-                    _vm._s(category.many_products_count) +
+                    _vm._s(category.filter_products_count) +
                     "\n                 "
                 )
               ])

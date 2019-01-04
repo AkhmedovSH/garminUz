@@ -4,7 +4,7 @@
                <ul>
                    <li v-for="user in categories" :key="user.id">
                          <span v-for="category in user.p_categories" :key="category.id">
-                        {{ category.title }} / {{ category.many_products_count }}
+                        {{ category.title }} / {{ category.filter_products_count }}
                         </span>
                    </li>
                </ul>
@@ -13,7 +13,7 @@
                <ul>
                    <li v-for="user in categories" :key="user.id">
                          <span v-for="category in user.p_categories2" :key="category.id">
-                        {{ category.title }} / {{ category.many_products_count }}
+                        {{ category.title }} / {{ category.filter_products_count }}
                         </span>
                    </li>
                </ul>

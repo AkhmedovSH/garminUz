@@ -30,6 +30,15 @@ class Product extends Model
         );
     }
 
+    public function p_filters2(){ // for count opposite of filters
+        return $this->belongsToMany(
+            Product::class,
+            'p_filter_product',
+            'p_filter_id',
+            'product_id'
+        );
+    }
+
     public function sluggable()
     {
         return [
