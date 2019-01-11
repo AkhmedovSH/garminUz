@@ -31,8 +31,7 @@ class ProductController extends Controller
            $filters_ids[] = $filter->p_filter_id;
        }
 
-       $series = PCategory::where('filter_type', 1)->whereIn('id', $filters_ids)->get();
-       $features = PCategory::where('filter_type', 0)->whereIn('id', $filters_ids)->get();
+       $series = PCategory::whereIn('id', $filters_ids)->withCount('filter_products')->get();
        $filters_products = DB::table('p_filter_product')->whereIn('p_filter_id', $filters_ids)->get();
 
        foreach($filters_products as $filter){
@@ -42,25 +41,26 @@ class ProductController extends Controller
        $products_id = DB::table('m_category_product')->where('m_category_id' , $category_id)
        ->whereIn('product_id',$filter_p_ids)
        ->get();
+       
 
        foreach($products_id as $product){
            $products_ids[] = $product->product_id;
        }
       
        $products = Product::whereIn('id',$products_ids)->get();
-       return response()->json(array('series'=>$series,'features'=>$features,'products'=>$products));    
+       return response()->json(array('series'=>$series,'products'=>$products));    
     }
 
 
-    
+
 
     public function productsFilter(Request $request){
         $category_id = $request->category_id;
-        $filter_id = $request->filter_id;
+        $filter_id = $request->filters;
 
         $filter_p_ids = [];
         $products_ids = [];
-        $filters = DB::table('p_filter_product')->where('p_filter_id', $filter_id)->get();
+        $filters = DB::table('p_filter_product')->whereIn('p_filter_id', $filter_id)->get();
 
         foreach($filters as $filter){
             $filter_p_ids[] = $filter->product_id;
@@ -76,7 +76,7 @@ class ProductController extends Controller
        
         $products = Product::whereIn('id',$products_ids)->get();
 
-        return response()->json($products);
+        return response()->json(array('products'=>$products));
     }
 
 

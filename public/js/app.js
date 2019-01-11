@@ -54977,36 +54977,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             products: {},
             series: {},
-            features: {}
+            orderBy: null,
+            filter_rows: [],
+            filter_row: []
+
         };
     },
 
     methods: {
-        getParams: function getParams() {
+        sortBySeries: function sortBySeries(index, filters_ids) {
             var _this = this;
 
-            axios.post("/api/tasks/filter", { language: this.language, solved: this.solved, subject: this.subject }).then(function (res) {
-                _this.products == res.data;
-            }).catch(function (err) {
-                return console.log(err);
+            //console.log(filters_ids)
+            //console.log(index)
+            this.filter_row = this.filter_rows.filter(function (query) {
+                return query.filters_ids == filters_ids;
             });
-        },
-        sortBySeries: function sortBySeries(filter_id) {
-            var _this2 = this;
+            if (this.filter_row.length > 0) {
+                this.filter_rows.splice(this.filter_rows.indexOf(index), 1);
 
-            axios.post("/products/filter", { filter_id: filter_id, category_id: this.category_id }).then(function (res) {
-                _this2.products = res.data;
+                //this.$delete(this.filter_rows, this.filter_rows.filters_ids)
+                this.filter_row.splice(this.filter_row.filters_ids);
+            } else {
+                this.filter_rows.push({ filters_ids: filters_ids });
+            }
+
+            axios.post("/products/filter", { filters: this.filter_rows, category_id: this.category_id }).then(function (res) {
+                _this.products = res.data.products;
             }).catch(function (err) {
                 return console.log(err);
             });
         },
         getCategories: function getCategories() {
-            var _this3 = this;
+            var _this2 = this;
 
             axios.post('/products', { category_id: this.category_id }).then(function (res) {
-                _this3.series = res.data.series;
-                _this3.features = res.data.features;
-                _this3.products = res.data.products;
+                _this2.series = res.data.series;
+                _this2.products = res.data.products;
             }).catch(function (err) {
                 return console.log(err);
             });
@@ -55030,7 +55037,7 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "list" },
-        _vm._l(_vm.series, function(serie) {
+        _vm._l(_vm.series, function(serie, index) {
           return _c("li", { key: serie.id }, [
             _c(
               "span",
@@ -55038,44 +55045,34 @@ var render = function() {
                 on: {
                   click: function($event) {
                     $event.preventDefault()
-                    _vm.sortBySeries(serie.id)
+                    _vm.sortBySeries(index, serie.id)
                   }
                 }
               },
               [
-                _vm._v(
-                  "\n                     " +
-                    _vm._s(serie.title) +
-                    " /\n                 "
-                )
-              ]
-            )
-          ])
-        })
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-12" }, [
-      _c(
-        "ul",
-        _vm._l(_vm.features, function(feature) {
-          return _c("li", { key: feature.id }, [
-            _c(
-              "span",
-              {
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.sortBySeries(feature.id)
-                  }
-                }
-              },
-              [
-                _vm._v(
-                  "\n                     " +
-                    _vm._s(feature.title) +
-                    " /\n                 "
-                )
+                serie.filter_type == 1
+                  ? _c("h6", [
+                      _vm._v(
+                        "\n                             " +
+                          _vm._s(serie.title) +
+                          " / " +
+                          _vm._s(serie.filter_products_count) +
+                          "\n                         "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                serie.filter_type == 0
+                  ? _c("h3", [
+                      _vm._v(
+                        "\n                              " +
+                          _vm._s(serie.title) +
+                          " / " +
+                          _vm._s(serie.filter_products_count) +
+                          "\n                          "
+                      )
+                    ])
+                  : _vm._e()
               ]
             )
           ])
@@ -55088,11 +55085,13 @@ var render = function() {
         "ul",
         _vm._l(_vm.products, function(product) {
           return _c("li", { key: product.id }, [
-            _vm._v(
-              "\n                     " +
-                _vm._s(product.title) +
-                "\n            "
-            )
+            _c("span", [
+              _vm._v(
+                "\n                     " +
+                  _vm._s(product.title) +
+                  "\n                 "
+              )
+            ])
           ])
         })
       )
