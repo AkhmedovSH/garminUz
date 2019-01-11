@@ -54970,6 +54970,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['category_id'],
@@ -54977,43 +54992,83 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             products: {},
             series: {},
-            orderBy: null,
+            sortOption: null,
+            sortBy: null, // правая сортировка select
+            sortBy_value: null, // правая сортировка select
+            filters_ids: null,
+            features: {},
             filter_rows: [],
-            filter_row: []
-
+            filter_row: [] // для проверки 2 рого клика на один и тотже фильтр
         };
     },
 
     methods: {
-        sortBySeries: function sortBySeries(index, filters_ids) {
+        sortBySelect: function sortBySelect() {
             var _this = this;
 
-            //console.log(filters_ids)
-            //console.log(index)
+            if (this.sortOption == 0) {
+                this.sortBy = 'featured';
+                this.sortBy_value = 'desc';
+            }if (this.sortOption == 1) {
+                this.sortBy = 'title';
+                this.sortBy_value = 'asc';
+            }if (this.sortOption == 2) {
+                this.sortBy = 'title';
+                this.sortBy_value = 'desc';
+            }if (this.sortOption == 3) {
+                this.sortBy = 'price';
+                this.sortBy_value = 'desc';
+            }if (this.sortOption == 4) {
+                this.sortBy = 'price';
+                this.sortBy_value = 'asc';
+            }console.log(this.sortBy);
+            if (this.filter_rows.length > 0) {
+                this.sortBySeries();
+            } else {
+                axios.post('/products', { category_id: this.category_id,
+                    sortBy: this.sortBy,
+                    sortBy_value: this.sortBy_value
+                }).then(function (res) {
+                    _this.series = res.data.series;
+                    _this.features = res.data.features;
+                    _this.products = res.data.products;
+                }).catch(function (err) {
+                    return console.log(err);
+                });
+            }
+        },
+        sortBySeries: function sortBySeries(index, filters_ids) {
+            var _this2 = this;
+
             this.filter_row = this.filter_rows.filter(function (query) {
                 return query.filters_ids == filters_ids;
             });
             if (this.filter_row.length > 0) {
                 this.filter_rows.splice(this.filter_rows.indexOf(index), 1);
-
-                //this.$delete(this.filter_rows, this.filter_rows.filters_ids)
                 this.filter_row.splice(this.filter_row.filters_ids);
             } else {
-                this.filter_rows.push({ filters_ids: filters_ids });
+                if (filters_ids != null) {
+                    this.filter_rows.push({ filters_ids: filters_ids });
+                }
             }
-
-            axios.post("/products/filter", { filters: this.filter_rows, category_id: this.category_id }).then(function (res) {
-                _this.products = res.data.products;
+            axios.post("/products/filter", {
+                filters: this.filter_rows,
+                category_id: this.category_id,
+                sortBy: this.sortBy,
+                sortBy_value: this.sortBy_value
+            }).then(function (res) {
+                _this2.products = res.data.products;
             }).catch(function (err) {
                 return console.log(err);
             });
         },
         getCategories: function getCategories() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.post('/products', { category_id: this.category_id }).then(function (res) {
-                _this2.series = res.data.series;
-                _this2.products = res.data.products;
+                _this3.series = res.data.series;
+                _this3.features = res.data.features;
+                _this3.products = res.data.products;
             }).catch(function (err) {
                 return console.log(err);
             });
@@ -55037,46 +55092,77 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "list" },
-        _vm._l(_vm.series, function(serie, index) {
-          return _c("li", { key: serie.id }, [
-            _c(
-              "span",
-              {
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.sortBySeries(index, serie.id)
+        [
+          _c("h3", [_vm._v("Series")]),
+          _vm._v(" "),
+          _vm._l(_vm.series, function(serie, index) {
+            return _c("li", { key: serie.id }, [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.sortBySeries(index, serie.id)
+                    }
                   }
-                }
-              },
-              [
-                serie.filter_type == 1
-                  ? _c("h6", [
-                      _vm._v(
-                        "\n                             " +
-                          _vm._s(serie.title) +
-                          " / " +
-                          _vm._s(serie.filter_products_count) +
-                          "\n                         "
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                serie.filter_type == 0
-                  ? _c("h3", [
-                      _vm._v(
-                        "\n                              " +
-                          _vm._s(serie.title) +
-                          " / " +
-                          _vm._s(serie.filter_products_count) +
-                          "\n                          "
-                      )
-                    ])
-                  : _vm._e()
-              ]
-            )
-          ])
-        })
+                },
+                [
+                  serie.filter_type == 1
+                    ? _c("span", [
+                        _vm._v(
+                          "\n                         " +
+                            _vm._s(serie.title) +
+                            " / " +
+                            _vm._s(serie.filter_products_count) +
+                            "\n                     "
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              )
+            ])
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "list" },
+        [
+          _c("h3", [_vm._v("Features")]),
+          _vm._v(" "),
+          _vm._l(_vm.features, function(serie, index) {
+            return _c("li", { key: serie.id }, [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.sortBySeries(index, serie.id, this.right_sort)
+                    }
+                  }
+                },
+                [
+                  serie.filter_type == 0
+                    ? _c("span", [
+                        _vm._v(
+                          "\n                         " +
+                            _vm._s(serie.title) +
+                            " / " +
+                            _vm._s(serie.filter_products_count) +
+                            "\n                     "
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              )
+            ])
+          })
+        ],
+        2
       )
     ]),
     _vm._v(" "),
@@ -55095,7 +55181,69 @@ var render = function() {
           ])
         })
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        ref: "form",
+        on: {
+          change: function($event) {
+            $event.preventDefault()
+            return _vm.sortBySelect($event)
+          }
+        }
+      },
+      [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.sortOption,
+                expression: "sortOption"
+              }
+            ],
+            staticClass: "sg-select__element",
+            attrs: { name: "" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.sortOption = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "0", selected: "" } }, [
+              _vm._v("Избранные продукты")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("От А до Я")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("От Я до А")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [
+              _vm._v("Цена: По убыванию")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "4" } }, [
+              _vm._v("Цена: По возрастанию")
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []

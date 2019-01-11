@@ -2,16 +2,22 @@
        <div>
            <div class="col-md-12">
                <ul class="list">
+                   <h3>Series</h3>
                    <li v-for="(serie, index) in series" :key="serie.id">
-                            <span @click.prevent="sortBySeries(index,serie.id)">
-                                <h6 v-if="serie.filter_type == 1">
-                                    {{ serie.title }} / {{ serie.filter_products_count }}
-                                </h6>
-                                
-                                 <h3 v-if="serie.filter_type == 0">
-                                     {{ serie.title }} / {{ serie.filter_products_count }}
-                                 </h3>
-                                  
+                        <span @click.prevent="sortBySeries(index,serie.id)">
+                            <span v-if="serie.filter_type == 1">
+                                {{ serie.title }} / {{ serie.filter_products_count }}
+                            </span>
+                        </span>
+                   </li>
+               </ul>
+               <ul class="list">
+                   <h3>Features</h3>
+                   <li v-for="(serie, index) in features" :key="serie.id">
+                        <span @click.prevent="sortBySeries(index,serie.id,this.right_sort)">
+                            <span v-if="serie.filter_type == 0">
+                                {{ serie.title }} / {{ serie.filter_products_count }}
+                            </span>
                         </span>
                    </li>
                </ul>
@@ -25,6 +31,15 @@
                    </li>
                </ul>
            </div>
+            <form @change.prevent="sortBySelect" ref="form">
+                <select v-model="sortOption" name="" class="sg-select__element">
+                    <option  value="0" selected>Избранные продукты</option>
+                    <option  value="1">От А до Я</option>
+                    <option  value="2">От Я до А</option>
+                    <option  value="3">Цена: По убыванию</option>
+                    <option  value="4">Цена: По возрастанию</option>
+                </select>
+            </form>
            
        </div>
 </template>
@@ -36,42 +51,79 @@
             return {
                 products: {},
                 series: {},
-                orderBy: null,
+                sortOption: null,
+                sortBy: null, // правая сортировка select
+                sortBy_value: null, // правая сортировка select
+                filters_ids: null,
+                features: {},
                 filter_rows: [],
-                filter_row: [],
-
+                filter_row: [], // для проверки 2 рого клика на один и тотже фильтр
             }
         },
          methods: {
+             sortBySelect(){
+                  if(this.sortOption == 0){
+                         this.sortBy = 'featured'
+                         this.sortBy_value = 'desc'
+                     }if(this.sortOption == 1){
+                          this.sortBy = 'title'
+                         this.sortBy_value = 'asc'
+                     }if(this.sortOption == 2){
+                          this.sortBy = 'title'
+                         this.sortBy_value = 'desc'
+                     }if(this.sortOption == 3){
+                          this.sortBy = 'price'
+                         this.sortBy_value = 'desc'
+                     }if(this.sortOption == 4){
+                          this.sortBy = 'price'
+                         this.sortBy_value = 'asc'
+                     }console.log(this.sortBy)
+                 if(this.filter_rows.length > 0){
+                    this.sortBySeries();
+                 }else{
+                    axios.post('/products', {category_id: this.category_id,
+                                             sortBy:this.sortBy,
+                                             sortBy_value:this.sortBy_value
+                                             }).then(res =>{
+                    this.series = res.data.series
+                    this.features = res.data.features
+                    this.products = res.data.products
+                    }).catch(err=>console.log(err))
+                 }
+             },
              sortBySeries(index,filters_ids){
-                //console.log(filters_ids)
-                //console.log(index)
                 this.filter_row =  this.filter_rows.filter(function(query) {
                     return query.filters_ids == filters_ids;
                 });
                 if(this.filter_row.length > 0){
                      this.filter_rows.splice(this.filter_rows.indexOf(index), 1);
-                     
-                     //this.$delete(this.filter_rows, this.filter_rows.filters_ids)
                      this.filter_row.splice(this.filter_row.filters_ids);
                 }else{
-                      this.filter_rows.push({filters_ids});
+                    if(filters_ids != null){
+                        this.filter_rows.push({filters_ids});
+                    }
+                      
                 }
-                
-
-                axios.post("/products/filter", { filters: this.filter_rows, category_id: this.category_id })
+                axios.post("/products/filter", { 
+                    filters: this.filter_rows,
+                     category_id: this.category_id,
+                     sortBy:this.sortBy,
+                     sortBy_value:this.sortBy_value
+                     })
                 .then(res => {
                     this.products = res.data.products
                 })
-                .catch(err=>console.log(err)); 
+                .catch(err=>console.log(err));
              },
             getCategories() {
                 axios.post('/products', {category_id: this.category_id}).then(res =>{
                     this.series = res.data.series
+                    this.features = res.data.features
                     this.products = res.data.products
                    
                 }).catch(err=>console.log(err))
             },
+            
          },  
         created(){
             this.getCategories();
