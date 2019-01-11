@@ -13,6 +13,7 @@ Route::get('/product-category/{bcategory_id}', 'HomeController@bcategory')->name
     GET RESULT BY VUE COMPONENTS
 */
 Route::post('/products', 'ProductController@getProducts');
+Route::post('/products/filter', 'ProductController@productsFilter');
 
 
 

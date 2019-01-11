@@ -1,29 +1,27 @@
 <template>
        <div>
-           <div class="col-md-4">
-               <ul>
-                   <li v-for="user in categories" :key="user.id">
-                         <span v-for="category in user.p_categories" :key="category.id">
-                        {{ category.title }} / {{ category.filter_products_count }}
+           <div class="col-md-12">
+               <ul class="list">
+                   <li v-for="serie in series" :key="serie.id">
+                            <span @click.prevent="sortBySeries(serie.id)">
+                            {{ serie.title }} /
                         </span>
                    </li>
                </ul>
            </div>
-           <div class="col-md-4">
+           <div class="col-md-12">
                <ul>
-                   <li v-for="user in categories" :key="user.id">
-                         <span v-for="category in user.p_categories2" :key="category.id">
-                        {{ category.title }} / {{ category.filter_products_count }}
+                   <li v-for="feature in features" :key="feature.id">
+                            <span @click.prevent="sortBySeries(feature.id)">
+                            {{ feature.title }} /
                         </span>
                    </li>
                </ul>
            </div>
-           <div class="col-md-4">
+           <div class="col-md-12">
                 <ul>
-                   <li v-for="user in categories" :key="user.id">
-                         <span v-for="product in user.products" :key="product.id">
+                   <li v-for="product in products" :key="product.id">
                             {{ product.title }}
-                        </span>
                    </li>
                </ul>
            </div>
@@ -36,22 +34,33 @@
         props:['category_id'],
         data(){
             return {
-                categories: {},
+                products: {},
+                series: {},
+                features: {},
             }
         },
          methods: {
              getParams(){
                 axios.post("/api/tasks/filter", { language: this.language,solved: this.solved,subject: this.subject })
                 .then(res => {
-                    this.categories = res.data
+                    this.products == res.data
                    
+                })
+                .catch(err=>console.log(err));
+             },
+             sortBySeries(filter_id){
+
+                axios.post("/products/filter", { filter_id: filter_id, category_id: this.category_id })
+                .then(res => {
+                    this.products = res.data
                 })
                 .catch(err=>console.log(err));
              },
             getCategories() {
                 axios.post('/products', {category_id: this.category_id}).then(res =>{
-                    
-                    this.categories = res.data
+                    this.series = res.data.series
+                    this.features = res.data.features
+                    this.products = res.data.products
                    
                 }).catch(err=>console.log(err))
             },
@@ -63,5 +72,8 @@
 </script>
 
 <style scoped>
-
+.list{
+    display: flex;
+    justify-content: space-around
+}
 </style>

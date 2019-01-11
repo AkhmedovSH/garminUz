@@ -54558,7 +54558,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.list[data-v-105d0652]{\r\n    display: -webkit-box;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -ms-flex-pack: distribute;\r\n        justify-content: space-around\n}\r\n", ""]);
 
 // exports
 
@@ -54970,14 +54970,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['category_id'],
     data: function data() {
         return {
-            categories: {}
+            products: {},
+            series: {},
+            features: {}
         };
     },
 
@@ -54986,17 +54986,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post("/api/tasks/filter", { language: this.language, solved: this.solved, subject: this.subject }).then(function (res) {
-                _this.categories = res.data;
+                _this.products == res.data;
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        },
+        sortBySeries: function sortBySeries(filter_id) {
+            var _this2 = this;
+
+            axios.post("/products/filter", { filter_id: filter_id, category_id: this.category_id }).then(function (res) {
+                _this2.products = res.data;
             }).catch(function (err) {
                 return console.log(err);
             });
         },
         getCategories: function getCategories() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.post('/products', { category_id: this.category_id }).then(function (res) {
-
-                _this2.categories = res.data;
+                _this3.series = res.data.series;
+                _this3.features = res.data.features;
+                _this3.products = res.data.products;
             }).catch(function (err) {
                 return console.log(err);
             });
@@ -55016,69 +55026,74 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "col-md-4" }, [
+    _c("div", { staticClass: "col-md-12" }, [
       _c(
         "ul",
-        _vm._l(_vm.categories, function(user) {
-          return _c(
-            "li",
-            { key: user.id },
-            _vm._l(user.p_categories, function(category) {
-              return _c("span", { key: category.id }, [
-                _vm._v(
-                  "\n                 " +
-                    _vm._s(category.title) +
-                    " / " +
-                    _vm._s(category.filter_products_count) +
-                    "\n                 "
-                )
-              ])
-            })
-          )
-        })
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-4" }, [
-      _c(
-        "ul",
-        _vm._l(_vm.categories, function(user) {
-          return _c(
-            "li",
-            { key: user.id },
-            _vm._l(user.p_categories2, function(category) {
-              return _c("span", { key: category.id }, [
-                _vm._v(
-                  "\n                 " +
-                    _vm._s(category.title) +
-                    " / " +
-                    _vm._s(category.filter_products_count) +
-                    "\n                 "
-                )
-              ])
-            })
-          )
-        })
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-4" }, [
-      _c(
-        "ul",
-        _vm._l(_vm.categories, function(user) {
-          return _c(
-            "li",
-            { key: user.id },
-            _vm._l(user.products, function(product) {
-              return _c("span", { key: product.id }, [
+        { staticClass: "list" },
+        _vm._l(_vm.series, function(serie) {
+          return _c("li", { key: serie.id }, [
+            _c(
+              "span",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.sortBySeries(serie.id)
+                  }
+                }
+              },
+              [
                 _vm._v(
                   "\n                     " +
-                    _vm._s(product.title) +
-                    "\n                 "
+                    _vm._s(serie.title) +
+                    " /\n                 "
                 )
-              ])
-            })
-          )
+              ]
+            )
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-12" }, [
+      _c(
+        "ul",
+        _vm._l(_vm.features, function(feature) {
+          return _c("li", { key: feature.id }, [
+            _c(
+              "span",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.sortBySeries(feature.id)
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                     " +
+                    _vm._s(feature.title) +
+                    " /\n                 "
+                )
+              ]
+            )
+          ])
+        })
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-12" }, [
+      _c(
+        "ul",
+        _vm._l(_vm.products, function(product) {
+          return _c("li", { key: product.id }, [
+            _vm._v(
+              "\n                     " +
+                _vm._s(product.title) +
+                "\n            "
+            )
+          ])
         })
       )
     ])
