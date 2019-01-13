@@ -24,7 +24,7 @@
            </div>
            <div class="col-md-12">
                <ul>
-                   <li v-for="product in products" :key="product.id">
+                   <li v-for="product in filteredTasks" :key="product.id">
                         <span>
                             {{ product.title }}
                         </span>
@@ -32,15 +32,15 @@
                </ul>
            </div>
             <form @change.prevent="sortBySelect" ref="form">
-                <select v-model="sortOption" name="" class="sg-select__element">
-                    <option  value="0" selected>Избранные продукты</option>
+                <select v-model="sortOption" name="sortOption" class="sg-select__element">
+                    <option selected  value="0">Избранные продукты</option>
                     <option  value="1">От А до Я</option>
                     <option  value="2">От Я до А</option>
                     <option  value="3">Цена: По убыванию</option>
                     <option  value="4">Цена: По возрастанию</option>
                 </select>
             </form>
-           
+           <pagination :data="products" @pagination-change-page="getResults"></pagination>
        </div>
 </template>
 
@@ -51,11 +51,11 @@
             return {
                 products: {},
                 series: {},
-                sortOption: null,
+                features: {},
+                sortOption: 0,
                 sortBy: null, // правая сортировка select
                 sortBy_value: null, // правая сортировка select
                 filters_ids: null,
-                features: {},
                 filter_rows: [],
                 filter_row: [], // для проверки 2 рого клика на один и тотже фильтр
             }
@@ -81,10 +81,10 @@
                  if(this.filter_rows.length > 0){
                     this.sortBySeries();
                  }else{
-                    axios.post('/products', {category_id: this.category_id,
+                    axios.get('/products', {params:{category_id: this.category_id,
                                              sortBy:this.sortBy,
                                              sortBy_value:this.sortBy_value
-                                             }).then(res =>{
+                                             }}).then(res =>{
                     this.series = res.data.series
                     this.features = res.data.features
                     this.products = res.data.products
@@ -104,30 +104,48 @@
                     }
                       
                 }
-                axios.post("/products/filter", { 
-                    filters: this.filter_rows,
+                 console.log(index)
+                console.log(this.filter_rows) 
+                axios.get("/products",{params: { 
+                     filters: this.filter_rows,
                      category_id: this.category_id,
                      sortBy:this.sortBy,
                      sortBy_value:this.sortBy_value
-                     })
+                     }})
                 .then(res => {
+                    console.log(res)
                     this.products = res.data.products
                 })
                 .catch(err=>console.log(err));
              },
             getCategories() {
-                axios.post('/products', {category_id: this.category_id}).then(res =>{
+                axios.get('/products', {params:{category_id: this.category_id}}).then(res =>{
                     this.series = res.data.series
                     this.features = res.data.features
                     this.products = res.data.products
                    
                 }).catch(err=>console.log(err))
             },
+            getResults(page = 1) {
+			axios.get('/products?page=' + page,{params:{category_id: this.category_id}})
+				.then(res => {
+					this.products = res.data.products;
+				});
+		    }
             
          },  
+         computed: {
+            filteredTasks () {
+                return this.products.data;
+            }
+         },
         created(){
             this.getCategories();
         },
+        mounted() {
+		// Fetch initial results
+        this.getResults();
+	    },
     }
 </script>
 

@@ -54992,11 +54992,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             products: {},
             series: {},
-            sortOption: null,
+            features: {},
+            sortOption: 0,
             sortBy: null, // правая сортировка select
             sortBy_value: null, // правая сортировка select
             filters_ids: null,
-            features: {},
             filter_rows: [],
             filter_row: [] // для проверки 2 рого клика на один и тотже фильтр
         };
@@ -55025,10 +55025,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.filter_rows.length > 0) {
                 this.sortBySeries();
             } else {
-                axios.post('/products', { category_id: this.category_id,
-                    sortBy: this.sortBy,
-                    sortBy_value: this.sortBy_value
-                }).then(function (res) {
+                axios.get('/products', { params: { category_id: this.category_id,
+                        sortBy: this.sortBy,
+                        sortBy_value: this.sortBy_value
+                    } }).then(function (res) {
                     _this.series = res.data.series;
                     _this.features = res.data.features;
                     _this.products = res.data.products;
@@ -55051,12 +55051,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     this.filter_rows.push({ filters_ids: filters_ids });
                 }
             }
-            axios.post("/products/filter", {
-                filters: this.filter_rows,
-                category_id: this.category_id,
-                sortBy: this.sortBy,
-                sortBy_value: this.sortBy_value
-            }).then(function (res) {
+            console.log(index);
+            console.log(this.filter_rows);
+            axios.get("/products", { params: {
+                    filters: this.filter_rows,
+                    category_id: this.category_id,
+                    sortBy: this.sortBy,
+                    sortBy_value: this.sortBy_value
+                } }).then(function (res) {
+                console.log(res);
                 _this2.products = res.data.products;
             }).catch(function (err) {
                 return console.log(err);
@@ -55065,17 +55068,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getCategories: function getCategories() {
             var _this3 = this;
 
-            axios.post('/products', { category_id: this.category_id }).then(function (res) {
+            axios.get('/products', { params: { category_id: this.category_id } }).then(function (res) {
                 _this3.series = res.data.series;
                 _this3.features = res.data.features;
                 _this3.products = res.data.products;
             }).catch(function (err) {
                 return console.log(err);
             });
+        },
+        getResults: function getResults() {
+            var _this4 = this;
+
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+            axios.get('/products?page=' + page, { params: { category_id: this.category_id } }).then(function (res) {
+                _this4.products = res.data.products;
+            });
+        }
+    },
+    computed: {
+        filteredTasks: function filteredTasks() {
+            return this.products.data;
         }
     },
     created: function created() {
         this.getCategories();
+    },
+    mounted: function mounted() {
+        // Fetch initial results
+        this.getResults();
     }
 });
 
@@ -55087,164 +55108,173 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "col-md-12" }, [
-      _c(
-        "ul",
-        { staticClass: "list" },
-        [
-          _c("h3", [_vm._v("Series")]),
-          _vm._v(" "),
-          _vm._l(_vm.series, function(serie, index) {
-            return _c("li", { key: serie.id }, [
-              _c(
-                "span",
-                {
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.sortBySeries(index, serie.id)
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "ul",
+          { staticClass: "list" },
+          [
+            _c("h3", [_vm._v("Series")]),
+            _vm._v(" "),
+            _vm._l(_vm.series, function(serie, index) {
+              return _c("li", { key: serie.id }, [
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.sortBySeries(index, serie.id)
+                      }
                     }
-                  }
-                },
-                [
-                  serie.filter_type == 1
-                    ? _c("span", [
-                        _vm._v(
-                          "\n                         " +
-                            _vm._s(serie.title) +
-                            " / " +
-                            _vm._s(serie.filter_products_count) +
-                            "\n                     "
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              )
+                  },
+                  [
+                    serie.filter_type == 1
+                      ? _c("span", [
+                          _vm._v(
+                            "\n                         " +
+                              _vm._s(serie.title) +
+                              " / " +
+                              _vm._s(serie.filter_products_count) +
+                              "\n                     "
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: "list" },
+          [
+            _c("h3", [_vm._v("Features")]),
+            _vm._v(" "),
+            _vm._l(_vm.features, function(serie, index) {
+              return _c("li", { key: serie.id }, [
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.sortBySeries(index, serie.id, this.right_sort)
+                      }
+                    }
+                  },
+                  [
+                    serie.filter_type == 0
+                      ? _c("span", [
+                          _vm._v(
+                            "\n                         " +
+                              _vm._s(serie.title) +
+                              " / " +
+                              _vm._s(serie.filter_products_count) +
+                              "\n                     "
+                          )
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "ul",
+          _vm._l(_vm.filteredTasks, function(product) {
+            return _c("li", { key: product.id }, [
+              _c("span", [
+                _vm._v(
+                  "\n                     " +
+                    _vm._s(product.title) +
+                    "\n                 "
+                )
+              ])
             ])
           })
-        ],
-        2
-      ),
+        )
+      ]),
       _vm._v(" "),
       _c(
-        "ul",
-        { staticClass: "list" },
-        [
-          _c("h3", [_vm._v("Features")]),
-          _vm._v(" "),
-          _vm._l(_vm.features, function(serie, index) {
-            return _c("li", { key: serie.id }, [
-              _c(
-                "span",
-                {
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.sortBySeries(index, serie.id, this.right_sort)
-                    }
-                  }
-                },
-                [
-                  serie.filter_type == 0
-                    ? _c("span", [
-                        _vm._v(
-                          "\n                         " +
-                            _vm._s(serie.title) +
-                            " / " +
-                            _vm._s(serie.filter_products_count) +
-                            "\n                     "
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              )
-            ])
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-12" }, [
-      _c(
-        "ul",
-        _vm._l(_vm.products, function(product) {
-          return _c("li", { key: product.id }, [
-            _c("span", [
-              _vm._v(
-                "\n                     " +
-                  _vm._s(product.title) +
-                  "\n                 "
-              )
-            ])
-          ])
-        })
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        ref: "form",
-        on: {
-          change: function($event) {
-            $event.preventDefault()
-            return _vm.sortBySelect($event)
-          }
-        }
-      },
-      [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.sortOption,
-                expression: "sortOption"
-              }
-            ],
-            staticClass: "sg-select__element",
-            attrs: { name: "" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.sortOption = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
+        "form",
+        {
+          ref: "form",
+          on: {
+            change: function($event) {
+              $event.preventDefault()
+              return _vm.sortBySelect($event)
             }
-          },
-          [
-            _c("option", { attrs: { value: "0", selected: "" } }, [
-              _vm._v("Избранные продукты")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "1" } }, [_vm._v("От А до Я")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "2" } }, [_vm._v("От Я до А")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "3" } }, [
-              _vm._v("Цена: По убыванию")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "4" } }, [
-              _vm._v("Цена: По возрастанию")
-            ])
-          ]
-        )
-      ]
-    )
-  ])
+          }
+        },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.sortOption,
+                  expression: "sortOption"
+                }
+              ],
+              staticClass: "sg-select__element",
+              attrs: { name: "sortOption" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.sortOption = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { selected: "", value: "0" } }, [
+                _vm._v("Избранные продукты")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "1" } }, [_vm._v("От А до Я")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2" } }, [_vm._v("От Я до А")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "3" } }, [
+                _vm._v("Цена: По убыванию")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "4" } }, [
+                _vm._v("Цена: По возрастанию")
+              ])
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("pagination", {
+        attrs: { data: _vm.products },
+        on: { "pagination-change-page": _vm.getResults }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -7,13 +7,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/blog/{slug}', 'HomeController@show')->name('blog.show');
 Route::get('/blog', 'HomeController@blog');
 
-Route::get('/product-category/{bcategory_id}', 'HomeController@bcategory')->name('bcategory');
+Route::get('/products/{category_id}', 'HomeController@bcategory')->name('bcategory');
 
 /*
     GET RESULT BY VUE COMPONENTS
 */
-Route::post('/products', 'ProductController@getProducts');
-Route::post('/products/filter', 'ProductController@productsFilter');
+Route::get('/products', 'ProductController@getProducts');
+Route::get('/products/filter', 'ProductController@productsFilter');
 
 
 

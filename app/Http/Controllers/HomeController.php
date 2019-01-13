@@ -9,6 +9,7 @@ use App\PCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class HomeController extends Controller
 {
 
@@ -27,6 +28,7 @@ class HomeController extends Controller
 
     public function bcategory($bcategory_id)
     {
+        
         return view('product', compact('bcategory_id'));
     }
 }
