@@ -55045,7 +55045,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
             if (this.filter_row.length > 0) {
                 this.filter_rows.splice(this.filter_rows.indexOf(index), 1);
-                this.filter_row.splice(this.filter_row.filters_ids);
             } else {
                 if (filters_ids != null) {
                     this.filter_rows.push({ filters_ids: filters_ids });

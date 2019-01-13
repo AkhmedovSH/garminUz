@@ -2,14 +2,15 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class BCategory extends Model
 {
     use Sluggable;
     protected $table = 'm_categories';
-    protected $fillable = ['title','parent_id'];
+    protected $fillable = ['title','parent_id','image','image2','description'];
 
     public function parent()
     {
@@ -53,6 +54,53 @@ class BCategory extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+
+
+    function uploadImage($image){
+        if ($image == null) { return; }
+        $this->removeImage();
+        $filename = str_random(10). '.' . $image->extension();
+
+        $image->storeAs('uploads/categories/', $filename);
+        $this->image = $filename;
+        $this->save();
+    }
+
+    public function removeImage(){
+        if ($this->image != null){
+            Storage::delete('uploads/categories/'. $this->image);
+        }
+    }
+
+    function uploadImage2($image){
+        if ($image == null) { return; }
+        $this->removeImage2();
+        $filename = str_random(10). '.' . $image->extension();
+
+        $image->storeAs('uploads/categories/', $filename);
+        $this->image2 = $filename;
+        $this->save();
+    }
+
+    public function removeImage2(){
+        if ($this->image2 != null){
+            Storage::delete('uploads/categories/'. $this->image2);
+        }
+    }
+
+    public function getImage(){
+        if ($this->image == null){
+            return '/img/no-image.png';
+        }
+        return '/uploads/categories/'. $this->image;
+    }
+
+
+    public function remove(){
+        $this->removeImage();
+        $this->delete();
     }
 
 }

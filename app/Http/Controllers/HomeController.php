@@ -28,7 +28,7 @@ class HomeController extends Controller
 
     public function bcategory($bcategory_id)
     {
-        
-        return view('product', compact('bcategory_id'));
+        $category = BCategory::where('id',$bcategory_id)->firstOrFail();
+        return view('product', compact('bcategory_id','category'));
     }
 }

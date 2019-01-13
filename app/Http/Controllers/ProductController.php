@@ -14,12 +14,10 @@ class ProductController extends Controller
 {
     public function getProducts(Request $request)
     {
-
-
+        
         if($request->filters != null){
-           
+        //********************** ЭТО КОГДА ВЫБРАНЫ ФИЛЬРЫ *****************************/
 
-            
             $category_id = $request->category_id;
             $filter_id= [];
 
@@ -37,7 +35,7 @@ class ProductController extends Controller
                 $sort = $request->sortBy;
                 $sort_value = $request->sortBy_value;
                }else{
-                $sort = 'price';
+                $sort = 'featured';
                 $sort_value = 'desc';
                }
     
@@ -65,7 +63,7 @@ class ProductController extends Controller
 
 
 
-        }else{
+        }else{ //********************** ЭТО КОГДА НЕ ВЫБРАНЫ ФИЛЬРЫ *****************************/
         
             
             $category_id = $request->category_id;
@@ -77,7 +75,7 @@ class ProductController extends Controller
              $sort = $request->sortBy;
              $sort_value = $request->sortBy_value;
             }else{
-             $sort = 'price';
+             $sort = 'featured';
              $sort_value = 'desc';
             }
            
@@ -113,15 +111,8 @@ class ProductController extends Controller
              )); 
 
 
-
-
-
         }
 
-
-
-
-   
     }
 
 

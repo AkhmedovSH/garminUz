@@ -96,8 +96,7 @@
                     return query.filters_ids == filters_ids;
                 });
                 if(this.filter_row.length > 0){
-                     this.filter_rows.splice(this.filter_rows.indexOf(index), 1);
-                     this.filter_row.splice(this.filter_row.filters_ids);
+                    this.filter_rows.splice(this.filter_rows.indexOf(index), 1);
                 }else{
                     if(filters_ids != null){
                         this.filter_rows.push({filters_ids});

@@ -26,16 +26,31 @@
                         @include('admin.errors')
                     </div>
                     <div class="box-body">
-                        <div class="col-md-9">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Название</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1" name="title" value="{{ $bcategory->title }}" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Картинка категории верхняя</label>
+                                <img src="{{$bcategory->getImage()}}" alt="" class="img-responsive" width="200">
+                                <input type="file" id="exampleInputFile" name="image">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Картинка категории нижняя</label>
+                                <img src="{{$bcategory->getImage()}}" alt="" class="img-responsive" width="200">
+                                <input type="file" id="exampleInputFile" name="image2">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Описание</label>
+                                <textarea name="description" id="my-editor" cols="30" rows="10" class="form-control">{{ $bcategory->description }}</textarea>
                             </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button class="btn btn-default">Назад</button>
                         <button class="btn btn-success pull-right">Добавить</button>
                     </div>
                     <!-- /.box-footer-->

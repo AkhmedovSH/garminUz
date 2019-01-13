@@ -42,7 +42,9 @@ class BController extends Controller
             'title' => 'required',
             'parent_id' => 'required'
         ]);
-        BCategory::create($request->all());
+        $bcategory = BCategory::create($request->all());
+        $bcategory->uploadImage($request->file('image'));
+        $bcategory->uploadImage2($request->file('image2'));
         return redirect()->route('menucategories.index');
     }
 
@@ -60,13 +62,14 @@ class BController extends Controller
     {
         $bcategory = BCategory::find($id);
         $bcategory->update($request->all());
-
+        $bcategory->uploadImage($request->file('image'));
+        $bcategory->uploadImage2($request->file('image2'));
         return redirect()->route('menucategories.index');
     }
 
     public function destroy($id)
     {
-        BCategory::find($id)->delete();
+        BCategory::find($id)->remove();
         return redirect()->route('menucategories.index');
     }
 }

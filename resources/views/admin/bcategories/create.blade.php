@@ -16,7 +16,10 @@
 
             <!-- Default box -->
             <div class="box">
-                {!! Form::open(['route' => 'menucategories.store']) !!}
+                {!! Form::open([
+                    'route' => 'menucategories.store',
+                    'files' => true
+                    ]) !!}
                 <div class="box-header with-border">
                     <h3 class="box-title">Добавляем категорию</h3>
                     @include('admin.errors')
@@ -27,10 +30,27 @@
                             <label for="exampleInputEmail1">Название</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" name="title" placeholder="Название" autocomplete="off">
                         </div>
-                        <select name="parent_id" id="" class="form-control select2">
-                            <option value="0">Самостаятельня категория</option>
-                            @include('MenuItem2', ['items' => $m_builder->roots()])
-                        </select>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Название</label>
+                            <select name="parent_id" id="" class="form-control select2">
+                                <option value="0">Самостаятельня категория</option>
+                                @include('MenuItem2', ['items' => $m_builder->roots()])
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Картинка категории верхняя</label>
+                            <input type="file" id="exampleInputFile" name="image">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Картинка категории нижняя</label>
+                            <input type="file" id="exampleInputFile" name="image2">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Описание</label>
+                            <textarea name="description" id="my-editor" cols="30" rows="10" class="form-control">{{old('description')}}</textarea>
+                        </div>
                     </div>
                 </div>
                 <!-- /.box-body -->
