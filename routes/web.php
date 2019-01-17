@@ -14,6 +14,9 @@ Route::get('/products/{category_id}', 'HomeController@bcategory')->name('bcatego
 */
 Route::get('/products', 'ProductController@getProducts');
 Route::get('/products/filter', 'ProductController@productsFilter');
+Route::get('/product/{slug}', 'ProductController@oneProductView');
+Route::get('/one-product', 'ProductController@oneProduct'); // oneproductcomponent
+
 
 
 

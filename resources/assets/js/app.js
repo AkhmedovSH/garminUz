@@ -20,6 +20,7 @@ import VueInternationalization from 'vue-i18n';
 import Locale from './vue-i18n-locales.generated';
 
 Vue.component('products-component', require('./components/ProductsComponent.vue'));
+Vue.component('one-product-component', require('./components/OneProductComponent.vue'));
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.use(VModal);

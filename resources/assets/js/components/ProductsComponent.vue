@@ -26,7 +26,9 @@
                <ul>
                    <li v-for="product in filteredTasks" :key="product.id">
                         <span>
-                            {{ product.title }}
+                             <a :href="'/product/' + product.slug">
+                                 {{ product.title }}
+                            </a>
                         </span>
                    </li>
                </ul>

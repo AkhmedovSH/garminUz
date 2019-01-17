@@ -16,8 +16,8 @@
 
                     You are logged in!
 
-                   
-                    <products-component category_id="{{ $bcategory_id }}"></products-component>
+                   {{ $slug }}
+                    <one-product-component slug="{{ $slug }}"></one-product-component>
                     
 
                 </div>

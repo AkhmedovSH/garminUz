@@ -19,6 +19,19 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" href="/extension/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/extension/owl-carousel/owl.theme.default.css">
+    <link rel="stylesheet" href="/extension/animate-css/animate.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/extension/bootstrap/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="extension/dop/reset.css">
+    <link rel="stylesheet" href="extension/dop/style.css"> -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <link rel="stylesheet" href="/css/media.css">
 </head>
 <body>
     <div id="app">
@@ -75,5 +88,8 @@
             @yield('content')
         </main>
     </div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
+<script src="/extension/bootstrap/bootstrap.min.js"></script>
+
 </body>
 </html>

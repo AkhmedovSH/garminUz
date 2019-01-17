@@ -118,9 +118,24 @@ class ProductController extends Controller
 
 
 
-/*     public function productsFilter(Request $request){
+     public function oneProductView($slug){
+        $product = Product::where('slug',$slug)->get();
+
+        return view('one-product', compact('slug'));
+    } 
+
+
+     public function oneProduct(Request $request){
+        $slug = $request->slug;
+        $product = Product::where('slug',$slug)->firstOrFail();
         
-    } */
+        $products = Product::where('series_category_id', $product->series_category_id)->get();
+        return response()->json(array(
+            'product'=>$product,
+            'features'=>'',
+            'products'=>$products
+         ));
+    } 
 
 
 
