@@ -36,7 +36,7 @@
                             </td>
                             <td>{{$product->title}}</td>
                             <td>
-                                <img src="{{$product->title}}" alt="" width="100">
+                                <img src="{{$product->getImage()}}" width="100">
                             </td>
                             <td><a href="{{route('products.edit', $product->id)}}" class="fa fa-pencil"></a>
                                 {{Form::open(['route'=>['products.destroy', $product->id], 'method'=>'delete'])}}

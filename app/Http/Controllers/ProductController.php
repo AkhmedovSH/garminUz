@@ -85,9 +85,10 @@ class ProductController extends Controller
             foreach($filters_id as $filter){
                 $filters_ids[] = $filter->p_filter_id;
             }
-     
+            
             $series = PCategory::whereIn('id', $filters_ids)->where('filter_type',1)->withCount('filter_products')->get();
             $features = PCategory::whereIn('id', $filters_ids)->where('filter_type',0)->withCount('filter_products')->get();
+           
             $filters_products = DB::table('p_filter_product')->whereIn('p_filter_id', $filters_ids)->get();
      
             foreach($filters_products as $filter){
@@ -125,18 +126,25 @@ class ProductController extends Controller
     } 
 
 
+
      public function oneProduct(Request $request){
         $slug = $request->slug;
         $product = Product::where('slug',$slug)->firstOrFail();
-        
         $products = Product::where('series_category_id', $product->series_category_id)->get();
         return response()->json(array(
             'product'=>$product,
-            'features'=>'',
             'products'=>$products
          ));
     } 
 
 
+    public function choosenProduct(Request $request){
+        $slug = $request->slug;
+        $product = Product::where('slug',$slug)->firstOrFail();
+
+        return response()->json(array(
+            'product'=>$product
+         ));
+    } 
 
 }

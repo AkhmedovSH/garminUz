@@ -15,10 +15,10 @@ class PCategoryController extends Controller
     }
 
     public function create(){
-        $menu = BCategory::all();
-
         $tags = BCategory::pluck('title', 'id')->all();
 
+        
+        $menu = BCategory::all();
         $m_builder=\Menu::make('MyNav', function ($m) use($menu){
             foreach ($menu as $item){
                 if($item->parent_id==0){
@@ -35,7 +35,9 @@ class PCategoryController extends Controller
     }
 
     public function store(Request $request){
-        PCategory::create($request->all());
+        $category = PCategory::create($request->all());
+
+        $category->setTags($request->get('tags'));
         return redirect()->route('productcategories.index');
     }
 

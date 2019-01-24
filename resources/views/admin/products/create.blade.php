@@ -6,72 +6,134 @@
         <!-- Content Header (Page header) -->
 
         <!-- Main content -->
-        <section class="content">
-        {{Form::open([
-           'route' =>'products.store',
-           'files' => true
-        ])}}
-            <!-- Default box -->
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Добавляем Продукт</h3>
+    <section class="content">
+    {{Form::open([
+        'route' =>'products.store',
+        'files' => true,
+        'autocomplete' => 'off'
+    ])}}
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Добавляем Продукт</h3>
+            </div>
+            @include('admin.errors')
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Заголовок</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="title" value="{{old('title')}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputFile">Лицевая картинка jpeg jpg png</label>
+                        <input type="file" id="exampleInputFile" name="image">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Выбор нескольких картинок для слайдера (зажимая Ctrl)</label>
+                        <input type="file" id="exampleInputFile" name="images[]" multiple>
+                    </div>
+                    <div class="form-group">
+                        <label>Какой категории относиться товар</label>
+                        {{Form::select('categories[]',
+                        $tags,
+                        null,
+                        ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите категории'])
+                        }}
+                    </div>
+                        <div class="form-group">
+                        <label>Фильтры для товара</label>
+                        {{Form::select('filters[]',
+                            $filters,
+                            null,
+                            ['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите фильтры'])
+                        }}
+                    </div> 
                 </div>
-                @include('admin.errors')
-                <div class="box-body">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Заголовок</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="title" value="{{old('title')}}">
-                        </div>
-
-                        <div class="form-group">
-                           
-                            <label for="exampleInputFile">Лицевая картинка</label>
-                            <input type="file" id="exampleInputFile" name="image">
-
-                            <p class="help-block">Какое-нибудь уведомление о форматах..</p>
-                        </div>
-                        <div class="form-group">
-                            <label>Меню</label>
-                            {{Form::select('categories[]',
-                            $tags,
-                            null,
-                            ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите теги'])
-                            }}
-                        </div>
-                         <div class="form-group">
-                            <label>Теги</label>
-                            {{Form::select('filters[]',
-                                $filters,
-                                null,
-                                ['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите теги'])
-                            }}
-                        </div> 
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Описание</label>
-                            <textarea name="description" id="my-editor2" cols="30" rows="10" class="form-control">{{old('description')}}</textarea>
+                            <label>Если товар не одиночный (выбрать категорию)</label>
+                            {{Form::select('case_size',$tags,null,['class' => 'form-control select2', 'placeholder' => 'Выберите категории'])}}
                         </div>
                     </div>
-                    <hr>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Полный текст</label>
-                            <textarea name="content" id="my-editor" cols="30" rows="10" class="form-control">{{ old('content') }}</textarea>
+                            <label>Размер часов</label>
+                            <select name="pa_case_size" class="form-control select2">
+                                <option value="null">Выберите категории</option>
+                                <option value="42">42</option>
+                                <option value="47">47</option>
+                                <option value="51">51</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Если товар имеет отслеживание пульса</label>
+                            <select name="pa_pulse_ox" class="form-control select2">
+                                <option value="null">Выберите категории</option>
+                                <option value="1">Да</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Сапфирные часы</label>
+                            <select name="pa_pulse_ox" class="form-control select2">
+                                <option value="null">Выберите категории</option>
+                                <option value="1">Да</option>
+                                <option value="0">Нет</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Музыка в часах</label>
+                            <select name="pa_pulse_ox" class="form-control select2">
+                                <option value="null">Выберите категории</option>
+                                <option value="1">Да</option>
+                                <option value="0">Нет</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                    <button class="btn btn-success pull-right">Добавить</button>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Описание 10-25 слов</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="description" value="{{old('description')}}">
+                    </div>
                 </div>
-                <!-- /.box-footer-->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Полное описание (overview)</label>
+                        <textarea name="overview" id="my-editor" cols="30" rows="10" class="form-control">{{ old('overview') }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Спецификации товара</label>
+                        <textarea name="specs" id="my-editor2" cols="30" rows="10" class="form-control">{{ old('specs') }}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">В комплектации (In the box)</label>
+                        <textarea name="in_the_box" id="my-editor3" cols="30" rows="10" class="form-control">{{ old('in_the_box') }}</textarea>
+                    </div>
+                </div>
             </div>
-            <!-- /.box -->
-            {{Form::close()}}
-        </section>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-success pull-right">Добавить</button>
+            </div>
+            <!-- /.box-footer-->
+        </div>
+        <!-- /.box -->
+        {{Form::close()}}
+    </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

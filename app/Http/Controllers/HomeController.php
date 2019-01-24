@@ -8,19 +8,17 @@ use App\BCategory;
 use App\PCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Slider;
 
 
 class HomeController extends Controller
 {
 
-/*     public function __construct()
-    {
-        $this->middleware('auth');
-    } */
-
     public function index()
     {
-        return view('home');
+        $sliders = Slider::take(5)->orderBy('id','DESC')->get();
+        //dd($sliders);
+        return view('main', compact('sliders'));
     }
 
 

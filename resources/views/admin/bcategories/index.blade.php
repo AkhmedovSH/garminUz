@@ -10,6 +10,7 @@
 
         <!-- Default box -->
         <div class="box">
+            
             <div class="box-header">
                 <h3 class="box-title">Листинг сущности</h3>
             </div>
@@ -37,7 +38,7 @@
                             <button onclick="return confirm('are you sure?')" type="submit" class="delete">
                                 <i class="fa fa-remove"></i>
                             </button>
-
+                            
                             {{Form::close()}}
 
                         </td>

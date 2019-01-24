@@ -23,43 +23,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {     
-        view()->composer('layout1', function($view){
+
+        view()->composer('layouts.app', function($view){
             $menu=BCategory::all();
             $m_builder=\Menu::make('MyNav', function ($m) use($menu){
                 foreach ($menu as $item){
                     if($item->parent_id==0){
-                        $m->add($item->title, $item->slug)->id($item->id);
+                        $m->add($item->title,  $item->parent_id)->id($item->id)->data('icons', $item->icons);
                     }
                     else {
                         if($m->find($item->parent_id)){
-                            $m->find($item->parent_id)->add($item->title, $item->slug,$item->parent_id)->id($item->id);
+                            $m->find($item->parent_id)->add($item->title, $item->parent_id)->id($item->id);
                         }
                     }
                 }
             });
-            //dd($m_builder);
+            //dd($m_builder->items);
             $view->with('menu', $m_builder); 
-         });
-
-
-
-             view()->composer('home', function($view){
-                    $menu=BCategory::all();
-                    $m_builder=\Menu::make('MyNav', function ($m) use($menu){
-                        foreach ($menu as $item){
-                            if($item->parent_id==0){
-                                $m->add($item->title, $item->slug,$item->parent_id)->id($item->id);
-                            }
-                            else {
-                                if($m->find($item->parent_id)){
-                                    $m->find($item->parent_id)->add($item->title, $item->slug,$item->parent_id)->id($item->id);
-                                }
-                            }
-                        }
-                    });
-                    //dd($m_builder->items);
-                    $view->with('menu', $m_builder); 
-             });
+        });
 
         Blade::directive('set',function($exp) {
 

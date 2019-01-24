@@ -1,13 +1,11 @@
 @foreach($items as $item)
-   <li>
-    @if($item->hasChildren())
-    <a href="javascript:void(0);">{{$item->title}}</a>
-    @else
-    <a href="{{route('bcategory', $item->id)}}">{{$item->title}}</a>
-    @endif
+   <li class="second-line">
+   
+    <a href="{{route('bcategory', $item->id)}}" class="{{ $item->icons }}">{{$item->title}}</a>
+    
         @if($item->hasChildren())
-            <ul>
-               @include('MenuItem', ['items'=>$item->children()])
+            <ul class="list-style-default third-level">
+               @include('MenuItem-1', ['items'=>$item->children()])
             </ul>
         @endif
     </li>

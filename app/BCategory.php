@@ -103,4 +103,16 @@ class BCategory extends Model
         $this->delete();
     }
 
+    public function setTags($ids){
+        if ($ids == null){ return; }
+        $this->p_categories()->sync($ids);
+    }
+
+
+    public function getTagsTitles(){
+        return (!$this->p_categories->isEmpty())
+            ? implode(', ', $this->p_categories->pluck('title')->all())
+            : 'Нет тегов';
+    }
+
 }

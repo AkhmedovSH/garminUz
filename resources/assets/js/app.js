@@ -14,10 +14,15 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import VModal from 'vue-js-modal'
-import 'viewerjs/dist/viewer.css'
 import Viewer from 'v-viewer'
-import VueInternationalization from 'vue-i18n';
-import Locale from './vue-i18n-locales.generated';
+import VueCarousel from 'vue-carousel';
+import { Carousel, Slide } from 'vue-carousel';
+Vue.use(VueCarousel);
+Vue.use(Carousel);
+Vue.use(Slide);
+
+
+
 
 Vue.component('products-component', require('./components/ProductsComponent.vue'));
 Vue.component('one-product-component', require('./components/OneProductComponent.vue'));
@@ -25,12 +30,10 @@ Vue.component('one-product-component', require('./components/OneProductComponent
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.use(VModal);
 Vue.use(Viewer);
-Vue.use(VueInternationalization);
-const lang = document.documentElement.lang.substr(0, 2); 
-const i18n = new VueInternationalization({
-    locale: lang,
-    messages: Locale
-});
+
+
+
 const app = new Vue({
     el: '#app',
+    
 });

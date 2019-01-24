@@ -30,8 +30,8 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Название</label>
                             <select name="filter_type" id="" class="form-control select2">
-                                <option value="1">Series</option>
                                 <option value="0">Features</option>
+                                <option value="1">Series</option>
                             </select>
                         </div>
                     </div>

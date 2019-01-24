@@ -51,10 +51,10 @@ class BController extends Controller
     public function edit($id)
     {
         $bcategory = BCategory::find($id);
-        /* $tags = PCategory::pluck('title', 'id')->all();
-        $selectedTags = $bcategory->p_categories->pluck('id')->all(); */
+        $tags = PCategory::pluck('title', 'id')->all();
+        $selectedTags = $bcategory->p_categories->pluck('id')->all(); 
         
-        return view('admin.bcategories.edit', compact('bcategory'));
+        return view('admin.bcategories.edit', compact('bcategory', 'tags' , 'selectedTags'));
     }
 
 
@@ -62,6 +62,7 @@ class BController extends Controller
     {
         $bcategory = BCategory::find($id);
         $bcategory->update($request->all());
+        $bcategory->setTags($request->get('tags'));
         $bcategory->uploadImage($request->file('image'));
         $bcategory->uploadImage2($request->file('image2'));
         return redirect()->route('menucategories.index');

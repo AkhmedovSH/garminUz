@@ -24,6 +24,7 @@ class ProductController extends Controller
 
         $tags = BCategory::pluck('title', 'id')->all();
         $filters = PCategory::pluck('title', 'id')->all();
+        //dd($tags);
         $m_builder=\Menu::make('MyNav', function ($m) use($menu){
             foreach ($menu as $item){
                 if($item->parent_id==0){
@@ -43,12 +44,13 @@ class ProductController extends Controller
  
     public function store(Request $request)
     {
-        //dd($request->all());
-        $product = Product::add($request->all());
+        dd($request->all());
+       $product = Product::add($request->all());
        
+       $product->uploadMultipleImages($request->file('images'));
        $product->setTags($request->get('categories'));
        $product->setFilters($request->get('filters'));
-        return redirect()->route('products.index');
+       return redirect()->route('products.index');
     }
 
 

@@ -69,7 +69,7 @@ class PCategory extends Model
 
 
     public function getTagsTitles(){
-        return (!$this->p_categories->isEmpty())
+        return (!$this->menu_categories->isEmpty())
             ? implode(', ', $this->menu_categories->pluck('title')->all())
             : 'Нет тегов';
     }

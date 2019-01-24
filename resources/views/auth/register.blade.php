@@ -1,77 +1,60 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="account-create_container">
+        <div class="account-create_container-title">
+            GARMIN INTERNATIONAL | ACCOUNT | CREATE
         </div>
+        <div class="account-create_container-main">
+            <form>
+                <h5>Please complete the fields below:</p>
+                    <div class="form-group">
+                        <label for="exampleInputName">Name*</label>
+                        <input type="name" class="form-control" id="name" aria-describedby="emailHelp">
+                        <small id="name" class="form-text text-muted">Enter your Name</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail">Email Address*</label>
+                        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
+                        <small id="Email" class="form-text text-muted">You'll use your email address to sign in</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputRetypeEmail">Retype Email Address*</label>
+                        <input type="email" class="form-control" id="RetypeEmail" aria-describedby="emailHelp">
+                        <small id="RetypeEmail" class="form-text text-muted">Enter your desired email again</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword">Password*</label>
+                        <input type="password" class="form-control" id="password" aria-describedby="emailHelp">
+                        <small id="password" class="form-text text-muted">Minimum password length is 8 characters.
+                            Please use at least 1 uppercase letter, 1 lowercase letter and 1 number. Forward
+                            slaches, spaces and double quotes are not allowed.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputretypedPassword">Retype Password*</label>
+                        <input type="password" class="form-control" id="retypepassword" aria-describedby="emailHelp">
+                        <small id="retypepassword" class="form-text text-muted">Enter your desired password again</small>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="exampleCheckbox1" value="option1">
+                        <label class="form-check-label" for="exampleRadios1">
+                            Get product news and promotions based on your preferences and registered devices.
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="exampleCheckbox2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            I have read and agree to the Garmin <a href="#">Terms of Use.</a>
+                        </label>
+                    </div>
+                    <p>Garmin takes your privacy seriously. Our <a href="#">Privacy Policy</a> is available for
+                        your review.</p>
+
+                    <button class="create-account_button create-account_button-disabled" id="disabled-button">Create
+                        Account</button>
+            </form>
+        </div>
+
+
     </div>
-</div>
 @endsection

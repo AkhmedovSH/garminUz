@@ -1,19 +1,15 @@
 <template>
 <div class="the-wrapper">
 <div class="one-product_main">
-    <!-- <div class="one-product_main-images">
-        <div class="owl-four owl-carousel owl-theme">
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band.jpg" alt=""></div>
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band-2.jpg" alt=""></div>
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band-3.jpg" alt=""></div>
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band-4.jpg" alt=""></div>
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band-5.jpg" alt=""></div>
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band-6.jpg" alt=""></div>
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band-7.jpg" alt=""></div>
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band-8.jpg" alt=""></div>
-            <div class="one-product-item"><img src="/img/one-product//fenix5-plus-sapphire-leather-band-9.jpg" alt=""></div>
-        </div>
-    </div> -->
+    <div class="one-product_main-images">
+    <carousel style="width: 300px;" :per-page="1"  :navigationEnabled="true">
+        <slide  v-for="sliderImage in jsonParsed" :key="sliderImage.id">
+           
+        <img :src="'/uploads/products/' + sliderImage.image" style="max-width: 300px !important">
+        </slide>
+    </carousel>
+    </div>
+  
     <div class="one-product_main-filter">
         <div class="one-product_product-title">
             <p class="product-name">fēnix® 5 Plus</p>
@@ -24,7 +20,7 @@
             </div>
 
         <div id="product-price">
-                <p class="product-price"><span>3199.00</span><span>AED</span></p>
+                <p class="product-price"><span>3199.00</span><span>Сум</span></p>
                 <p class="product-price_add_info">(Price Exclusive of VAT)</p>
         </div>
 
@@ -32,6 +28,8 @@
             <div class="product-filter_case-size">
                     <div class="series-attribute">Case Size
                         <span id="tooltip-icon">?</span>
+                         <li><a href="" class="active">42MM</a></li>
+                        
                         <p class="series-attribute_disappear">Represents the diameter of the watch housing.</p>
                     </div>
                     <div class="series_attr_val">
@@ -69,8 +67,10 @@
         </div>
 
         <div class="no-class" v-if="product.series_category_id != null">
-            <span v-for="item in products" :key="item.id">
-                {{ item.title }}
+            <span v-for="(item,index) in products" :key="item.id" >
+                <a  @click.prevent="chooseProduct(index,item.slug)">
+                    {{ item.title }}
+                </a>
             </span>
         </div>
 
@@ -166,15 +166,22 @@
             return {
                 product: {}, 
                 products: {}, 
+                jsonParsed: {}, 
             }
         },
         methods: {
            AllOrOneProduct() {
                 axios.get('/one-product', {params:{slug: this.slug}}).then(res =>{
-                    console.log(res.data)
                     this.products = res.data.products
                     this.product = res.data.product
+                    this.jsonParsed = JSON.parse(this.product.slider_image);
                 }).catch(err=>console.log(err))
+            },
+            chooseProduct(index,product_slug){
+                console.log(index,product_slug)
+                axios.get('/one-product-choose', {params:{slug: product_slug}}).then(res =>{
+                     this.product = res.data.product
+                }).catch(err=>console.log(err)) 
             },
         },
         created(){
@@ -184,4 +191,22 @@
     }
 </script>
 <style>
+.VueCarousel-navigation-button[data-v-453ad8cd] {
+    position: absolute;
+    top: 22%;
+    box-sizing: border-box;
+    color: #000;
+    text-decoration: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+.VueCarousel-dot[data-v-438fd353]{
+    width: 15px!important;
+    height: 15px!important;
+    padding: 10px 3px!important;
+}
 </style>

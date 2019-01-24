@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Product extends Model
 {
     protected $table = 'products';
-    protected $fillabe = ['title', 'description'];
+    protected $fillabe = ['title', 'description', 'slider_image'];
     
     use Sluggable;
 
@@ -82,5 +82,40 @@ class Product extends Model
         return (!$this->p_categories->isEmpty())
             ? implode(', ', $this->p_categories->pluck('title')->all())
             : 'Нет тегов';
+    }
+
+
+    function uploadImage($image){
+        if ($image == null) { return; }
+        $this->removeImage();
+        $filename = str_random(10). '.' . $image->extension();
+
+        $image->storeAs('uploads/products/', $filename);
+        $this->image = $filename;
+        $this->save();
+    }
+
+
+    public function getImage(){
+        if ($this->image == null){
+            return '/img/no-image.png';
+        }
+        return '/uploads/products/'. $this->image;
+    }
+
+    public function uploadMultipleImages($images){
+    $names = array();
+    $incI = 0;
+    foreach($images as $image)
+    {
+        $filename = str_random(10). '.' . $image->extension();
+        $image->storeAs('uploads/products/', $filename);
+        //array_push($names, $filename);  
+        $names[$incI]['image'] = $filename;
+        $incI++;
+        
+    }
+        $this->slider_image = json_encode($names);
+        $this->save();
     }
 }

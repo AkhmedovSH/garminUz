@@ -18,7 +18,7 @@
 
                    
                     <li class="dropdown-icon">
-                        <a href="javascript:void(0);"><i class="fa fa-book"></i>Каталог</a>
+                        <a href="javascript:void(0);">Каталог</a>
                         <ul>
                             @include('MenuItem', ['items' => $menu->roots()])
                         </ul>

@@ -120,7 +120,9 @@
                 .catch(err=>console.log(err));
              },
             getCategories() {
+               
                 axios.get('/products', {params:{category_id: this.category_id}}).then(res =>{
+                     console.log(res.data.features)
                     this.series = res.data.series
                     this.features = res.data.features
                     this.products = res.data.products

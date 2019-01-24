@@ -41,6 +41,14 @@
                                 <img src="{{$bcategory->getImage()}}" alt="" class="img-responsive" width="200">
                                 <input type="file" id="exampleInputFile" name="image2">
                             </div>
+                            <div class="form-group">
+                                <label>Меню</label>
+                                {{Form::select('tags[]',
+                                $tags,
+                                $selectedTags,
+                                ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите теги'])
+                                }}
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">

@@ -9,6 +9,8 @@ Route::get('/blog', 'HomeController@blog');
 
 Route::get('/products/{category_id}', 'HomeController@bcategory')->name('bcategory');
 
+
+
 /*
     GET RESULT BY VUE COMPONENTS
 */
@@ -16,6 +18,8 @@ Route::get('/products', 'ProductController@getProducts');
 Route::get('/products/filter', 'ProductController@productsFilter');
 Route::get('/product/{slug}', 'ProductController@oneProductView');
 Route::get('/one-product', 'ProductController@oneProduct'); // oneproductcomponent
+Route::get('/one-product-choose', 'ProductController@choosenProduct'); // oneproductcomponent
+Route::get('/add-to-cart', 'ProductController@choosenProduct'); // oneproductcomponent
 
 
 
@@ -29,9 +33,6 @@ Route::get('/one-product', 'ProductController@oneProduct'); // oneproductcompone
 
 
 Route::group(['middleware' => ['auth']], function (){
-    Route::get('/profile', 'ProfileController@index');
-    Route::post('/profile', 'ProfileController@store');
-    Route::get('/editprofile', 'ProfileController@editOwnProfile');
     Route::get('/logout', 'AuthController@logout');
 });
 
@@ -42,7 +43,7 @@ Route::group(['middleware' => 'guest'], function (){
     Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 
-    Route::get('/register', 'AuthController@registerForm');
+    Route::get('/register', 'AuthController@registerForm')->name('register');
     Route::post('/register', 'AuthController@register');
     Route::get('/login', 'AuthController@loginForm')->name('login');
     Route::post('/login', 'AuthController@login');
@@ -78,6 +79,5 @@ Route::group(['middleware' => 'web'], function () {
     // list all lfm routes here...
 });
 
-Auth::routes();
 
 

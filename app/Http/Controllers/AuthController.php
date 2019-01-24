@@ -42,8 +42,7 @@ class AuthController extends Controller
         }
         $credentials = array(
             'email' => $request->get('email'),
-            'password' => $request->get('password'),
-            'status' => 0,
+            'password' => $request->get('password')
         );
         
         if (Auth::attempt($credentials,$remember)) {
