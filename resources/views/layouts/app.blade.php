@@ -14,27 +14,21 @@
     <link rel="stylesheet" href="/extension/owl-carousel/owl.theme.default.css">
     <link rel="stylesheet" href="/extension/animate-css/animate.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="/extension/bootstrap/bootstrap.min.css">
-
     <link rel="stylesheet" href="/extension/flags/flags.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/tools.css">
     <link rel="stylesheet" href="/css/media.css">
+
+
 </head>
 <body>
-<div id="app">
+
 <div class="wrap-site">
 <header>
     <div class="top-utility-bar">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
         <ul class="d-flex list-style-default align-center body-1 pa-0 mx-4">
             <li class="dropdown">
                 <a class="dropbtn"><span class="flag flag-uz"></span>Uzbekistan</a>
@@ -166,7 +160,7 @@
 
                 <ul class="d-flex justify-space-between list-style-default ma-0 pa-0">
                     <li class="logo_menu_part__icons-part_search">
-                        <a id="search-show" href="#">
+                        <a id="search-show">
                             <svg tabindex="0" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
                                 clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="10" width="45px">
                                 <path fill="none" d="M0 0h43.856v43.753H0z"></path>
@@ -177,13 +171,14 @@
                             </svg>
                         </a>
                         <div class="search-input">
-                            <form>
-                                <input type="text" width="200px" placeholder="Поиск...">
+                            <form method="POST" action="/search">
+                                @csrf
+                                <input type="text" name="name" width="200px" placeholder="Поиск..." autocomplete="off">
                                 <button class="close-button" id="search-hide">
                                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
                                         clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-miterlimit="10">
-                                        <title>Submit</title>
+                                        <title>Искать</title>
                                         <path d="M23.322 24.18l50.952 50.952m-.001-50.953L23.32 75.132" fill="none"
                                             stroke="#000" stroke-width="10.9584004"></path>
                                     </svg>
@@ -202,54 +197,52 @@
                             </svg>
                         </a>
                         <div class="account-dropdown_menu-hidden" id="account-dropdown_menu-hidden">
+                            @if (Auth::check())
                             <div class="account-dropdown_menu-visible_sign-in">
                                 <div class="account-dropdown_menu-visible_account">
-                                    Аккаунт
+                                    Имя: {{Auth::user()->name}}
                                 </div>
-
-                                <form method="POST" action="/login">
-                                    @csrf
-                                    <div class="flex-column-nowrap mbottom-2">
-                                        <label for="username">Email</label>
-                                        <input type="text" name="email" value="{{ old('email') }}" required autofocus>
-                                        @if ($errors->has('email'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('email') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                    <div class="flex-column-nowrap">
-                                        <label for="username">Пароль</label>
-                                        <input type="password" name="password" required>
-                                        @if ($errors->has('password'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('password') }}</strong>
-                                            </span>
-                                            @endif
-                                    </div>
-                                    <a href="{{ route('password.request') }}">(Забыли?)</a>
-
-                                    <div class="flex-column-nowrap">
-                                        <button type="submit" class="outline-button_account-dropdown_menu">Войти
-                                        </button>
-                                    </div>
-
-                                    <div class="flex-row-nowrap align-center">
-                                        <input type="checkbox" id="example" name="remember">
-                                        <label for="example" class="mleft-1">Запомнить </label>
-                                    </div>
-                                </form>
+                                <div class="account-dropdown_menu-visible_account">
+                                    <a href="/logout">Выход</a> 
+                                </div>
                             </div>
-                            <div class="account-dropdown_menu-visible_sign-up">
-                                <a href="/register">Регистрация</a>
-                            </div>
+                            @else
+                            <div class="account-dropdown_menu-visible_sign-in">
+                                    <div class="account-dropdown_menu-visible_account">
+                                        Аккаунт
+                                    </div>
+                                    <form method="POST" action="/login">
+                                        @csrf
+                                        <div class="flex-column-nowrap mbottom-2">
+                                            <label for="username">Email</label>
+                                            <input type="text" name="email" value="{{ old('email') }}" required autofocus>
+                                        </div>
+                                        <div class="flex-column-nowrap">
+                                            <label for="username">Пароль</label>
+                                            <input type="password" name="password" required>
+                                        </div>
+                                        <a href="{{ route('password.request') }}">(Забыли?)</a>
+    
+                                        <div class="flex-column-nowrap">
+                                            <button type="submit" class="outline-button_account-dropdown_menu">Войти
+                                            </button>
+                                        </div>
+    
+                                        <div class="flex-row-nowrap align-center">
+                                            <input type="checkbox" id="example" name="remember">
+                                            <label for="example" class="mleft-1">Запомнить </label>
+                                        </div>
+                                    </form>
+                                    <div class="account-dropdown_menu-visible_sign-up">
+                                        <a href="/register">Регистрация</a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
-
-
                     </li>
                     <li class="logo_menu_part__icons-part_korzina">
+                        <a href="/cart">
                         <div>
-
                             <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
                                 clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-miterlimit="10" width="45px">
@@ -262,10 +255,10 @@
                                     transform="translate(-5.072 -8.52)"></path>
                                 <path d="M22.5 36.5h13l3-9H20.4" fill="none" stroke="#000" stroke-width="1.5"
                                     transform="translate(-5.072 -8.52)"></path>
-
                             </svg>
-                            <div class="number-of-sells">0</div>
+                            <div class="number-of-sells">{{ Cart::count() }}</div>
                         </div>
+                        </a>
                     </li>
                 </ul>
 
@@ -440,10 +433,15 @@
             </div>
         </div>
     </header>
+    <div class="free_sheeping">
+        <p>{{ $black_title->title }}</p>
+    </div>
 
+    <div id="app">
+        @yield('content')
+    </div>
+       
 
-
-    @yield('content')
 
     <div class="footer">
         <div class="d-flex flex-row-nowrap container-90 mg-auto-horizontal">
@@ -482,7 +480,7 @@
                     <li><a href="https://connect.garmin.com/en-US/">Garmin Connect</a></li>
                     <li><a href="https://fly.garmin.com/">flyGarmin</a></li>
                     <li><a href="https://apps.garmin.com/en-US">Connect IQ</a></li>
-                    <li><a href="https://www.garmin.com/en-US/health/">Garmin Health: Enterprise Health Solutions</a></li>
+                    <li><a href="https://www.garmin.com/en-US/health/">Garmin Health</a></li>
                 </ul>
             </div>
             <div class="footer-item">
@@ -505,20 +503,18 @@
         </div>
         <div class="social-media mh-1">
             <ul class="d-flex list-style-default justify-space-between align-center">
-                <li><a href="#"><img src="img/social media/facebook-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="img/social media/twitter.png" alt=""></a></li>
-                <li><a href="#"><img src="img/social media/youtube-symbol.png" alt=""></a></li>
-                <li><a href="#"><img src="img/social media/pinterest-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="img/social media/instagram-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="img/social media/payment.png" class="visa" alt=""></a></li>
+                <li><a href="#"><img src="/img/social media/facebook-logo.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/social media/twitter.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/social media/youtube-symbol.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/social media/pinterest-logo.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/social media/instagram-logo.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/social media/payment.png" class="visa" alt=""></a></li>
             </ul>
         </div>
-
     </div>
 </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
-
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="/extension/bootstrap/bootstrap.min.js"></script>
 <script src="/extension/owl-carousel/owl.carousel.min.js"></script>
 <script src="/js/script.js"></script>

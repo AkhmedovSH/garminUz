@@ -25,62 +25,65 @@
         </div>
 
         <div id="product-filter">
-            <div class="product-filter_case-size">
+            <div class="product-filter_case-size" v-if="product.pa_case_size != null">
                     <div class="series-attribute">Case Size
-                        <span id="tooltip-icon">?</span>
-                         <li><a href="" class="active">42MM</a></li>
-                        
-                        <p class="series-attribute_disappear">Represents the diameter of the watch housing.</p>
+                        <span  class="series-attribute_disappear" data-toggle="tooltip" data-placement="top" title="Представляет диаметр корпуса часов.">?</span>
                     </div>
-                    <div class="series_attr_val">
+                    <div class="series_attr_val" >
                         <ul class="d-flex list-style-default ma-0 pa-0">
-                            <li><a href="" class="active">42MM</a></li>
-                            <li><a href="">47MM</a></li>
-                            <li><a href="">51MM</a></li>
+                            <li><a :class="{ 'active' : product.pa_case_size == 42}">42MM</a></li>
+                            <li><a :class="{ 'active' : product.pa_case_size == 47}">47MM</a></li>
+                            <li><a :class="{ 'active' : product.pa_case_size == 51}">51MM</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="product-filter_saphire-edition">
+                <div class="product-filter_saphire-edition" v-if="product.pa_saphire != null">
                         <div class="series-attribute">Sapphire Edition
-                            <span id="tooltip-icon">?</span>
-                            <p class="series-attribute_disappear">Sapphire edition features a scratch-resistant sapphire lens</p>
+                            <span data-toggle="tooltip" data-placement="top" title="Имеет устойчивую к царапинам сапфировую линзу.">?</span>
                         </div>
                         <div class="series_attr_val">
                             <ul class="d-flex list-style-default ma-0 pa-0">
-                                <li><a href="" class="active">YES</a></li>
-                                <li><a href="">NO</a></li>
+                                <li><a :class="{ 'active' : product.pa_saphire == 1}">ДА</a></li>
+                                <li><a :class="{ 'active' : product.pa_saphire == 0}">НЕТ</a></li>
                             </ul>
                         </div>
                 </div>
-                <div class="product-filter_pulse-ox">
+                <div class="product-filter_pulse-ox" v-if="product.pa_pulse_ox != null">
                         <div class="series-attribute">Pulse Ox Acclimation
-                            <span id="tooltip-icon">?</span>
-                            <p class="series-attribute_disappear">Shows blood oxygen saturation levels to help monitor how you're adjusting to higher altitudes.</p>
+                            <span data-toggle="tooltip" data-placement="top" title="Показывает уровни насыщения крови кислородом, чтобы помочь контролировать, как вы приспосабливаетесь к большим высотам.">?</span>
                         </div>
                         <div class="series_attr_val">
                             <ul class="d-flex list-style-default ma-0 pa-0">
-                                <li><a href="" class="active">YES</a></li>
-                                <li><a href="">NO</a></li>
+                                <li><a :class="{ 'active' : product.pa_pulse_ox == 1}">ДА</a></li>
+                                <li><a :class="{ 'active' : product.pa_pulse_ox == 0}">НЕТ</a></li>
                             </ul>
                         </div>
                 </div>
+                <div class="product-filter_color" v-if="product.series_category_id != null">
+                    <ul class="list-style-default ma-0 d-flex flex-row-wrap pa-0">
+                        <li v-for="(item,index) in products" :key="item.id">
+                            <a @click.prevent="chooseProduct(index,item.slug)" class="product_series_attr disabled-img-product">
+                                <img :src="'/uploads/products/' + product.image" alt="">
+                             </a>
+                        </li>
+                    </ul>
+                </div>
         </div>
-
-        <div class="no-class" v-if="product.series_category_id != null">
-            <span v-for="(item,index) in products" :key="item.id" >
-                <a  @click.prevent="chooseProduct(index,item.slug)">
-                    {{ item.title }}
-                </a>
-            </span>
-        </div>
-
         <div>
             <div>
-                <button class="add-to-cart_button">Add to Cart</button>
+                
                 <p>Processing time is 1-3 business days.</p>
+                <form action="/cart" method="post">
+                
+                    <input type="hidden" name="_token" :value="csrf">
+                    <input type="hidden" name="id" :value="product.id">
+                    <input type="hidden" name="title" :value="product.title">
+                    <input type="hidden" name="part_number" :value="product.part_number">
+                    <input type="hidden" name="price" :value="product.price">
+                    <button type="submit" class="add-to-cart_button">Добавить в корзину</button>
+                </form>
             </div>
         </div>
-
         </div>
     </div>
 </div>
@@ -167,6 +170,7 @@
                 product: {}, 
                 products: {}, 
                 jsonParsed: {}, 
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             }
         },
         methods: {
@@ -178,7 +182,6 @@
                 }).catch(err=>console.log(err))
             },
             chooseProduct(index,product_slug){
-                console.log(index,product_slug)
                 axios.get('/one-product-choose', {params:{slug: product_slug}}).then(res =>{
                      this.product = res.data.product
                 }).catch(err=>console.log(err)) 

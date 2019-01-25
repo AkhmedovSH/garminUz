@@ -38,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Картинка категории нижняя</label>
-                                <img src="{{$bcategory->getImage()}}" alt="" class="img-responsive" width="200">
+                                <img src="{{$bcategory->getImage2()}}" alt="" class="img-responsive" width="200">
                                 <input type="file" id="exampleInputFile" name="image2">
                             </div>
                             <div class="form-group">

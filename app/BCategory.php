@@ -96,6 +96,12 @@ class BCategory extends Model
         }
         return '/uploads/categories/'. $this->image;
     }
+    public function getImage2(){
+        if ($this->image == null){
+            return '/img/no-image.png';
+        }
+        return '/uploads/categories/'. $this->image2;
+    }
 
 
     public function remove(){

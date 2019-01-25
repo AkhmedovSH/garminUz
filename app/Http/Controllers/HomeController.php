@@ -21,6 +21,13 @@ class HomeController extends Controller
         return view('main', compact('sliders'));
     }
 
+    public function search(Request $request)
+    {
+        $name = $request->name;
+        $search_results = Product::where('title', 'LIKE', "%$name%")->paginate(10);
+        return view('search', compact('search_results','name'));
+    }
+
 
 
 

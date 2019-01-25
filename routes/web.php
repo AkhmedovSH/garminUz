@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/blog/{slug}', 'HomeController@show')->name('blog.show');
@@ -20,15 +20,13 @@ Route::get('/product/{slug}', 'ProductController@oneProductView');
 Route::get('/one-product', 'ProductController@oneProduct'); // oneproductcomponent
 Route::get('/one-product-choose', 'ProductController@choosenProduct'); // oneproductcomponent
 Route::get('/add-to-cart', 'ProductController@choosenProduct'); // oneproductcomponent
+Route::post('/search', 'HomeController@search');
 
-
-
-
-
-
-
-
-
+Route::get('empty', function (){Cart::destroy();});
+Route::get('/cart', 'CartController@index')->name('cart');
+Route::post('/cart', 'CartController@store')->name('cart.store');
+Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
+Route::patch('/cart/update', 'CartController@update')->name('cart.update');
 
 
 
@@ -45,7 +43,7 @@ Route::group(['middleware' => 'guest'], function (){
 
     Route::get('/register', 'AuthController@registerForm')->name('register');
     Route::post('/register', 'AuthController@register');
-    Route::get('/login', 'AuthController@loginForm')->name('login');
+   /*  Route::get('/login', 'AuthController@loginForm')->name('login'); */
     Route::post('/login', 'AuthController@login');
 });
 
@@ -73,11 +71,7 @@ Route::group(['prefix'=> 'admin', 'namespace' => 'Admin', 'middleware' => 'role:
     Route::resource('/roles', 'RoleController', ['except' => 'destroy']);
 });
 
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/laravel-filemanager', '\Unisharp\Laravelfilemanager\controllers\LfmController@show');
-    Route::post('/laravel-filemanager/upload', '\Unisharp\Laravelfilemanager\controllers\UploadController@upload');
-    // list all lfm routes here...
-});
-
+Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\controllers\LfmController@show');
+Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\controllers\UploadController@upload');
 
 

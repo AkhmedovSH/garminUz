@@ -7,12 +7,13 @@ use App\Comment;
 use App\Category;
 use App\Solution;
 use App\BCategory;
+use App\R_category;
 use Lavary\Menu\Menu;
 use App\Video_comments;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use ied3vil\LanguageSwitcher\Facades\LanguageSwitcher;
-use App\R_category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {     
-
         view()->composer('layouts.app', function($view){
             $menu=BCategory::all();
             $m_builder=\Menu::make('MyNav', function ($m) use($menu){
@@ -40,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
             });
             //dd($m_builder->items);
             $view->with('menu', $m_builder); 
+            $view->with('black_title', DB::table('black_title')->first());
         });
 
         Blade::directive('set',function($exp) {

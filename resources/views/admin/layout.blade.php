@@ -10,7 +10,7 @@
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="/css/admin-style.css">
-
+    <link rel="shortcut icon" href="/favicon1.png" type="image/png/ico">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -59,13 +59,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/uploads/avatars/{{Auth::user()->avatar}}" class="user-image" alt="User Image">
+                            <img src="/uploads/avatars/L0y0eYVXU2.jpeg" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{Auth::user()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="/uploads/avatars/{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
+                                <img src="/uploads/avatars/L0y0eYVXU2.jpeg" class="img-circle" alt="User Image">
 
                                 <p>
                                     {{Auth::user()->name}} - Web Developer
@@ -116,24 +116,13 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="/uploads/avatars/{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
+                    <img src="/uploads/avatars/L0y0eYVXU2.jpeg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::user()->name}}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-            <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-                </div>
-            </form>
-            <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             @include('admin._sidebar')
         </section>

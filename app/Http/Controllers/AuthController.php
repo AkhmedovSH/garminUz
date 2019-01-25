@@ -18,11 +18,12 @@ class AuthController extends Controller
         $this->validate($request,[
            'name' => 'required|string|min:3|max:13',
             'password' => 'required|string|min:6|confirmed',
+            'password_confirmation'=>'sometimes|required_with:password',
             'email' => 'required|email|unique:users'
         ]);
         $user = User::add($request->all());
         $user->generatePassword($request->get('password'));
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function loginForm(){
@@ -88,6 +89,6 @@ class AuthController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 }

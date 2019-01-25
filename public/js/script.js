@@ -90,10 +90,13 @@ $('.owl-four').owlCarousel({
 
 
 $(document).ready(function() {
-    $('#list').click(function(event){event.preventDefault();$('#grid').removeClass('on');$('#list').addClass('on');$('#product .app-product').addClass('list-style');});
     $('#grid').click(function(event){event.preventDefault();$('#list').removeClass('on');$('#grid').addClass('on');$('#product .app-product').removeClass('list-style');$('#product .app-product').addClass('grid-style');});
-    
+    $('#list').click(function(event){event.preventDefault();$('#grid').removeClass('on');$('#list').addClass('on');$('#product .app-product').addClass('list-style');});
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
 
 $(document).on('click','#filter_name-1', function(event){
     

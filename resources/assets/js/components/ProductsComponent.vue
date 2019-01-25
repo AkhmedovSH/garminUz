@@ -1,39 +1,57 @@
 <template>
-       <div>
-           <div class="col-md-12">
-               <ul class="list">
-                   <h3>Series</h3>
-                   <li v-for="(serie, index) in series" :key="serie.id">
-                        <span @click.prevent="sortBySeries(index,serie.id)">
-                            <span v-if="serie.filter_type == 1">
-                                {{ serie.title }} / {{ serie.filter_products_count }}
-                            </span>
+<div class="app-products">
+    <div class="app-products_filter d-flex flex-column-nowrap align-center">
+        <p class="app-products_filter_name_style">Filter by Series</p>
+        <ul class="list-style-default ma-0 pa-0">
+            <li v-for="(serie, index) in series" :key="serie.id">
+                <div @click.prevent="sortBySeries(index,serie.id)" class="filter_name" id="filter_name">
+                <span v-if="serie.filter_type == 1">
+                    <input type="checkbox" class="switch_1">
+                    <label id="label" class="filter_name-custom-label">
+                        <span id="agree" class="filter_name-custom-checkbox-notchecked">
+                            <svg class="app__products__filters__radio__check" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 100 100" width="15px">
+                                <path d="M70.1 35.9L40 64.1 29.9 54"></path>
+                            </svg>
                         </span>
-                   </li>
-               </ul>
-               <ul class="list">
-                   <h3>Features</h3>
-                   <li v-for="(serie, index) in features" :key="serie.id">
-                        <span @click.prevent="sortBySeries(index,serie.id,this.right_sort)">
-                            <span v-if="serie.filter_type == 0">
-                                {{ serie.title }} / {{ serie.filter_products_count }}
-                            </span>
+                        <span><a href="#">{{ serie.title }}</a></span>
+                        <span>({{ serie.filter_products_count }})</span>
+                    </label>
+                </span>
+                </div>
+            </li>
+        </ul>
+        <hr>
+        <p class="app-products_filter_name_style">Filter by Features</p>
+        <ul class="list-style-default ma-0 pa-0">
+            <li v-for="(serie, index) in features" :key="serie.id">
+                <div @click.prevent="sortBySeries(index,serie.id,this.right_sort)" class="filter_name" id="filter_name">
+                <span v-if="serie.filter_type == 0">
+                    <input type="checkbox" class="switch_1">
+                    <label id="label" class="filter_name-custom-label">
+                        <span id="agree" class="filter_name-custom-checkbox-notchecked">
+                            <svg class="app__products__filters__radio__check" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 100 100" width="15px">
+                                <path d="M70.1 35.9L40 64.1 29.9 54"></path>
+                            </svg>
                         </span>
-                   </li>
-               </ul>
-           </div>
-           <div class="col-md-12">
-               <ul>
-                   <li v-for="product in filteredTasks" :key="product.id">
-                        <span>
-                             <a :href="'/product/' + product.slug">
-                                 {{ product.title }}
-                            </a>
-                        </span>
-                   </li>
-               </ul>
-           </div>
-            <form @change.prevent="sortBySelect" ref="form">
+                        <span><a href="#">{{ serie.title }}</a></span>
+                        <span>({{ serie.filter_products_count }})</span>
+                    </label>
+                </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="app-products_products">
+        <div class="app-products_products-filters">
+            <div class="grid_or_list">
+                <a href="#" id="grid"><i class="fa fa-th"></i></a>
+                <a href="#" id="list"><i class="fa fa-bars"></i></a>
+            </div>
+            <div class="select-filter">
+                <span class="sort_title"> Сортировка</span>
+                <form @change.prevent="sortBySelect" ref="form">
                 <select v-model="sortOption" name="sortOption" class="sg-select__element">
                     <option selected  value="0">Избранные продукты</option>
                     <option  value="1">От А до Я</option>
@@ -42,8 +60,42 @@
                     <option  value="4">Цена: По возрастанию</option>
                 </select>
             </form>
-           <pagination :data="products" @pagination-change-page="getResults"></pagination>
-       </div>
+            </div>
+        </div>
+        <div class="app-products_products-all" id="product">
+            <div class="app-product" v-for="product in filteredTasks" :key="product.id">
+                <div class="new-stick">
+                    <p class="new-stick-position">
+                        <span class="new-stick-style">New</span>
+                    </p>
+                </div>
+                <div class="app-products_products-all_image">
+                    <a :href="'/product/' + product.slug">
+                        <img :src="'/uploads/products/' + product.image" alt="">
+                    </a>
+                </div>
+                <div class="app-products_products-all_text">
+                    <div class="app-products_products-all_heading">
+                        <p>{{ product.title }}</p>
+                    </div>
+                    <div class="app-products_products-all_description">
+                        <p>Middle east/North Africa mapping are pre-loaded. Plus 25 additional countries free
+                            to download</p>
+                    </div>
+                </div>
+                <div class="app-products_products-all_price">
+                    690
+                    <sup>00</sup>
+                    <sup>AED</sup>
+                    <span class="and_up">and UP</span>
+                </div>
+            </div>
+        </div>
+        <div class="product-page_pagination">
+            <pagination :data="products" @pagination-change-page="getResults"></pagination>
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
@@ -153,8 +205,10 @@
 </script>
 
 <style scoped>
-.list{
+.select-filter {
     display: flex;
-    justify-content: space-around
+}
+.sort_title{
+    padding-right: 5px;
 }
 </style>
