@@ -52322,8 +52322,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['category_id'],
@@ -52708,27 +52706,35 @@ var render = function() {
         "div",
         { staticClass: "app-products_products-all", attrs: { id: "product" } },
         _vm._l(_vm.filteredTasks, function(product) {
-          return _c("div", { key: product.id, staticClass: "app-product" }, [
-            _vm._m(1, true),
-            _vm._v(" "),
-            _c("div", { staticClass: "app-products_products-all_image" }, [
-              _c("a", { attrs: { href: "/product/" + product.slug } }, [
+          return _c(
+            "a",
+            {
+              key: product.id,
+              staticClass: "app-product grid-style",
+              attrs: { href: "/product/" + product.slug }
+            },
+            [
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "app-products_products-all_image" }, [
                 _c("img", {
                   attrs: { src: "/uploads/products/" + product.image, alt: "" }
                 })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "app-products_products-all_text" }, [
-              _c("div", { staticClass: "app-products_products-all_heading" }, [
-                _c("p", [_vm._v(_vm._s(product.title))])
               ]),
               _vm._v(" "),
-              _vm._m(2, true)
-            ]),
-            _vm._v(" "),
-            _vm._m(3, true)
-          ])
+              _c("div", { staticClass: "app-products_products-all_text" }, [
+                _c(
+                  "div",
+                  { staticClass: "app-products_products-all_heading" },
+                  [_c("p", [_vm._v(_vm._s(product.title))])]
+                ),
+                _vm._v(" "),
+                _vm._m(2, true)
+              ]),
+              _vm._v(" "),
+              _vm._m(3, true)
+            ]
+          )
         })
       ),
       _vm._v(" "),
@@ -52791,9 +52797,9 @@ var staticRenderFns = [
       _vm._v("\r\n                    690\r\n                    "),
       _c("sup", [_vm._v("00")]),
       _vm._v(" "),
-      _c("sup", [_vm._v("AED")]),
+      _c("sup", [_vm._v("Сум")]),
       _vm._v(" "),
-      _c("span", { staticClass: "and_up" }, [_vm._v("and UP")])
+      _c("span", { staticClass: "and_up" }, [_vm._v("и ВЫШЕ")])
     ])
   }
 ]
@@ -53065,8 +53071,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug'],
@@ -53141,7 +53145,9 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "one-product_main-filter" }, [
         _c("div", { staticClass: "one-product_product-title" }, [
-          _c("p", { staticClass: "product-name" }, [_vm._v("fēnix® 5 Plus")]),
+          _c("p", { staticClass: "product-name" }, [
+            _vm._v(_vm._s(_vm.product.title))
+          ]),
           _vm._v(" "),
           _c("div", { attrs: { id: "product-description" } }, [
             _c("p", {
@@ -53275,7 +53281,7 @@ var render = function() {
                           "a",
                           {
                             staticClass:
-                              "product_series_attr disabled-img-product",
+                              "product_series_attr enabled-img-product",
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
@@ -53394,7 +53400,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "product-action_product" }, [
-      _c("span", [_vm._v(" Free Shipping Available")])
+      _c("span", [_vm._v(" Бесплатная доставка")]),
+      _vm._v(" "),
+      _c("span", [_vm._v(" Имееться в наличии")])
     ])
   },
   function() {
@@ -53408,7 +53416,7 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "product-price_add_info" }, [
-        _vm._v("(Price Exclusive of VAT)")
+        _vm._v("(Цена без НДС)")
       ])
     ])
   },

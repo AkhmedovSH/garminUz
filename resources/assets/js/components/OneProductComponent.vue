@@ -12,16 +12,16 @@
   
     <div class="one-product_main-filter">
         <div class="one-product_product-title">
-            <p class="product-name">fēnix® 5 Plus</p>
+            <p class="product-name">{{ product.title }}</p>
             <div id="product-description">
                 <p class="product-type" v-html="product.description"></p>
                 <p class="product-part_num">Part Number: <span>010-01988-07</span></p>
-                <p class="product-action_product"><span> Free Shipping Available</span> </p>
+                <p class="product-action_product"><span> Бесплатная доставка</span> <span> Имееться в наличии</span></p>
             </div>
 
         <div id="product-price">
                 <p class="product-price"><span>3199.00</span><span>Сум</span></p>
-                <p class="product-price_add_info">(Price Exclusive of VAT)</p>
+                <p class="product-price_add_info">(Цена без НДС)</p>
         </div>
 
         <div id="product-filter">
@@ -62,7 +62,7 @@
                 <div class="product-filter_color" v-if="product.series_category_id != null">
                     <ul class="list-style-default ma-0 d-flex flex-row-wrap pa-0">
                         <li v-for="(item,index) in products" :key="item.id">
-                            <a @click.prevent="chooseProduct(index,item.slug)" class="product_series_attr disabled-img-product">
+                            <a @click.prevent="chooseProduct(index,item.slug)" class="product_series_attr enabled-img-product">
                                 <img :src="'/uploads/products/' + product.image" alt="">
                              </a>
                         </li>
@@ -103,9 +103,7 @@
     </div>
     <div class="tab-content container-85 mg-auto-horizontal pa-3" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-           
             <p v-html="product.description">
-                
             </p>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

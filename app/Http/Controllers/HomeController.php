@@ -21,6 +21,11 @@ class HomeController extends Controller
         return view('main', compact('sliders'));
     }
 
+    public function maps($parametr)
+    {
+        return view('maps', compact('parametr'));
+    }
+
     public function search(Request $request)
     {
         $name = $request->name;

@@ -63,16 +63,14 @@
             </div>
         </div>
         <div class="app-products_products-all" id="product">
-            <div class="app-product" v-for="product in filteredTasks" :key="product.id">
+            <a :href="'/product/' + product.slug" class="app-product grid-style" v-for="product in filteredTasks" :key="product.id">
                 <div class="new-stick">
                     <p class="new-stick-position">
                         <span class="new-stick-style">New</span>
                     </p>
                 </div>
                 <div class="app-products_products-all_image">
-                    <a :href="'/product/' + product.slug">
-                        <img :src="'/uploads/products/' + product.image" alt="">
-                    </a>
+                    <img :src="'/uploads/products/' + product.image" alt="">
                 </div>
                 <div class="app-products_products-all_text">
                     <div class="app-products_products-all_heading">
@@ -86,10 +84,10 @@
                 <div class="app-products_products-all_price">
                     690
                     <sup>00</sup>
-                    <sup>AED</sup>
-                    <span class="and_up">and UP</span>
+                    <sup>Сум</sup>
+                    <span class="and_up">и ВЫШЕ</span>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="product-page_pagination">
             <pagination :data="products" @pagination-change-page="getResults"></pagination>

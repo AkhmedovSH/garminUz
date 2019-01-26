@@ -8,7 +8,8 @@ Route::get('/blog/{slug}', 'HomeController@show')->name('blog.show');
 Route::get('/blog', 'HomeController@blog');
 
 Route::get('/products/{category_id}', 'HomeController@bcategory')->name('bcategory');
-
+Route::post('/search', 'HomeController@search');
+Route::get('/maps/{parametr}', 'HomeController@maps');
 
 
 /*
@@ -20,7 +21,7 @@ Route::get('/product/{slug}', 'ProductController@oneProductView');
 Route::get('/one-product', 'ProductController@oneProduct'); // oneproductcomponent
 Route::get('/one-product-choose', 'ProductController@choosenProduct'); // oneproductcomponent
 Route::get('/add-to-cart', 'ProductController@choosenProduct'); // oneproductcomponent
-Route::post('/search', 'HomeController@search');
+
 
 Route::get('empty', function (){Cart::destroy();});
 Route::get('/cart', 'CartController@index')->name('cart');

@@ -90,8 +90,9 @@ $('.owl-four').owlCarousel({
 
 
 $(document).ready(function() {
+    $('#list').click(function(event){event.preventDefault();$('#grid').removeClass('on');$('#list').addClass('on');$('#product .app-product').removeClass('grid-style');$('#product .app-product').addClass('list-style');});
     $('#grid').click(function(event){event.preventDefault();$('#list').removeClass('on');$('#grid').addClass('on');$('#product .app-product').removeClass('list-style');$('#product .app-product').addClass('grid-style');});
-    $('#list').click(function(event){event.preventDefault();$('#grid').removeClass('on');$('#list').addClass('on');$('#product .app-product').addClass('list-style');});
+    
 });
 
 $(function () {
@@ -206,7 +207,7 @@ $( document ).ready(function() {
 
              $(document).ready(function() {
                 // grab the initial top offset of the navigation 
-                   var stickyNavTop = $('.nav').offset().top;
+                   var stickyNavTop = $('.nav').offset().top();
                    
                    // our function that decides weather the navigation bar should have "fixed" css position or not.
                    var stickyNav = function(){

@@ -36,7 +36,7 @@
 }
 @font-face {
     font-family: 'Open Sans Condensed';
-    src: local('Open Sans Cond Light Italic'), local('OpenSans-CondensedLightItalic'), url('../extension/fonts/opensanscondlightitalic.woff2') format('woff2'), url('../extension/fonts/opensanscondlightitalic.woff') format('woff'), url('../opensanscondlightitalic.ttf') format('truetype');
+    src: local('Open Sans Cond Light'), local('OpenSans-CondensedLight'), url('../extension/fonts/opensanscondlight.woff2') format('woff2'), url('../extension/fonts/opensanscondlight.woff') format('woff'), url('../extension/fonts/opensanscondlight.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
 }
@@ -348,7 +348,7 @@ a:hover {
 }
 
 .discover .second-line span {
-    font-size: 12px;
+    font-size: 8px;
     font-weight: 400;
     line-height: 20px;
 }
@@ -377,7 +377,7 @@ a:hover {
 .third-line a {
     padding: 0;
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 400 !important;
 }
 
 .third-line a:hover {
@@ -386,7 +386,7 @@ a:hover {
 }
 
 .third-line {
-    padding: 5px 0;
+    padding: 2px 0;
 }
 
 
@@ -744,13 +744,13 @@ label {
     margin-right: 1vw;
 }
 
-.navbar-icons-1:after,
-.navbar-icons-2:after,
-.navbar-icons-3:after,
-.navbar-icons-4:after,
-.navbar-icons-5:after,
-.navbar-icons-6:after,
-.navbar-icons-7:after {
+.navbar-icon-arrow:after,
+.navbar-icon-arrow:after,
+.navbar-icon-arrow:after,
+.navbar-icon-arrow:after,
+.navbar-icon-arrow:after,
+.navbar-icon-arrow:after,
+.navbar-icon-arrow:after {
     content: '';
     background-image: url('../img/navbar-icon/keyboard-right-arrow-button.png');
     background-repeat: no-repeat;
@@ -2064,9 +2064,8 @@ sup {
 .grid-style {
     display: flex;
     flex-flow: column nowrap;
-    max-width: 22vw;
+    max-width: 21vw;
     padding: 2vh;
-    margin: 3vh;
     border-bottom: 1px solid #CFCFCF;
 
 }
@@ -2552,7 +2551,7 @@ input[type="checkbox"].switch_1 {
 .one-product_main {
     display: flex;
     flex-flow: row nowrap;
-    max-width: 60%;
+    max-width: 100%;
     width: 100%;
     margin: 0 auto;
     padding-top: 10vh;
@@ -2561,13 +2560,15 @@ input[type="checkbox"].switch_1 {
 .one-product_main-images {
     display: flex;
     width: 100%;
+    justify-content: flex-end;
+    padding-right: 30px;
 }
 
 .one-product_main-filter {
     display: flex;
-    max-width: 49%;
+    max-width: 50%;
     width: 100%;
-    padding: 20px 0 20px 20px;
+    padding: 1vw 10vw 1vw 1vw;
 }
 
 /* Carousel Text position */
@@ -2684,7 +2685,15 @@ input[type="checkbox"].switch_1 {
     font-weight: 400;
 
 }
+.one-product_product-title .product-action_product span:nth-child(2) {
+    padding: 8.4px 12px;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+    background-color: rgb(25, 168, 25);
+    font-weight: 400;
 
+}
 .one-product_product-title .product-price {
     margin: 2em 0 1em;
 }
@@ -2780,7 +2789,7 @@ input[type="checkbox"].switch_1 {
 .product-filter_color img {
     width: 66px;
     height: 66px;
-    border: 2px solid #ccc;
+    
 }
 
 .product-filter_case-size {
@@ -2791,7 +2800,15 @@ input[type="checkbox"].switch_1 {
     opacity: .3;
     width: 100%;
     height: 100%;
+    
 }
+.product_series_attr.enabled-img-product {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    
+}
+
 
 .product_series_attr {
     width: 100%;
@@ -2813,6 +2830,7 @@ input[type="checkbox"].switch_1 {
 }
 
 .add-to-cart_button {
+    cursor: pointer;
     border-radius: 0;
     border: none;
     color: #fff;
@@ -3017,6 +3035,7 @@ input[type="checkbox"].switch_1 {
 
 .shopping-cart_table-product td:first-child {
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -3082,9 +3101,9 @@ input[type="checkbox"].switch_1 {
     -ms-transition: border linear .2s, box-shadow linear .2s;
     -o-transition: border linear .2s, box-shadow linear .2s;
     transition: border linear .2s, box-shadow linear .2s;
-    width: 22vw;
+    max-width: 40vw;
     height: 40px;
-    padding: 0 10px;
+    padding: 0 96px 0 18px;
     margin: 0;
 }
 

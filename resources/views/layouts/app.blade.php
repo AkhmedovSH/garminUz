@@ -76,43 +76,32 @@
 
 
         <div class="navbar-header main-header">
-
             <div class="button-collapsing">
                 <button type="button" class="navbar-toggle menu-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 </button>
             </div>
-
             <div class="logo_menu_part__logo">
                 <a href="/"><img src="/img/logo.png" alt="logo"></a>
             </div>
-
             <div class="logo_menu_part__menu ">
-
                 <ul class="d-flex list-style-default first-level">
-
                     <li class="first-line">
-
                         <a href="#" aria-haspopup="true">Каталог</a>
-
                         <ul class="list-style-default second-level">
                             @include('MenuItem', ['items' => $menu->roots()])
                         <hr>
                         </ul>
-
                     </li>
 
-
                     <li class="first-line">
-
-                        <a href="#" aria-haspopup="true">Карты</a>
-
+                        <a href="javascript:void(0);" aria-haspopup="true">Карты</a>
                         <ul class="list-style-default second-level">
-                            <li class="second-line"><a href="#">Автомобильные Карты</a></li>
-                            <li class="second-line"><a href="#">Обновления карты поля для гольфа</a></li>
-                            <li class="second-line"><a href="#">Морские карты</a></li>
-                            <li class="second-line"><a href="#">Обновления авиационной базы данных</a></li>
-                            <li class="second-line"><a href="#">Карты на открытом воздухе</a></li>
-                            <li class="second-line"><a href="#">Велоспорт Карты</a></li>
+                            <li class="second-line"><a href="/maps/auto">Автомобильные Карты</a></li>
+                            <li class="second-line"><a href="/maps/golf">Обновления карты поля для гольфа</a></li>
+                            <li class="second-line"><a href="/maps/marine">Морские карты</a></li>
+                            <li class="second-line"><a href="/maps/aviation">Обновления авиационной базы данных</a></li>
+                            <li class="second-line"><a href="/maps/outdoor">Карты на открытом воздухе</a></li>
+                            <li class="second-line"><a href="/maps/cycling">Велоспорт Карты</a></li>
 
                         </ul>
 
@@ -122,7 +111,7 @@
 
                     <li class="first-line">
 
-                        <a href="#" aria-haspopup="true">Поддержка</a>
+                        <a href="javascript:void(0);" aria-haspopup="true">Поддержка</a>
 
                         <ul class="list-style-default second-level">
                             <li class="second-line"><a href="https://support.garmin.com/en-US/">Центр поддержки</a></li>
@@ -134,7 +123,7 @@
                         </ul>
                     </li>
                     <li class="first-line">
-                        <a href="#" aria-haspopup="true">Узнать о</a>
+                        <a href="javascript:void(0);" aria-haspopup="true">Узнать о</a>
                         <ul class="list-style-default second-level discover">
                             <li class="second-line"><a href="#">Garmin Connect
                             <span>Для отслеживания, анализа и обмена</span>
@@ -390,7 +379,7 @@
 
 
                     <!-- Second Menu -->
-                    <li class='active has-sub'><a href='#'><span>Maps</span></a>
+                    <li class='active has-sub'><a href='#'><span>Карты</span></a>
                         <ul>
                             <li><a href="#">Automotive Maps</a></li>
                             <li><a href="#">Automotive Maps</a></li>
