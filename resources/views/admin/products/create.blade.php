@@ -23,15 +23,19 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Заголовок</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="title" value="{{old('title')}}">
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Название товара" name="title" value="{{old('title')}}" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Нумерация товара</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Номер товара" name="part_number" value="{{old('part_number')}}" >
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleInputFile">Лицевая картинка jpeg jpg png</label>
+                        <label for="exampleInputFile">Лицевая картинка jpeg jpg png (300x300)</label>
                         <input type="file" id="exampleInputFile" name="image">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputFile">Выбор нескольких картинок для слайдера (зажимая Ctrl)</label>
+                        <label for="exampleInputFile">Выбор нескольких картинок (зажимая Ctrl) (300x300)</label>
                         <input type="file" id="exampleInputFile" name="images[]" multiple>
                     </div>
                     <div class="form-group">
@@ -50,6 +54,10 @@
                             ['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите фильтры'])
                         }}
                     </div> 
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Цена в долларах</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" placeholder="" name="price" value="{{old('price')}}">
+                    </div>
                 </div>
                     <div class="col-md-6">
                         <div class="form-group">

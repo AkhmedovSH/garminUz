@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
-
+use Illuminate\Support\Facades\Storage;
 class Product extends Model
 {
     protected $table = 'products';
@@ -63,8 +63,25 @@ class Product extends Model
     }
 
     public function remove(){
-        //$this->removeImage();
+        $this->removeImage();
+        $this->removeSliderImages();
+        $this->p_filters()->detach();
+        $this->p_categories()->detach();
         $this->delete();
+    }
+
+    public function removeSliderImages(){
+        if ($this->slider_image != null){
+            $images = json_decode($this->slider_image, true);
+            foreach($images as $item){
+                Storage::delete('uploads/products/'. $item['image']);
+            }
+        }
+    }
+    public function removeImage(){
+        if ($this->image != null){
+            Storage::delete('uploads/products/'. $this->image);
+        }
     }
 
     public function setTags($ids){

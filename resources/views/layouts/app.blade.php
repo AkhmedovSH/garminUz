@@ -86,7 +86,7 @@
             <div class="logo_menu_part__menu ">
                 <ul class="d-flex list-style-default first-level">
                     <li class="first-line">
-                        <a href="#" aria-haspopup="true">Каталог</a>
+                        <a href="javascript:void(0);" aria-haspopup="true">Каталог</a>
                         <ul class="list-style-default second-level">
                             @include('MenuItem', ['items' => $menu->roots()])
                         <hr>
@@ -102,17 +102,11 @@
                             <li class="second-line"><a href="/maps/aviation">Обновления авиационной базы данных</a></li>
                             <li class="second-line"><a href="/maps/outdoor">Карты на открытом воздухе</a></li>
                             <li class="second-line"><a href="/maps/cycling">Велоспорт Карты</a></li>
-
                         </ul>
-
-
                     </li>
 
-
                     <li class="first-line">
-
                         <a href="javascript:void(0);" aria-haspopup="true">Поддержка</a>
-
                         <ul class="list-style-default second-level">
                             <li class="second-line"><a href="https://support.garmin.com/en-US/">Центр поддержки</a></li>
                             <li class="second-line"><a href="https://fly.garmin.com/fly-garmin/support/">Авиационная поддержка</a></li>

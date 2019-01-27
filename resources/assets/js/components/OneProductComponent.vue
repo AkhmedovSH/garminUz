@@ -59,6 +59,7 @@
                             </ul>
                         </div>
                 </div>
+                <div class="series-attribute">Цвета</div>
                 <div class="product-filter_color" v-if="product.series_category_id != null">
                     <ul class="list-style-default ma-0 d-flex flex-row-wrap pa-0">
                         <li v-for="(item,index) in products" :key="item.id">

@@ -44,9 +44,9 @@ class ProductController extends Controller
  
     public function store(Request $request)
     {
-        dd($request->all());
+       //dd($request->all());
        $product = Product::add($request->all());
-       
+       $product->uploadImage($request->file('image'));
        $product->uploadMultipleImages($request->file('images'));
        $product->setTags($request->get('categories'));
        $product->setFilters($request->get('filters'));

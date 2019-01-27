@@ -105,9 +105,9 @@
                 </div>
             </div>
             <div class="tab-pane fade {{ $parametr == "outdoor" ? "show active" : "" }}"  id="outdoor" role="tabpanel" aria-labelledby="outdoor-tab">
-                    <h2 class="tab-pane_heading-sm_and_after">Outdoor</h2>
+                    <h2 class="tab-pane_heading-sm_and_after">На открытом воздухе</h2>
                 <div class="maps-page_white-window">
-                    <h3>На открытом воздухе</h3>
+                    <h3>Добавьте карту для себя</h3>
                     <span>Добавьте карты к своему устройству на открытом воздухе, чтобы вести вас в следующем приключении, будь то походы, прогулки, езда на велосипеде или катание на лыжах.</span>
                     <div class="maps-page_button-block d-flex align-center justify-center mh-1">
                         <a href="https://fly.garmin.com/fly-garmin/" class="maps-page_button">Магазин наружных карт</a>

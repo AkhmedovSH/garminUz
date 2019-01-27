@@ -23,7 +23,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Название</th>
-                            <th>Категория</th>
+                            <th>Нумерация</th>
                             <th>Картинка</th>
                             <th>Действия</th>
                         </tr>
@@ -34,7 +34,7 @@
                             <td>{{$product->id}}</td>
                             <td>{{$product->title}}
                             </td>
-                            <td>{{$product->title}}</td>
+                            <td>{{$product->part_number}}</td>
                             <td>
                                 <img src="{{$product->getImage()}}" width="100">
                             </td>

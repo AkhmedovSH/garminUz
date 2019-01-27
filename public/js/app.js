@@ -53071,6 +53071,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug'],
@@ -53266,6 +53267,8 @@ var render = function() {
                   ])
                 ])
               : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "series-attribute" }, [_vm._v("Цвета")]),
             _vm._v(" "),
             _vm.product.series_category_id != null
               ? _c("div", { staticClass: "product-filter_color" }, [
