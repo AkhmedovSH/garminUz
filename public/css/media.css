@@ -1,3 +1,10 @@
+@media(max-width: 1280px) {
+    .grid-style {
+        max-width: 31vw;
+
+    }
+}
+
 @media(min-width: 970px) {
     .phone-part-toggle {
         display: none;
@@ -18,9 +25,78 @@
     .collapse {
         display: none;
     }
+
+    .app-products_filter {
+        display: flex !important;
+    }
 }
 
 @media(max-width: 969px) {
+    .product-guarantee {
+        justify-content: center;
+    }
+
+    .blog-container_info .blog_container-date {
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    .buttonCollapse_mobile {
+        display: block;
+    }
+
+    .app-products_filter {
+        display: none;
+        text-align: center;
+        padding-bottom: 10vh;
+    }
+
+    .app-products_filter ul {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .app-product {
+        margin: 0 !important;
+
+    }
+
+    /* Maps Page */
+    .maps-page_container h1:first-child {
+        max-width: 95%;
+        margin: 3vw auto;
+        font-weight: 300;
+    }
+
+    .maps-page_description {
+        display: none;
+    }
+
+    .maps-page_description-tab .tab-content div {
+        background: none !important;
+        display: block;
+        min-height: auto !important;
+    }
+
+    .maps-page_description-tab .tab-content .tab-pane {
+        opacity: 1;
+    }
+
+    .maps-page_description-tab .tab-content .tab-pane .maps-page_white-window {
+        position: static;
+        max-width: 95%;
+        margin: 0 auto;
+        background: #f7f7f7 !important;
+        border: 2px solid #ccc;
+        margin-bottom: 20px;
+    }
+
+    .tab-pane_heading-sm_and_after {
+        display: block;
+    }
+
+
     .dropdown-menu {
         width: 100%;
     }
@@ -56,7 +132,7 @@
         margin-top: 5vh;
     }
 
-    
+
 
 
     /* G-Banners */
@@ -103,9 +179,13 @@
     }
 
     /* Products Pge */
+    .app-products_products-all {
+        justify-content: center;
+    }
 
     .app-products_products-filters {
-        justify-content: center;
+        padding: 3vh 0;
+        align-items: center;
     }
 
     .grid_or_list {
@@ -188,7 +268,7 @@
     .one-product_main {
         display: flex;
         flex-flow: column nowrap;
-        max-width: 60%;
+        align-items: center;
         width: 100%;
         margin: 0 auto;
         padding-top: 10vh;
@@ -198,7 +278,8 @@
         display: flex;
         justify-content: center;
         width: 100%;
-
+        max-width: 60%;
+        padding: 0;
     }
 
     .one-product_main-filter {
@@ -208,6 +289,12 @@
         max-width: 100%;
         width: 100%;
         padding: 20px 0 20px 20px;
+    }
+
+    .owl-four .owl-dots {
+
+        top: 92%;
+
     }
 
     .one-product_main-filter ul {
@@ -237,6 +324,11 @@
         column-gap: 1.25rem;
         break-inside: avoid;
     }
+
+
+
+
+
 }
 
 
@@ -268,6 +360,10 @@
 @media(max-width: 620px) {
     .main-sign-up .main-sign-up_input input {
         padding: 0 0em;
+    }
+
+    .app-product {
+        margin: 0 !important;
     }
 }
 
@@ -411,15 +507,6 @@
         max-width: 60vw;
         margin-top: 5vh;
     }
-    .product-action_product{
-        display: flex;
-        justify-content: center;
-    }
-
-    .product-guarantee {
-        justify-content: center;
-    }
 }
-
 
 /* carousel  End*/
