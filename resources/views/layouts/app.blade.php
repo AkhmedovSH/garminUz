@@ -119,19 +119,19 @@
                     <li class="first-line">
                         <a href="javascript:void(0);" aria-haspopup="true">Узнать о</a>
                         <ul class="list-style-default second-level discover">
-                            <li class="second-line"><a href="#">Garmin Connect
+                            <li class="second-line"><a href="https://connect.garmin.com/en-US/">Garmin Connect
                             <span>Для отслеживания, анализа и обмена</span>
                             </a></li>
-                            <li class="second-line"><a href="#">Garmin Express
+                            <li class="second-line"><a href="http://software.garmin.com/en-GB/express.html">Garmin Express
                             <span>Программное обеспечение для управления вашими устройствами</span>
                             </a></li>
-                            <li class="second-line"><a href="#">Garmin IQ
+                            <li class="second-line"><a href="https://apps.garmin.com/en-US/">Garmin IQ
                             <span>Бесплатные циферблаты, приложения и многое другое</span>
                             </a></li>
-                            <li class="second-line"><a href="#">Аккаунт inReach
+                            <li class="second-line"><a href="https://inreach.garmin.com/en-US/Account/LogOn?ReturnUrl=%2fen-US%2f">Аккаунт inReach
                             <span>Управляйте своим устройством inReach</span>
                             </a></li>
-                            <li class="second-line"><a href="#">BaseCamp
+                            <li class="second-line"><a href="http://www.garmin.com/en-US/shop/downloads/basecamp">BaseCamp
                             <span>Программное обеспечение для планирования поездок по дорогам и тропам</span>
                             </a></li>
                         </ul>
@@ -250,8 +250,6 @@
 
 
 
-
-
         <div class="collapse navbar-collapse">
             <div class="collapse-search">
                 <form>
@@ -271,40 +269,44 @@
 
 
                     <!-- Second Menu -->
-                    <li class='active has-sub'><a href='#'><span>Карты</span></a>
+                    <li class='active has-sub'><a href='javascript:void(0);'><span>Карты</span></a>
                         <ul>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li class="last"><a href="#">Automotive Maps</a></li>
-
+                            <li><a href="/maps/auto">Автомобильные Карты</a></li>
+                            <li><a href="/maps/golf">Обновления карты поля для гольфа</a></li>
+                            <li><a href="/maps/marine">Морские карты</a></li>
+                            <li><a href="/maps/aviation">Обновления авиационной базы данных</a></li>
+                            <li><a href="/maps/outdoor">Карты на открытом воздухе</a></li>
+                            <li><a href="/maps/cycling">Велоспорт Карты</a></li>
                         </ul>
                     </li>
 
                     <!-- Third Menu -->
-
-                    <li class='active has-sub'><a href='#'><span>Products</span></a>
+                    <li class='active has-sub'><a href='javascript:void(0);'><span>Поддержка</span></a>
                         <ul>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li class="last"><a href="#">Automotive Maps</a></li>
+                            <li><a href="https://support.garmin.com/en-US/">Центр поддержки</a></li>
+                            <li><a href="https://fly.garmin.com/fly-garmin/support/">Авиационная поддержка</a></li>
+                            <li><a href="https://support.garmin.com/support/manuals/searchManuals.faces?refresh=true">Руководство</a></li>
+                            <li><a href="https://support.garmin.com/support/searchSupport/search.htm">Вопросы и ответы</a></li>
+                            <li><a href="http://www8.garmin.com/learningcenter/">Видео</a></li>
+                            <li><a href="http://www.garmin.com/en-US/software">Программное обеспечение</a></li>
                         </ul>
                     </li>
 
-                    <li class='active has-sub'><a href='#'><span>Products</span></a>
-                        <ul class="discover">
-                            <li><a href="#">Automotive Maps
-                                    <span>Lorem ipsum dolor sit amet consectetur</span>
-                                </a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-                            <li><a href="#">Automotive Maps</a></li>
-
+                    <li class='active has-sub'><a href='javascript:void(0);'><span>Узнать о</span></a>
+                        <ul>
+                            <li><a href="https://connect.garmin.com/en-US/">Garmin Connect
+                            </a></li>
+                            <li><a href="http://software.garmin.com/en-GB/express.html">Garmin Express
+                            </a></li>
+                            <li><a href="https://apps.garmin.com/en-US/">Garmin IQ
+                            </a></li>
+                            <li><a href="https://inreach.garmin.com/en-US/Account/LogOn?ReturnUrl=%2fen-US%2f">Аккаунт inReach
+                            </a></li>
+                            <li><a href="http://www.garmin.com/en-US/shop/downloads/basecamp">BaseCamp
+                            </a></li>
                         </ul>
                     </li>
+
 
                 </ul>
             </div>
