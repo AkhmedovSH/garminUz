@@ -3529,3 +3529,67 @@ input[type="checkbox"].switch_1 {
     background: url("../img/maps-back-banner/bg_fitness.jpg");
     background-size: cover;
 } */
+
+
+
+
+/* Blog Page */
+
+.blog_container{
+    margin: 0 0 5vw;
+}
+.blog_container p{
+    margin: 0;
+    padding: 0;
+}
+.blog_container-image{
+   
+    max-height: 400px;
+    height: 100%;
+    
+}
+.blog_container-image div{
+    display: flex;
+    height: 400px;
+    width: 100%;
+    
+}
+
+.blog_container-image_style{
+    background-size: cover;
+    background-position-x: center;
+}
+
+.blog-container_info{
+
+}
+.blog-container_info .blog_container-heading{
+    border-left: 3px solid #007CC3;
+    padding: 0 2vw;
+    font-weight: 600;
+    color: #19232d;
+    margin: 2vw 0;
+}
+.blog-container_info .blog_container-date{
+    display: flex;
+    padding: 10px 5px;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 0 0 2.5vw;
+}
+.blog-container_info .blog_container-description{
+    
+    line-height: 1.857;
+    font-size: 14px;
+    position: relative;
+}
+.blog-container_info .blog_container-description h6{
+    font-weight: 600;
+    font-size: 15px;
+    position: relative;
+}
+.blog-container_info .blog_container-description img{
+    max-width: 500px;
+    height: auto;
+}
