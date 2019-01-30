@@ -3614,3 +3614,12 @@ input[type="checkbox"].switch_1 {
     max-width: 500px;
     height: auto;
 }
+
+
+.section_tab_content table{
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.section_tab_content table tbody tr:first-child td{
+    border: none !important;
+}

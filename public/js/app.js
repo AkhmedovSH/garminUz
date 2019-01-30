@@ -52911,7 +52911,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n.VueCarousel-navigation-button[data-v-453ad8cd] {\r\n    position: absolute;\r\n    top: 22%;\r\n    -webkit-box-sizing: border-box;\r\n            box-sizing: border-box;\r\n    color: #000;\r\n    text-decoration: none;\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border: none;\r\n    background-color: transparent;\r\n    padding: 0;\r\n    cursor: pointer;\r\n    outline: none;\n}\n.VueCarousel-dot[data-v-438fd353]{\r\n    width: 15px!important;\r\n    height: 15px!important;\r\n    padding: 10px 3px!important;\n}\r\n", ""]);
+exports.push([module.i, "\n.VueCarousel-navigation-button[data-v-453ad8cd] {\r\n    position: absolute;\r\n    top: 30%;\r\n    -webkit-box-sizing: border-box;\r\n            box-sizing: border-box;\r\n    color: #000;\r\n    text-decoration: none;\r\n    -webkit-appearance: none;\r\n       -moz-appearance: none;\r\n            appearance: none;\r\n    border: none;\r\n    background-color: transparent;\r\n    padding: 0;\r\n    cursor: pointer;\r\n    outline: none;\n}\n.VueCarousel-dot[data-v-438fd353]{\r\n    width: 15px!important;\r\n    height: 15px!important;\r\n    padding: 10px 3px!important;\n}\n.VueCarousel-pagination .VueCarousel-dot-container{\r\n    margin-top: 0 !important;\n}\n.VueCarousel-pagination .VueCarousel-dot-container button{\r\n    margin-top: 0 !important;\n}\r\n", ""]);
 
 // exports
 

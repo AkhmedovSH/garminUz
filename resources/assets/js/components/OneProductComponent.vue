@@ -158,7 +158,7 @@
 <style>
 .VueCarousel-navigation-button[data-v-453ad8cd] {
     position: absolute;
-    top: 22%;
+    top: 30%;
     box-sizing: border-box;
     color: #000;
     text-decoration: none;
@@ -173,5 +173,11 @@
     width: 15px!important;
     height: 15px!important;
     padding: 10px 3px!important;
+}
+.VueCarousel-pagination .VueCarousel-dot-container{
+    margin-top: 0 !important;
+}
+.VueCarousel-pagination .VueCarousel-dot-container button{
+    margin-top: 0 !important;
 }
 </style>
