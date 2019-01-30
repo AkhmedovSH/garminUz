@@ -46,6 +46,10 @@ class Product extends Model
         );
     }
 
+    public function productGroup(){
+        return $this->belongsTo(ProductGroup::class, 'series_category_id', 'id');
+    }
+
     public function sluggable()
     {
         return [
@@ -58,6 +62,7 @@ class Product extends Model
     public static function add($fields){
         $product = new static;
         $product->title = $fields['title'];
+        $product->group_id = $fields['group_id'];
         $product->notice = $fields['notice'];
         $product->description = $fields['description'];
         $product->part_number = $fields['part_number'];

@@ -17,6 +17,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <a href="{{route('products.create')}}" class="btn btn-success">Добавить</a>
+                        <a href="{{route('product-group.index')}}" class="btn btn-success pull-right">Создать группу</a>
                     </div>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>

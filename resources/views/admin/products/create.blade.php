@@ -60,14 +60,14 @@
                         }}
                     </div> 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Цена в долларах</label>
-                        <input type="number" class="form-control" id="exampleInputEmail1" placeholder="" name="price" value="{{old('price')}}">
+                        <label for="exampleInputEmail1">Цена в сумах</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Цена" name="price" value="{{old('price')}}">
                     </div>
                 </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Если товар не одиночный (выбрать категорию)</label>
-                            {{Form::select('case_size',$tags,null,['class' => 'form-control select2', 'placeholder' => 'Выберите категории'])}}
+                            {{Form::select('series_category_id',$productGroup,null,['class' => 'form-control select', 'placeholder' => 'Выберите категории'])}}
                         </div>
                     </div>
                     <div class="col-md-6">

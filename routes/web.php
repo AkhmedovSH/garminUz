@@ -62,6 +62,7 @@ Route::group(['prefix'=> 'admin', 'namespace' => 'Admin', 'middleware' => 'role:
     Route::resource('/coupons','CouponsController');
     Route::resource('/productcategories', 'PCategoryController');
     Route::resource('/products', 'ProductController');
+    Route::resource('/product-group', 'ProductGroupController');
 
     Route::resource('/users','UsersController');
     Route::get('/user/toggleBan/{user_id}','UsersController@toggleBan');

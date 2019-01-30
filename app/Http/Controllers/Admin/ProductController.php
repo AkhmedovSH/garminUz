@@ -7,6 +7,7 @@ use App\BCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\PCategory;
+use App\ProductGroup;
 
 class ProductController extends Controller
 {
@@ -24,21 +25,9 @@ class ProductController extends Controller
 
         $tags = BCategory::pluck('title', 'id')->all();
         $filters = PCategory::pluck('title', 'id')->all();
-        //dd($tags);
-        $m_builder=\Menu::make('MyNav', function ($m) use($menu){
-            foreach ($menu as $item){
-                if($item->parent_id==0){
-                    $m->add($item->title, $item->slug)->id($item->id);
-                }
-                else {
-                    if($m->find($item->parent_id)){
-                        $m->find($item->parent_id)->add($item->title, $item->slug)->id($item->id);
-                    }
-                }
-            }
-        });
+        $productGroup = ProductGroup::pluck('title', 'id')->all();
 
-        return view('admin.products.create',compact('m_builder','tags','filters'));
+        return view('admin.products.create',compact('tags','filters','productGroup'));
     }
 
  
