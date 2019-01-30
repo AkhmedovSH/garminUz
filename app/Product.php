@@ -62,12 +62,15 @@ class Product extends Model
     public static function add($fields){
         $product = new static;
         $product->title = $fields['title'];
-        $product->group_id = $fields['group_id'];
+        $product->series_category_id = $fields['series_category_id'];
         $product->notice = $fields['notice'];
         $product->description = $fields['description'];
         $product->part_number = $fields['part_number'];
-        //$product->featured = $fields['featured'];
+
+        if(isset($fields['featured'])){ $product->featured = $fields['featured']; }
+        
         $product->price = $fields['price'];
+        $product->sale = $fields['sale'];
 
         $product->overview = $fields['overview'];
         $product->specs = $fields['specs'];
@@ -141,6 +144,7 @@ class Product extends Model
     }
 
     public function uploadMultipleImages($images){
+    if ($images == null) { return; }
     $names = array();
     $incI = 0;
     foreach($images as $image)

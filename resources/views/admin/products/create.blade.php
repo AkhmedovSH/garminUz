@@ -23,11 +23,11 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Заголовок</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Название товара" name="title" value="{{old('title')}}" autofocus>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Название товара: Instinct™" name="title" value="{{old('title')}}" autofocus>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Нумерация товара</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Номер товара" name="part_number" value="{{old('part_number')}}" >
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Номер товара: 010-02064-02" name="part_number" value="{{old('part_number')}}" >
                     </div>
 
                     <div class="form-group">
@@ -62,6 +62,10 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Цена в сумах</label>
                         <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Цена" name="price" value="{{old('price')}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Скидка на товар в процентах %</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" placeholder="скидка" name="sale" value="{{old('sale')}}">
                     </div>
                 </div>
                     <div class="col-md-6">
@@ -119,6 +123,12 @@
                                 <option value="large">Маленький</option>
                                 <option value="small/medium">Средний</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="checkbox" value="1" name="new"><label> Новый</label>
+                            <input type="checkbox" value="1" name="featured"><label> Избранный</label>
                         </div>
                     </div>
                 </div>

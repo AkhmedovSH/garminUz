@@ -33,6 +33,10 @@ class ProductController extends Controller
  
     public function store(Request $request)
     {
+        /*  $this->validate($request,[
+            'featured' => 'boolean',
+            'new' => 'nullable'
+        ]);  */
        //dd($request->all());
        $product = Product::add($request->all());
        $product->uploadImage($request->file('image'));

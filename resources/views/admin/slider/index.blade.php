@@ -35,7 +35,7 @@
                         <td>{{$category->id}}</td>
                         <td>{{$category->title}}</td>
                         <td>{{$category->description}}</td>
-                        <td>{{$category->image}}</td>
+                        <td><img src="{{$category->getImage()}}" alt="" width="100"></td>
                         <td><a href="{{route('slider.edit', $category->id)}}" class="fa fa-pencil"></a>
 
                             {{Form::open(['route'=>['slider.destroy', $category->id], 'method'=>'delete'])}}
