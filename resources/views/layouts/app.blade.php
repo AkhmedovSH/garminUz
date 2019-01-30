@@ -262,26 +262,10 @@
             <div id='cssmenu'>
                 <ul>
                     <!-- First Menu -->
-                    <li class='active has-sub'><a href='#'><span>Каталог</span></a>
+                    <li class='active has-sub'><a><span>Каталог</span></a>
                             <!-- Automobile -->
-                            <ul >
-                                @include('MenuItem', ['items' => $menu->roots()])
-                                <hr>
-                                <li class='has-sub'><a href='#'><span>Automobile</span></a>
-                                    <ul>
-                                        <li><a href="#">Cars</a></li>
-                                        <li><a href="#">Motorcycle</a></li>
-                                        <li><a href="#">Trucks</a></li>
-                                        <li><a href="#">Fleet</a></li>
-                                        <li class='last'><a href="#">Cameras</a></li>
-                                    </ul>
-                                </li>
-    
-                                <li class='has-sub'><a href='#'><span>Wearable & Smartwatch</span></a>
-                                    <ul>
-                                        <li class="last"><a href="#">All Wearable & Smartwatch</a></li>
-                                    </ul>
-                                </li>
+                            <ul>
+                                @include('MobileMenu', ['items' => $menu->roots()])
                             </ul>
                     </li>
 
