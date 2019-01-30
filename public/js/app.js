@@ -52322,6 +52322,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['category_id'],
@@ -52445,8 +52448,8 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass:
-          "app-products_filter d-flex flex-column-nowrap align-center"
+        staticClass: "app-products_filter flex-column-nowrap align-center",
+        attrs: { id: "app-products_filter" }
       },
       [
         _c("p", { staticClass: "app-products_filter_name_style" }, [
@@ -52620,6 +52623,8 @@ var render = function() {
       _c("div", { staticClass: "app-products_products-filters" }, [
         _vm._m(0),
         _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
         _c("div", { staticClass: "select-filter" }, [
           _c("span", { staticClass: "sort_title" }, [_vm._v(" Сортировка")]),
           _vm._v(" "),
@@ -52703,7 +52708,7 @@ var render = function() {
               attrs: { href: "/product/" + product.slug }
             },
             [
-              _vm._m(1, true),
+              _vm._m(2, true),
               _vm._v(" "),
               _c("div", { staticClass: "app-products_products-all_image" }, [
                 _c("img", {
@@ -52718,10 +52723,10 @@ var render = function() {
                   [_c("p", [_vm._v(_vm._s(product.title))])]
                 ),
                 _vm._v(" "),
-                _vm._m(2, true)
+                _vm._m(3, true)
               ]),
               _vm._v(" "),
-              _vm._m(3, true)
+              _vm._m(4, true)
             ]
           )
         })
@@ -52754,6 +52759,25 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "#", id: "list" } }, [
         _c("i", { staticClass: "fa fa-bars" })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "buttonCollapse_mobile" }, [
+      _c(
+        "button",
+        {
+          staticClass: "filter-Collapse-button",
+          attrs: {
+            type: "button",
+            "data-toggle": "collapse",
+            "data-target": "#app-products_filter"
+          }
+        },
+        [_vm._v("Filters")]
+      )
     ])
   },
   function() {

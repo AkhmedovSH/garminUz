@@ -1,6 +1,6 @@
 <template>
 <div class="app-products">
-    <div class="app-products_filter d-flex flex-column-nowrap align-center">
+    <div class="app-products_filter flex-column-nowrap align-center" id="app-products_filter">
         <p class="app-products_filter_name_style">Filter by Series</p>
         <ul class="list-style-default ma-0 pa-0">
             <li v-for="(serie, index) in series" :key="serie.id">
@@ -48,6 +48,9 @@
             <div class="grid_or_list">
                 <a href="#" id="grid"><i class="fa fa-th"></i></a>
                 <a href="#" id="list"><i class="fa fa-bars"></i></a>
+            </div>
+            <div class="buttonCollapse_mobile">
+                <button class="filter-Collapse-button" type="button" data-toggle="collapse" data-target="#app-products_filter" >Filters</button>
             </div>
             <div class="select-filter">
                 <span class="sort_title"> Сортировка</span>

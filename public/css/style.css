@@ -1924,6 +1924,23 @@ svg{
 }
 
 
+.filter-Collapse-button{
+    display: inline-block !important;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+   background: transparent;
+   border: 0;
+    vertical-align: middle;
+    color: #101010;
+    cursor: pointer;
+}
+.filter-Collapse-button:hover{ 
+   background:#fcfcfc;
+ 
+}
 .app-products {
     display: flex;
     flex-flow: row nowrap;
@@ -2330,6 +2347,10 @@ input[type="checkbox"].switch_1 {
 }
 
 /* Product Page - Additional info */
+
+.buttonCollapse_mobile{
+    display: none;
+}
 
 .product-page_additional-information {
     display: flex;
