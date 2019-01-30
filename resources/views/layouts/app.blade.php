@@ -255,121 +255,35 @@
         <div class="collapse navbar-collapse">
             <div class="collapse-search">
                 <form>
-                    <input type="text" placeholder="Search garmin.com">
+                    <input type="text" placeholder="Поиск">
                 </form>
             </div>
-
 
             <div id='cssmenu'>
                 <ul>
                     <!-- First Menu -->
-                    <li class='active has-sub'><a href='#'><span>Products</span></a>
-                        <ul>
+                    <li class='active has-sub'><a href='#'><span>Каталог</span></a>
                             <!-- Automobile -->
-                            <li class='has-sub'><a href='#'><span>Automobile</span></a>
-                                <ul>
-                                    <li><a href="#">Cars</a></li>
-                                    <li><a href="#">Motorcycle</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">Fleet</a></li>
-                                    <li class='last'><a href="#">Cameras</a></li>
-                                </ul>
-                            </li>
-
-                            <li class='has-sub'><a href='#'><span>Sports & Fitness</span></a>
-                                <ul>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li class="last"><a href="#">Trucks</a></li>
-                                </ul>
-                            </li>
-
-
-                            <li class='has-sub'><a href='#'><span>Outdoor Recreation</span></a>
-                                <ul>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li class="last"><a href="#">Hiking</a></li>
-                                </ul>
-                            </li>
-
-
-                            <li class='has-sub'><a href='#'><span>Marine</span></a>
-                                <ul>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li class="last"><a href="#">Trucks</a></li>
-                                </ul>
-                            </li>
-
-                            <li class='has-sub'><a href='#'><span>Aviation</span></a>
-                                <ul>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li class="last"><a href="#">Trucks</a></li>
-                                </ul>
-                            </li>
-
-                            <li class='has-sub'><a href='#'><span>Cameras</span></a>
-                                <ul>
-                                    <li><a href="#">Hiking</a></li>
-                                    <li><a href="#">Sporting Dogs</a></li>
-                                    <li><a href="#">Trucks</a></li>
-                                    <li class="last"><a href="#">Trucks</a></li>
-                                </ul>
-                            </li>
-
-                            <li class='has-sub'><a href='#'><span>Wearable & Smartwatch</span></a>
-                                <ul>
-                                    <li class="last"><a href="#">All Wearable & Smartwatch</a></li>
-                                </ul>
-                            </li>
-
-                            <li class='has-sub'><a href='#'><span>Accessories</span></a>
-                                <ul>
-                                    <li class="last"><a href="#">Wearable & Smartwatch Accessories</a></li>
-                                </ul>
-                            </li>
-
-                            <li class='has-sub'><a href='#'><span>Apps</span></a>
-                                <ul>
-                                    <li class="last"><a href="#">All Apps</a></li>
-                                </ul>
-                            </li>
-
-                            <li class='has-sub'><a href='#'><span>Sensors</span></a>
-                                <ul>
-                                    <li class="last"><a href="#">All Sensors</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
+                            <ul >
+                                @include('MenuItem', ['items' => $menu->roots()])
+                                <hr>
+                                <li class='has-sub'><a href='#'><span>Automobile</span></a>
+                                    <ul>
+                                        <li><a href="#">Cars</a></li>
+                                        <li><a href="#">Motorcycle</a></li>
+                                        <li><a href="#">Trucks</a></li>
+                                        <li><a href="#">Fleet</a></li>
+                                        <li class='last'><a href="#">Cameras</a></li>
+                                    </ul>
+                                </li>
+    
+                                <li class='has-sub'><a href='#'><span>Wearable & Smartwatch</span></a>
+                                    <ul>
+                                        <li class="last"><a href="#">All Wearable & Smartwatch</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                     </li>
-
 
 
                     <!-- Second Menu -->
@@ -387,16 +301,12 @@
 
                     <!-- Third Menu -->
 
-
                     <li class='active has-sub'><a href='#'><span>Products</span></a>
                         <ul>
                             <li><a href="#">Automotive Maps</a></li>
                             <li class="last"><a href="#">Automotive Maps</a></li>
                         </ul>
                     </li>
-
-
-
 
                     <li class='active has-sub'><a href='#'><span>Products</span></a>
                         <ul class="discover">
@@ -481,17 +391,17 @@
                 <li><a href="https://www8.garmin.com/siteIndex.html">Карта сайта • </a></li>
                 <li><a href="https://www.garmin.ae/terms-of-use/">Условия использования •  </a></li>
                 <li><a href="https://www.garmin.ae/statement-of-privacy/">Заявление о конфиденциальности •  </a></li>
-                <li><a href="#">Все права защищены © 1996-2019 Garmin Ltd. </a></li>
+                <li><a href="#">Все права защищены © 1996-2019 Garmin. </a></li>
             </ul>
         </div>
         <div class="social-media mh-1">
             <ul class="d-flex list-style-default justify-space-between align-center">
-                <li><a href="#"><img src="/img/social media/facebook-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/social media/twitter.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/social media/youtube-symbol.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/social media/pinterest-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/social media/instagram-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/social media/payment.png" class="visa" alt=""></a></li>
+                <li><a href="#"><img src="/img/socialmedia/facebook-logo.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/socialmedia/twitter.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/socialmedia/youtube-symbol.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/socialmedia/pinterest-logo.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/socialmedia/instagram-logo.png" alt=""></a></li>
+                <li><a href="#"><img src="/img/socialmedia/payment.png" class="visa" alt=""></a></li>
             </ul>
         </div>
     </div>

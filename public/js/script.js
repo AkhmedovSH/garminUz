@@ -95,28 +95,7 @@ $(document).ready(function() {
     
 });
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})
 
-$(document).on('click','#filter_name-1', function(event){
-    
-    if ($('#agree').hasClass("filter_name-custom-checkbox-notchecked")) {
-        
-        $('#agree').removeClass("filter_name-custom-checkbox-notchecked");
-        $('#agree').addClass("filter_name-custom-checkbox-checked");
-        $('#label').addClass("bold-font");
-        $('#agree').children( '.app__products__filters__radio__check').css( "display", "block" );
-       
-    } 
-    else {
-        
-        $('#agree').removeClass("filter_name-custom-checkbox-checked");
-        $('#agree').addClass("filter_name-custom-checkbox-notchecked");
-        $('#label').removeClass("bold-font");
-        $('#agree').children( '.app__products__filters__radio__check').css( "display", "none" );
-}
-});
 
 
 $('button').on('click', function() {
@@ -191,23 +170,102 @@ $( document ).ready(function() {
     //   }); 
       
       $(document).ready(function(){
-        $('#tooltip-icon').on( "click", function (event) {
-            
-            if ($('.series-attribute p').hasClass('series-attribute_disappear')) {
-                $('.series-attribute p').removeClass('series-attribute_disappear')
-                $('.series-attribute p').addClass('series-attribute_appear')   
+        $('#product-filter').on( "click", function (event) {
+            if(event.target.matches('#tooltip-icon-1')) {
+                addClassToP(event)
             }
-            else {
-                $('.series-attribute p').removeClass('series-attribute_appear')
-                $('.series-attribute p').addClass('series-attribute_disappear')
+
+            if(event.target.matches('#tooltip-icon-2')) {
+                addClassToP(event)
+            }
+
+            if(event.target.matches('#tooltip-icon-3')) {
+                addClassToP(event)
             }
         });
-             });
+        function addClassToP(event) {
+            var el = event.target.parentElement.children[1]
+                if($(el).hasClass('series-attribute_disappear')) {
+                    $(el).removeClass('series-attribute_disappear').addClass('series-attribute_appear')
+                    
+                }
+                else{
+                    $(el).removeClass('series-attribute_aappear').addClass('series-attribute_disappear')
+                }
+        }   
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+      
+
+
+        $('.filter_name').on( "click", function (event) {
+            var id = $(this).closest('.filter_name').attr('data-id');
+            changeStyles(event.target.closest('.filter_name'))
+        });
+     
+        function changeStyles(element) {
+            var label = $(element).find('.filter_name-custom-label').eq(0)
+            var span = $(element).find('#agree').eq(0)
+            var svg = $(element).find('svg.app__products__filters__radio__check').eq(0)
+            var span2 = $(element).find('.filter-text')
+
+            if(span.is('.filter_name-custom-checkbox-notchecked')){
+                span.removeClass('filter_name-custom-checkbox-notchecked').addClass("filter_name-custom-checkbox-checked")
+                svg.css( "display", "block" );
+                span2.addClass("bold-font");
+            }
+            else{
+                span.removeClass('filter_name-custom-checkbox-checked').addClass("filter_name-custom-checkbox-notchecked")
+                svg.css( "display", "none" );
+                span2.removeClass("bold-font");
+            }
+        }
+
+
+
+
+        $(window).resize(function() {
+            var width = $(window).width();
+            if (width > 961){
+                $('#app-products_filter').removeClass('collapse')
+            }
+            if (width < 960){       
+                $('#app-products_filter').addClass('collapse')
+            }
+            });
+        });
+   
+
+
+
+// $(document).on('click','#filter_name-1', function(event){
+    
+//     if ($('#agree').hasClass("filter_name-custom-checkbox-notchecked")) {
+        
+//         $('#agree').removeClass("filter_name-custom-checkbox-notchecked");
+//         $('#agree').addClass("filter_name-custom-checkbox-checked");
+//         $('#label').addClass("bold-font");
+//         $('#agree').children( '.app__products__filters__radio__check').css( "display", "block" );
+       
+//     } 
+//     else {
+        
+//         $('#agree').removeClass("filter_name-custom-checkbox-checked");
+//         $('#agree').addClass("filter_name-custom-checkbox-notchecked");
+//         $('#label').removeClass("bold-font");
+//         $('#agree').children( '.app__products__filters__radio__check').css( "display", "none" );
+// }
+// });
+
+
 
 
              $(document).ready(function() {
                 // grab the initial top offset of the navigation 
-                   var stickyNavTop = $('.nav').offset().top();
+                   var stickyNavTop = $('.nav').offset().top;
                    
                    // our function that decides weather the navigation bar should have "fixed" css position or not.
                    var stickyNav = function(){
@@ -280,4 +338,6 @@ $( document ).ready(function() {
                 $("#search-show").click(function(){
                   $(".search-input").show();
                 });
+
+
               });  

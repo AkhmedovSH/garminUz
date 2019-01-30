@@ -19,6 +19,10 @@
                 <p class="product-action_product"><span> Бесплатная доставка</span> <span> Имееться в наличии</span></p>
             </div>
 
+        <div class="product-guarantee-block">
+            <p class="product-guarantee"><span>+1 Год гарантии!</span></p>
+        </div>
+
         <div id="product-price">
                 <p class="product-price"><span>3199.00</span><span>Сум</span></p>
                 <p class="product-price_add_info">(Цена без НДС)</p>
@@ -104,57 +108,16 @@
     </div>
     <div class="tab-content container-85 mg-auto-horizontal pa-3" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <p v-html="product.description">
-            </p>
+            <div v-html="product.overview">
+            </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-            <h4>General</h4>
-            <table class="table table-product">
-                    <tbody>
-                    <tr>
-                        <td>Lens Material</td>
-                        <td>Domed chemically strengthenedDomed chemically strengthened glass or sapphire crystal</td>
-                    </tr>
-                    <tr>
-                        <td>Bezel Material</td>
-                        <td>Stainless steel or titanium</td>
-                    </tr>
-                    <tr>
-                        <td>Case material</td>
-                        <td>Fibre-reinforced polymer with metal rear cover</td>
-                    </tr>
-                    <tr>
-                        <td>Case material</td>
-                        <td>Fibre-reinforced polymer with metal rear cover</td>
-                    </tr>
-                    <tr>
-                        <td>Case material</td>
-                        <td>Fibre-reinforced polymer with metal rear cover</td>
-                    </tr>
-                    <tr>
-                        <td>Case material</td>
-                        <td>Fibre-reinforced polymer with metal rear cover</td>
-                    </tr>
-                    <tr>
-                        <td>Case material</td>
-                        <td>Fibre-reinforced polymer with metal rear cover</td>
-                    </tr>
-                    <tr>
-                        <td>Case material</td>
-                        <td>Fibre-reinforced polymer with metal rear cover</td>
-                    </tr>
-                    </tbody>
-                </table>
-
+             <div v-html="product.specs">
+            </div>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-            <ul>
-                <li>fēnix 5 Plus</li>
-                <li>Charging/data cable</li>
-                <li>Documentation</li>
-            </ul>
-            <span>Silicone QuickFit™ 22 watch band included in the box with fēnix 5 Plus Sapphire, carbon gray DLC titanium with DLC titanium band, and fēnix 5 Plus Sapphire, black with black leather band.</span>
+             <div v-html="product.in_the_box">
+            </div>
         </div>
     </div>
     

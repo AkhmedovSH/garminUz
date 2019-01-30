@@ -9,6 +9,7 @@ use App\PCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Slider;
+use App\Post;
 
 
 class HomeController extends Controller
@@ -17,13 +18,21 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = Slider::take(5)->orderBy('id','DESC')->get();
+        $posts = Post::orderBy('id','DESC')->take(10)->get();
+        //dd($posts);
         //dd($sliders);
-        return view('main', compact('sliders'));
+        return view('main', compact('sliders','posts'));
     }
 
     public function maps($parametr)
     {
         return view('maps', compact('parametr'));
+    }
+
+    public function blog($slug)
+    {
+        $post = Post::where('slug',$slug)->orderBy('id','DESC')->firstOrFail();
+        return view('blog', compact('post'));
     }
 
     public function search(Request $request)

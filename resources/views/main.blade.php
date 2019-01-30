@@ -182,7 +182,7 @@
                 <a class="outline-button_banners-color">Узнать больше</a>
             </div>
             <div class="main-page-banners_image">
-                <img src="img/clocks.jpg" alt="">
+                <img src="/img/clocks.jpg" alt="">
             </div>
         </div>
 
@@ -191,28 +191,18 @@
 
         <div class="second_product_carousel">
             <div class="owl-three owl-carousel owl-theme">
-
+                @foreach ($posts as $post)
                 <div class="carousel-three-products">
-                    <a href="#">
+                    <a href="/blog/{{ $post->slug }}">
                         <div class="carousel-three-product_text">
-                            <p>Template 1</p>
+                            <p>{{ $post->title }}</p>
                             <button class="outline-button_main-carousel-button_white">Узнать больше</button>
                         </div>
-                        <div class="carousel-three-product_image" style="background-image:url('img/watch_on_hand.jpg')">
+                        <div class="carousel-three-product_image" style="background-image:url('/uploads/posts/{{ $post->image }}')">
                         </div>
                     </a>
                 </div>
-                <div class="carousel-three-products">
-                    <a href="#">
-                        <div class="carousel-three-product_text">
-                            <p>Template 2</p>
-                            <button class="outline-button_main-carousel-button_white">Узнать больше</button>
-                        </div>
-                        <div class="carousel-three-product_image" style="background-image:url('img/watch_on_hand.jpg')">
-                        </div>
-                    </a>
-                </div>
-
+                @endforeach
             </div>
         </div>
 
@@ -251,7 +241,7 @@
                     видеорегистраторы, резервные камеры и автомобильные мониторы для еще большей
                     осведомленности, когда вы за рулем
                 </p>
-                <button class="outline-button_g-markets-banner">Узнать больше</button>
+                <a class="outline-button_g-markets-banner">Узнать больше</a>
             </div>
 
             <div class="g-markets_banner_image">

@@ -52358,7 +52358,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }if (this.sortOption == 4) {
                 this.sortBy = 'price';
                 this.sortBy_value = 'asc';
-            }console.log(this.sortBy);
+            }
             if (this.filter_rows.length > 0) {
                 this.sortBySeries();
             } else {
@@ -52387,15 +52387,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     this.filter_rows.push({ filters_ids: filters_ids });
                 }
             }
-            console.log(index);
-            console.log(this.filter_rows);
             axios.get("/products", { params: {
                     filters: this.filter_rows,
                     category_id: this.category_id,
                     sortBy: this.sortBy,
                     sortBy_value: this.sortBy_value
                 } }).then(function (res) {
-                console.log(res);
                 _this2.products = res.data.products;
             }).catch(function (err) {
                 return console.log(err);
@@ -52405,7 +52402,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             axios.get('/products', { params: { category_id: this.category_id } }).then(function (res) {
-                console.log(res.data.features);
                 _this3.series = res.data.series;
                 _this3.features = res.data.features;
                 _this3.products = res.data.products;
@@ -52466,7 +52462,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "filter_name",
-                  attrs: { id: "filter_name" },
+                  attrs: { id: "filter_name-1", "data-id": serie.id },
                   on: {
                     click: function($event) {
                       $event.preventDefault()
@@ -52484,10 +52480,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "label",
-                          {
-                            staticClass: "filter_name-custom-label",
-                            attrs: { id: "label" }
-                          },
+                          { staticClass: "filter_name-custom-label" },
                           [
                             _c(
                               "span",
@@ -52517,13 +52510,11 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("span", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v(_vm._s(serie.title))
-                              ])
+                            _c("span", { staticClass: "filter-text" }, [
+                              _c("a", [_vm._v(_vm._s(serie.title))])
                             ]),
                             _vm._v(" "),
-                            _c("span", [
+                            _c("span", { staticClass: "filter-text" }, [
                               _vm._v(
                                 "(" + _vm._s(serie.filter_products_count) + ")"
                               )
@@ -52553,7 +52544,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "filter_name",
-                  attrs: { id: "filter_name" },
+                  attrs: { id: "filter_name-1" },
                   on: {
                     click: function($event) {
                       $event.preventDefault()
@@ -52604,13 +52595,11 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("span", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v(_vm._s(serie.title))
-                              ])
+                            _c("span", { staticClass: "filter-text" }, [
+                              _c("a", [_vm._v(_vm._s(serie.title))])
                             ]),
                             _vm._v(" "),
-                            _c("span", [
+                            _c("span", { staticClass: "filter-text" }, [
                               _vm._v(
                                 "(" + _vm._s(serie.filter_products_count) + ")"
                               )
@@ -52773,7 +52762,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "new-stick" }, [
       _c("p", { staticClass: "new-stick-position" }, [
-        _c("span", { staticClass: "new-stick-style" }, [_vm._v("New")])
+        _c("span", { staticClass: "new-stick-style" }, [_vm._v("Новое")])
       ])
     ])
   },
@@ -53035,43 +53024,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug'],
@@ -53163,10 +53115,12 @@ var render = function() {
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
           _c("div", { attrs: { id: "product-filter" } }, [
             _vm.product.pa_case_size != null
               ? _c("div", { staticClass: "product-filter_case-size" }, [
-                  _vm._m(3),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53210,7 +53164,7 @@ var render = function() {
             _vm._v(" "),
             _vm.product.pa_saphire != null
               ? _c("div", { staticClass: "product-filter_saphire-edition" }, [
-                  _vm._m(4),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53240,7 +53194,7 @@ var render = function() {
             _vm._v(" "),
             _vm.product.pa_pulse_ox != null
               ? _c("div", { staticClass: "product-filter_pulse-ox" }, [
-                  _vm._m(5),
+                  _vm._m(6),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53354,7 +53308,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "one-product_description-tab" }, [
-      _vm._m(6),
+      _vm._m(7),
       _vm._v(" "),
       _c(
         "div",
@@ -53374,15 +53328,41 @@ var render = function() {
               }
             },
             [
-              _c("p", {
-                domProps: { innerHTML: _vm._s(_vm.product.description) }
+              _c("div", {
+                domProps: { innerHTML: _vm._s(_vm.product.overview) }
               })
             ]
           ),
           _vm._v(" "),
-          _vm._m(7),
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade",
+              attrs: {
+                id: "profile",
+                role: "tabpanel",
+                "aria-labelledby": "profile-tab"
+              }
+            },
+            [_c("div", { domProps: { innerHTML: _vm._s(_vm.product.specs) } })]
+          ),
           _vm._v(" "),
-          _vm._m(8)
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade",
+              attrs: {
+                id: "contact",
+                role: "tabpanel",
+                "aria-labelledby": "contact-tab"
+              }
+            },
+            [
+              _c("div", {
+                domProps: { innerHTML: _vm._s(_vm.product.in_the_box) }
+              })
+            ]
+          )
         ]
       )
     ])
@@ -53406,6 +53386,16 @@ var staticRenderFns = [
       _c("span", [_vm._v(" Бесплатная доставка")]),
       _vm._v(" "),
       _c("span", [_vm._v(" Имееться в наличии")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "product-guarantee-block" }, [
+      _c("p", { staticClass: "product-guarantee" }, [
+        _c("span", [_vm._v("+1 Год гарантии!")])
+      ])
     ])
   },
   function() {
@@ -53550,124 +53540,6 @@ var staticRenderFns = [
         ]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane fade",
-        attrs: {
-          id: "profile",
-          role: "tabpanel",
-          "aria-labelledby": "profile-tab"
-        }
-      },
-      [
-        _c("h4", [_vm._v("General")]),
-        _vm._v(" "),
-        _c("table", { staticClass: "table table-product" }, [
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("Lens Material")]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "Domed chemically strengthenedDomed chemically strengthened glass or sapphire crystal"
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Bezel Material")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Stainless steel or titanium")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Case material")]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v("Fibre-reinforced polymer with metal rear cover")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Case material")]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v("Fibre-reinforced polymer with metal rear cover")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Case material")]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v("Fibre-reinforced polymer with metal rear cover")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Case material")]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v("Fibre-reinforced polymer with metal rear cover")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Case material")]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v("Fibre-reinforced polymer with metal rear cover")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Case material")]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v("Fibre-reinforced polymer with metal rear cover")
-              ])
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane fade",
-        attrs: {
-          id: "contact",
-          role: "tabpanel",
-          "aria-labelledby": "contact-tab"
-        }
-      },
-      [
-        _c("ul", [
-          _c("li", [_vm._v("fēnix 5 Plus")]),
-          _vm._v(" "),
-          _c("li", [_vm._v("Charging/data cable")]),
-          _vm._v(" "),
-          _c("li", [_vm._v("Documentation")])
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Silicone QuickFit™ 22 watch band included in the box with fēnix 5 Plus Sapphire, carbon gray DLC titanium with DLC titanium band, and fēnix 5 Plus Sapphire, black with black leather band."
-          )
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true

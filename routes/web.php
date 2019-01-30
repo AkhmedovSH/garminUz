@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Gloudemans\Shoppingcart\Facades\Cart;
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/blog/{slug}', 'HomeController@show')->name('blog.show');
-Route::get('/blog', 'HomeController@blog');
+Route::get('/blog/{slug}', 'HomeController@blog');
 
 Route::get('/products/{category_id}', 'HomeController@bcategory')->name('bcategory');
 Route::post('/search', 'HomeController@search');

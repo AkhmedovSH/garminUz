@@ -224,6 +224,12 @@ class Post extends Model
         return $this->comments()->where('status', 0)->get();
     }
 
+    public function getAbsolutePath()
+    {
+        //dd(asset('uploads/posts/'. $this->image));
+        return asset('uploads/posts/'. $this->image);
+    }
+
     public function scopeFilter($query, $filters){
         if ($filters == null)
         {

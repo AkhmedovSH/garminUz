@@ -4,18 +4,18 @@
         <p class="app-products_filter_name_style">Filter by Series</p>
         <ul class="list-style-default ma-0 pa-0">
             <li v-for="(serie, index) in series" :key="serie.id">
-                <div @click.prevent="sortBySeries(index,serie.id)" class="filter_name" id="filter_name">
+                <div @click.prevent="sortBySeries(index,serie.id)" class="filter_name" id="filter_name-1" :data-id='serie.id'>
                 <span v-if="serie.filter_type == 1">
                     <input type="checkbox" class="switch_1">
-                    <label id="label" class="filter_name-custom-label">
+                    <label class="filter_name-custom-label">
                         <span id="agree" class="filter_name-custom-checkbox-notchecked">
                             <svg class="app__products__filters__radio__check" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 100 100" width="15px">
                                 <path d="M70.1 35.9L40 64.1 29.9 54"></path>
                             </svg>
                         </span>
-                        <span><a href="#">{{ serie.title }}</a></span>
-                        <span>({{ serie.filter_products_count }})</span>
+                        <span class="filter-text"><a>{{ serie.title }}</a></span>
+                        <span class="filter-text">({{ serie.filter_products_count }})</span>
                     </label>
                 </span>
                 </div>
@@ -25,7 +25,7 @@
         <p class="app-products_filter_name_style">Filter by Features</p>
         <ul class="list-style-default ma-0 pa-0">
             <li v-for="(serie, index) in features" :key="serie.id">
-                <div @click.prevent="sortBySeries(index,serie.id,this.right_sort)" class="filter_name" id="filter_name">
+                <div @click.prevent="sortBySeries(index,serie.id,this.right_sort)" class="filter_name" id="filter_name-1">
                 <span v-if="serie.filter_type == 0">
                     <input type="checkbox" class="switch_1">
                     <label id="label" class="filter_name-custom-label">
@@ -35,8 +35,8 @@
                                 <path d="M70.1 35.9L40 64.1 29.9 54"></path>
                             </svg>
                         </span>
-                        <span><a href="#">{{ serie.title }}</a></span>
-                        <span>({{ serie.filter_products_count }})</span>
+                        <span class="filter-text"><a>{{ serie.title }}</a></span>
+                        <span class="filter-text">({{ serie.filter_products_count }})</span>
                     </label>
                 </span>
                 </div>
@@ -66,7 +66,7 @@
             <a :href="'/product/' + product.slug" class="app-product grid-style" v-for="product in filteredTasks" :key="product.id">
                 <div class="new-stick">
                     <p class="new-stick-position">
-                        <span class="new-stick-style">New</span>
+                        <span class="new-stick-style">Новое</span>
                     </p>
                 </div>
                 <div class="app-products_products-all_image">
@@ -129,7 +129,7 @@
                      }if(this.sortOption == 4){
                           this.sortBy = 'price'
                          this.sortBy_value = 'asc'
-                     }console.log(this.sortBy)
+                     }
                  if(this.filter_rows.length > 0){
                     this.sortBySeries();
                  }else{
@@ -155,8 +155,6 @@
                     }
                       
                 }
-                 console.log(index)
-                console.log(this.filter_rows) 
                 axios.get("/products",{params: { 
                      filters: this.filter_rows,
                      category_id: this.category_id,
@@ -164,7 +162,6 @@
                      sortBy_value:this.sortBy_value
                      }})
                 .then(res => {
-                    console.log(res)
                     this.products = res.data.products
                 })
                 .catch(err=>console.log(err));
@@ -172,7 +169,6 @@
             getCategories() {
                
                 axios.get('/products', {params:{category_id: this.category_id}}).then(res =>{
-                     console.log(res.data.features)
                     this.series = res.data.series
                     this.features = res.data.features
                     this.products = res.data.products

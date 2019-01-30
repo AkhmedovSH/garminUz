@@ -8,9 +8,16 @@ use Illuminate\Support\Facades\Storage;
 class Product extends Model
 {
     protected $table = 'products';
-    protected $fillabe = ['title', 'description', 'slider_image'];
+    protected $fillabe =
+    ['title', 'notice', 'description', 'part_number',
+     'image', 'slider_image', 'featured', 'price',
+     'sale', 'status', 'pa_size', 'pa_case_size',
+     'pa_pulse_ox', 'pa_saphire', 'pa_music', 'overview',
+     'overview', 'specs', 'in_the_box'
+    ];
     
     use Sluggable;
+
 
     
     public function p_categories(){
@@ -51,7 +58,15 @@ class Product extends Model
     public static function add($fields){
         $product = new static;
         $product->title = $fields['title'];
+        $product->notice = $fields['notice'];
         $product->description = $fields['description'];
+        $product->part_number = $fields['part_number'];
+        //$product->featured = $fields['featured'];
+        $product->price = $fields['price'];
+
+        $product->overview = $fields['overview'];
+        $product->specs = $fields['specs'];
+        $product->in_the_box = $fields['in_the_box'];
         $product->save();
 
         return $product;

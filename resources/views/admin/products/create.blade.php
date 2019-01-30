@@ -31,6 +31,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Тип ремешка стиля итд</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Товар имеет" name="notice" value="{{old('notice')}}" >
+                    </div>
+
+                    <div class="form-group">
                         <label for="exampleInputFile">Лицевая картинка jpeg jpg png (300x300)</label>
                         <input type="file" id="exampleInputFile" name="image">
                     </div>
@@ -67,7 +72,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Размер часов</label>
+                            <label>Размер часов(41,47,51) мм</label>
                             <select name="pa_case_size" class="form-control select2">
                                 <option value="null">Выберите категории</option>
                                 <option value="42">42</option>
@@ -106,12 +111,22 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Размер часов(Маленький,Средний)</label>
+                            <select name="pa_size" class="form-control select2">
+                                <option value="null">Выберите категории</option>
+                                <option value="large">Маленький</option>
+                                <option value="small/medium">Средний</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Описание 10-25 слов</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="description" value="{{old('description')}}">
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="описание..." name="description" value="{{old('description')}}">
                     </div>
                 </div>
                 <div class="col-md-12">

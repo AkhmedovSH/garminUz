@@ -14,14 +14,14 @@
         <a href="http://www.garmin.com/en-US/legal/privacy-statement">политикой конфедициальности</a>
         Garmin.
     </p>
-    <div class="social-media social-media_sign-up">
+{{--     <div class="social-media social-media_sign-up">
         <ul class="d-flex list-style-default justify-space-between align-center">
-            <li><a href="#"><img src="img/social media/facebook-logo.png" alt=""></a></li>
-            <li><a href="#"><img src="img/social media/twitter.png" alt=""></a></li>
-            <li><a href="#"><img src="img/social media/youtube-symbol.png" alt=""></a></li>
-            <li><a href="#"><img src="img/social media/pinterest-logo.png" alt=""></a></li>
-            <li><a href="#"><img src="img/social media/instagram-logo.png" alt=""></a></li>
-            <li><a href="#"><img src="img/social media/payment.png" class="visa" alt=""></a></li>
+            <li><a href="#"><img src="img/socialmedia/facebook-logo.png" alt=""></a></li>
+            <li><a href="#"><img src="img/socialmedia/twitter.png" alt=""></a></li>
+            <li><a href="#"><img src="img/socialmedia/youtube-symbol.png" alt=""></a></li>
+            <li><a href="#"><img src="img/socialmedia/pinterest-logo.png" alt=""></a></li>
+            <li><a href="#"><img src="img/socialmedia/instagram-logo.png" alt=""></a></li>
+            <li><a href="#"><img src="img/socialmedia/payment.png" class="visa" alt=""></a></li>
         </ul>
-    </div>
+    </div> --}}
 </div>

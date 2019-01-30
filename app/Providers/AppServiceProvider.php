@@ -29,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
             $m_builder=\Menu::make('MyNav', function ($m) use($menu){
                 foreach ($menu as $item){
                     if($item->parent_id==0){
-                        $m->add($item->title,  $item->parent_id)->id($item->id)->data('icons', $item->icons);
+                        $m->add($item->title,  $item->parent_id)->id($item->id)
+                        ->data(['icons'=> $item->icons,'clickable'=>$item->clickable]);
                     }
                     else {
                         if($m->find($item->parent_id)){
