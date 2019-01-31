@@ -10,6 +10,7 @@ class Product extends Model
     protected $table = 'products';
     protected $fillabe =
     ['title', 'notice', 'description', 'part_number',
+     'series_title', 'new', 'series_category_id', 'main_page',
      'image', 'slider_image', 'featured', 'price',
      'sale', 'status', 'pa_size', 'pa_case_size',
      'pa_pulse_ox', 'pa_saphire', 'pa_music', 'overview',
@@ -62,15 +63,24 @@ class Product extends Model
     public static function add($fields){
         $product = new static;
         $product->title = $fields['title'];
+        $product->series_title = $fields['series_title'];
         $product->series_category_id = $fields['series_category_id'];
         $product->notice = $fields['notice'];
         $product->description = $fields['description'];
         $product->part_number = $fields['part_number'];
 
+        if(isset($fields['new'])){ $product->new = $fields['new']; }
         if(isset($fields['featured'])){ $product->featured = $fields['featured']; }
-        
+        if(isset($fields['main_page'])){ $product->main_page = $fields['main_page']; }
+
         $product->price = $fields['price'];
         $product->sale = $fields['sale'];
+
+        $product->pa_size = $fields['pa_size'];
+        $product->pa_case_size = $fields['pa_case_size'];
+        $product->pa_pulse_ox = $fields['pa_pulse_ox'];
+        $product->pa_saphire = $fields['pa_saphire'];
+        $product->pa_music = $fields['pa_music'];
 
         $product->overview = $fields['overview'];
         $product->specs = $fields['specs'];

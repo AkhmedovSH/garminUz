@@ -76,59 +76,53 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Название группы часов</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" 
+                                placeholder="Как называеться линия товаров" name="series_title" value="{{old('series_title')}}" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label>Размер часов(41,47,51) мм</label>
-                            <select name="pa_case_size" class="form-control select2">
-                                <option value="null">Выберите категории</option>
-                                <option value="42">42</option>
-                                <option value="47">47</option>
-                                <option value="51">51</option>
-                            </select>
+                            {{ Form::select('pa_case_size', ['42' => '42', '47' => '47', '51' => '51'],
+                            null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Если товар имеет отслеживание пульса</label>
-                            <select name="pa_pulse_ox" class="form-control select2">
-                                <option value="null">Выберите категории</option>
-                                <option value="1">Да</option>
-                                <option value="0">Нет</option>
-                            </select>
+                            {{ Form::select('pa_pulse_ox', ['1' => 'Да', '0' => 'Нет'],
+                            null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Сапфирные часы</label>
-                            <select name="pa_pulse_ox" class="form-control select2">
-                                <option value="null">Выберите категории</option>
-                                <option value="1">Да</option>
-                                <option value="0">Нет</option>
-                            </select>
+                            {{ Form::select('pa_saphire', ['1' => 'Да', '0' => 'Нет'],
+                            null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Музыка в часах</label>
-                            <select name="pa_pulse_ox" class="form-control select2">
-                                <option value="null">Выберите категории</option>
-                                <option value="1">Да</option>
-                                <option value="0">Нет</option>
-                            </select>
+                            {{ Form::select('pa_music', ['1' => 'Да', '0' => 'Нет'],
+                            null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Размер часов(Маленький,Средний)</label>
-                            <select name="pa_size" class="form-control select2">
-                                <option value="null">Выберите категории</option>
-                                <option value="large">Маленький</option>
-                                <option value="small/medium">Средний</option>
-                            </select>
+                            {{ Form::select('pa_size', ['small' => 'Маленький', 'medium' => 'Средний'],
+                            null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="checkbox" value="1" name="new"><label> Новый</label>
-                            <input type="checkbox" value="1" name="featured"><label> Избранный</label>
+                            {{ Form::checkbox('new', '1', null) }}<label> Новый</label>
+                            {{ Form::checkbox('featured', '1', null) }}<label> Избранный</label>
+                            {{ Form::checkbox('main_page', '1', null) }}<label> На Главной странице</label>
                         </div>
                     </div>
                 </div>

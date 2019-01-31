@@ -49,7 +49,17 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        //
+       
+        $product = Product::find($id);
+        $tags = BCategory::pluck('title', 'id')->all();
+        $filters = PCategory::pluck('title', 'id')->all();
+        $productGroup = ProductGroup::pluck('title', 'id')->all();
+        
+        $selectedTags = $product->p_categories->pluck('id')->all(); 
+        $selectedFilters = $product->p_filters->pluck('id')->all(); 
+
+        return view('admin.products.edit', 
+        compact('product', 'tags' , 'filters', 'selectedTags','selectedFilters', 'productGroup'));
     }
 
 

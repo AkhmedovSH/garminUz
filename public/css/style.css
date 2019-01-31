@@ -2997,7 +2997,19 @@ input[type="checkbox"].switch_1 {
     width: 50%;
 }
 
-
+.top {
+    margin-top: 20px;
+}
+.top, .top-s {
+    margin-top: 20px;
+}
+.row {
+    margin-left: -20px;
+}
+.row {
+    clear: both;
+    zoom: 1;
+}
 
 
 

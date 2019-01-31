@@ -16,7 +16,7 @@
                             <h3 class="main-carousel_text-heading-white">{{ $slider->title }}</h3>
                             <p class="main-carousel_text-description-white">{{ $slider->description }}</p>
                         </div>
-                        <button class="outline-button_main-carousel-button_white">Learn More</button>
+                        <button class="outline-button_main-carousel-button_white">Узнать больше</button>
                     </a>
                 </div>
             </div>
