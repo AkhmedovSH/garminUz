@@ -3,9 +3,10 @@
         Подпишитесь на новости
     </div>
     <div class="main-sign-up_input">
-        <form class="main-sign-up_input_form">
+        <form class="main-sign-up_input_form" action="/subscribe" method="post">
+            {{csrf_field()}}
             <span></span>
-            <input type="text">
+            <input type="text" type="email" name="email">
             <button type="submit" class="main-sign-up_search_button"></button>
         </form>
     </div>
@@ -14,14 +15,4 @@
         <a href="http://www.garmin.com/en-US/legal/privacy-statement">политикой конфедициальности</a>
         Garmin.
     </p>
-{{--     <div class="social-media social-media_sign-up">
-        <ul class="d-flex list-style-default justify-space-between align-center">
-            <li><a href="#"><img src="img/socialmedia/facebook-logo.png" alt=""></a></li>
-            <li><a href="#"><img src="img/socialmedia/twitter.png" alt=""></a></li>
-            <li><a href="#"><img src="img/socialmedia/youtube-symbol.png" alt=""></a></li>
-            <li><a href="#"><img src="img/socialmedia/pinterest-logo.png" alt=""></a></li>
-            <li><a href="#"><img src="img/socialmedia/instagram-logo.png" alt=""></a></li>
-            <li><a href="#"><img src="img/socialmedia/payment.png" class="visa" alt=""></a></li>
-        </ul>
-    </div> --}}
 </div>

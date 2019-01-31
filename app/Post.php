@@ -3,10 +3,11 @@
 namespace App;
 
 use Carbon\Carbon;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
@@ -77,16 +78,24 @@ class Post extends Model
     public function removeImage(){
         if ($this->image != null){
             Storage::delete('uploads/posts/'. $this->image);
+            Storage::delete('uploads/posts/'. $this->thubnail);
         }
     }
 
     function uploadImage($image){
+        
         if ($image == null) { return; }
         $this->removeImage();
         $filename = str_random(10). '.' . $image->extension();
+        $filenameThubnail = str_random(10). '.' . $image->extension();
+
+        $img = Image::make($image)->resize(340, 300);
+        $img->save('uploads/posts/' . $filenameThubnail); 
+        //dd($img);
 
         $image->storeAs('uploads/posts/', $filename);
         $this->image = $filename;
+        $this->thubnail = $filenameThubnail;
         $this->save();
     }
 

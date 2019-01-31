@@ -198,7 +198,7 @@
                             <p>{{ $post->title }}</p>
                             <button class="outline-button_main-carousel-button_white">Узнать больше</button>
                         </div>
-                        <div class="carousel-three-product_image" style="background-image:url('/uploads/posts/{{ $post->image }}')">
+                        <div class="carousel-three-product_image" style="background-image:url('/uploads/posts/{{ $post->thubnail }}')">
                         </div>
                     </a>
                 </div>

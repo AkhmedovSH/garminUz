@@ -10,6 +10,8 @@ Route::get('/products/{category_id}', 'HomeController@bcategory')->name('bcatego
 Route::post('/search', 'HomeController@search');
 Route::get('/maps/{parametr}', 'HomeController@maps');
 
+Route::post('/subscribe', 'SubsController@subscribe');
+
 
 /*
     GET RESULT BY VUE COMPONENTS

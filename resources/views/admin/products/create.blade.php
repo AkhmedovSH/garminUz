@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputFile">Выбор нескольких картинок (зажимая Ctrl) (300x300)</label>
-                        <input type="file" id="exampleInputFile" name="images[]" multiple>
+                        <input type="file" id="exampleInputFile" name="slider_image[]" multiple>
                     </div>
                     <div class="form-group">
                         <label>Какой категории относиться товар</label>

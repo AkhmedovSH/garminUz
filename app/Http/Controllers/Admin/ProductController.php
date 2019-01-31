@@ -40,7 +40,7 @@ class ProductController extends Controller
        //dd($request->all());
        $product = Product::add($request->all());
        $product->uploadImage($request->file('image'));
-       $product->uploadMultipleImages($request->file('images'));
+       $product->uploadMultipleImages($request->file('slider_image'));
        $product->setTags($request->get('categories'));
        $product->setFilters($request->get('filters'));
        return redirect()->route('products.index');
@@ -51,6 +51,7 @@ class ProductController extends Controller
     {
        
         $product = Product::find($id);
+        $slider_image = json_decode($product->slider_image);
         $tags = BCategory::pluck('title', 'id')->all();
         $filters = PCategory::pluck('title', 'id')->all();
         $productGroup = ProductGroup::pluck('title', 'id')->all();
@@ -59,13 +60,19 @@ class ProductController extends Controller
         $selectedFilters = $product->p_filters->pluck('id')->all(); 
 
         return view('admin.products.edit', 
-        compact('product', 'tags' , 'filters', 'selectedTags','selectedFilters', 'productGroup'));
+        compact('product', 'tags' , 'filters', 'selectedTags','selectedFilters', 'productGroup','slider_image'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+       $product = Product::find($id);
+       $product->edit($request->all());
+       $product->uploadImage($request->file('image'));
+       $product->uploadMultipleImages($request->file('slider_image'));
+       $product->setTags($request->get('categories'));
+       $product->setFilters($request->get('filters'));
+       return redirect()->route('products.index');
     }
 
     public function destroy($id)
@@ -74,4 +81,6 @@ class ProductController extends Controller
 
         return redirect()->route('products.index');
     }
+
+    
 }

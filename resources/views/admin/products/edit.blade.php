@@ -37,12 +37,18 @@
                     </div>
 
                     <div class="form-group">
+                        <img src="{{$product->getImage()}}" class="img-responsive" width="200" style="margin: 0 auto;">
                         <label for="exampleInputFile">Лицевая картинка jpeg jpg png (300x300)</label>
                         <input type="file" id="exampleInputFile" name="image">
                     </div>
                     <div class="form-group">
+                        @if(isset($slider_image))
+                            @foreach ($slider_image as $image)
+                            <img src="/uploads/products/{{ $image->image }}" class="img-responsive" width="15%" style="display:inline-flex">
+                            @endforeach
+                        @endif
                         <label for="exampleInputFile">Выбор нескольких картинок (зажимая Ctrl) (300x300)</label>
-                        <input type="file" id="exampleInputFile" name="images[]" multiple>
+                        <input type="file" id="exampleInputFile" name="slider_image[]" multiple>
                     </div>
                     <div class="form-group">
                         <label>Какой категории относиться товар</label>
@@ -155,7 +161,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button class="btn btn-success pull-right">Добавить</button>
+                <button class="btn btn-warning pull-right">Изменить</button>
             </div>
             <!-- /.box-footer-->
         </div>

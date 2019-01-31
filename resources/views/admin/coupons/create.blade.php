@@ -18,11 +18,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Название купона</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" name="title" placeholder="CRDBDD01">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="code" placeholder="CRDBDD01">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Процент скидки купона</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" name="sale" placeholder="Просто число примеру: 5">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="value" placeholder="Просто число примеру: 5">
                         </div>
                     </div>
                 </div>

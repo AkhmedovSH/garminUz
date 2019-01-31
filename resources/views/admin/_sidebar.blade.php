@@ -12,6 +12,7 @@
         <li><a href="{{route('posts.index')}}"><i class="fa fa-sticky-note-o"></i><span>Посты</span></a></li>
         <li><a href="{{route('slider.index')}}"><i class="fa fa-sticky-note-o"></i><span>Слайдер</span></a></li>
         <li><a href="{{route('coupons.index')}}"><i class="fa fa-sticky-note-o"></i><span>Купоны</span></a></li>
+        <li><a href="{{route('subscribers.index')}}"><i class="fa fa-user-plus"></i> <span>Подписчики</span></a></li>
 
     
         <li><a ><i class="fa fa-users"></i> <span>Пользователи</span>

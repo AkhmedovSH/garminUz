@@ -16,11 +16,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Название купона</label>
-                            <input type="text" name="title" class="form-control" id="exampleInputEmail1" value="{{$category->title}}">
+                            <input type="text" name="code" class="form-control" id="exampleInputEmail1" value="{{$category->code}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Процент скидки купона</label>
-                            <input type="text" name="sale" class="form-control" id="exampleInputEmail1" value="{{$category->sale}}">
+                            <input type="text" name="value" class="form-control" id="exampleInputEmail1" value="{{$category->code}}">
                         </div>
                     </div>
                 </div>
