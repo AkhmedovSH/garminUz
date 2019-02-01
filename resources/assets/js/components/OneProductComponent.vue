@@ -14,9 +14,12 @@
         <div class="one-product_product-title">
             <p class="product-name">{{ product.title }}</p>
             <div id="product-description">
-                <p class="product-type" v-html="product.description"></p>
+                <p class="product-type" v-html="product.notice"></p>
                 <p class="product-part_num">Part Number: <span>010-01988-07</span></p>
-                <p class="product-action_product"><span> Бесплатная доставка</span> <span> Имееться в наличии</span></p>
+                <p class="product-action_product">
+                    <span> Бесплатная доставка</span>
+                    <span v-if="product.in_stock != 0"> Имееться в наличии</span>
+                </p>
             </div>
 
         <div class="product-guarantee-block">
@@ -64,7 +67,7 @@
                         </div>
                 </div>
                 <div class="series-attribute">Цвета</div>
-                <div class="product-filter_color" v-if="product.series_category_id != null">
+                <div class="product-filter_color" v-if="product.series_category_id != null || product.app_store_url != null">
                     <ul class="list-style-default ma-0 d-flex flex-row-wrap pa-0">
                         <li v-for="(item,index) in products" :key="item.id">
                             <a @click.prevent="chooseProduct(index,item.slug)" class="product_series_attr enabled-img-product">

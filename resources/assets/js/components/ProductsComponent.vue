@@ -67,9 +67,11 @@
         </div>
         <div class="app-products_products-all" id="product">
             <a :href="'/product/' + product.slug" class="app-product grid-style" v-for="product in filteredTasks" :key="product.id">
-                <div class="new-stick">
+                <div class="new-stick" v-if="product.new != 0">
                     <p class="new-stick-position">
-                        <span class="new-stick-style">Новое</span>
+                        <span class="new-stick-style">
+                            Новое
+                        </span>
                     </p>
                 </div>
                 <div class="app-products_products-all_image">
@@ -80,8 +82,7 @@
                         <p>{{ product.title }}</p>
                     </div>
                     <div class="app-products_products-all_description">
-                        <p>Middle east/North Africa mapping are pre-loaded. Plus 25 additional countries free
-                            to download</p>
+                        <p>{{ product.description }}</p>
                     </div>
                 </div>
                 <div class="app-products_products-all_price">

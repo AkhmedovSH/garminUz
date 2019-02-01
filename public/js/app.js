@@ -52325,6 +52325,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['category_id'],
@@ -52708,7 +52709,9 @@ var render = function() {
               attrs: { href: "/product/" + product.slug }
             },
             [
-              _vm._m(2, true),
+              product.new != 0
+                ? _c("div", { staticClass: "new-stick" }, [_vm._m(2, true)])
+                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "app-products_products-all_image" }, [
                 _c("img", {
@@ -52723,10 +52726,14 @@ var render = function() {
                   [_c("p", [_vm._v(_vm._s(product.title))])]
                 ),
                 _vm._v(" "),
-                _vm._m(3, true)
+                _c(
+                  "div",
+                  { staticClass: "app-products_products-all_description" },
+                  [_c("p", [_vm._v(_vm._s(product.description))])]
+                )
               ]),
               _vm._v(" "),
-              _vm._m(4, true)
+              _vm._m(3, true)
             ]
           )
         })
@@ -52784,20 +52791,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "new-stick" }, [
-      _c("p", { staticClass: "new-stick-position" }, [
-        _c("span", { staticClass: "new-stick-style" }, [_vm._v("Новое")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "app-products_products-all_description" }, [
-      _c("p", [
+    return _c("p", { staticClass: "new-stick-position" }, [
+      _c("span", { staticClass: "new-stick-style" }, [
         _vm._v(
-          "Middle east/North Africa mapping are pre-loaded. Plus 25 additional countries free\r\n                            to download"
+          "\r\n                            Новое\r\n                        "
         )
       ])
     ])
@@ -53048,6 +53045,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug'],
@@ -53129,22 +53129,28 @@ var render = function() {
           _c("div", { attrs: { id: "product-description" } }, [
             _c("p", {
               staticClass: "product-type",
-              domProps: { innerHTML: _vm._s(_vm.product.description) }
+              domProps: { innerHTML: _vm._s(_vm.product.notice) }
             }),
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
-            _vm._m(1)
+            _c("p", { staticClass: "product-action_product" }, [
+              _c("span", [_vm._v(" Бесплатная доставка")]),
+              _vm._v(" "),
+              _vm.product.in_stock != 0
+                ? _c("span", [_vm._v(" Имееться в наличии")])
+                : _vm._e()
+            ])
           ]),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(1),
           _vm._v(" "),
-          _vm._m(3),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { attrs: { id: "product-filter" } }, [
             _vm.product.pa_case_size != null
               ? _c("div", { staticClass: "product-filter_case-size" }, [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53188,7 +53194,7 @@ var render = function() {
             _vm._v(" "),
             _vm.product.pa_saphire != null
               ? _c("div", { staticClass: "product-filter_saphire-edition" }, [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53218,7 +53224,7 @@ var render = function() {
             _vm._v(" "),
             _vm.product.pa_pulse_ox != null
               ? _c("div", { staticClass: "product-filter_pulse-ox" }, [
-                  _vm._m(6),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53248,7 +53254,8 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "series-attribute" }, [_vm._v("Цвета")]),
             _vm._v(" "),
-            _vm.product.series_category_id != null
+            _vm.product.series_category_id != null ||
+            _vm.product.app_store_url != null
               ? _c("div", { staticClass: "product-filter_color" }, [
                   _c(
                     "ul",
@@ -53332,7 +53339,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "one-product_description-tab" }, [
-      _vm._m(7),
+      _vm._m(6),
       _vm._v(" "),
       _c(
         "div",
@@ -53400,16 +53407,6 @@ var staticRenderFns = [
     return _c("p", { staticClass: "product-part_num" }, [
       _vm._v("Part Number: "),
       _c("span", [_vm._v("010-01988-07")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "product-action_product" }, [
-      _c("span", [_vm._v(" Бесплатная доставка")]),
-      _vm._v(" "),
-      _c("span", [_vm._v(" Имееться в наличии")])
     ])
   },
   function() {

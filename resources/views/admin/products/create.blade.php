@@ -114,8 +114,17 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Размер часов(Маленький,Средний)</label>
-                            {{ Form::select('pa_size', ['small' => 'Маленький', 'medium' => 'Средний'],
+                            {{ Form::select('pa_size', ['small' => 'Маленький', 'medium' => 'Средний',
+                             'one_size_fits_most' => 'one_size_fits_most','small_medium' => 'small_medium'],
                             null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">App Store</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="ссылка на App Store" name="app_store_url" value="{{old('app_store_url')}}">
+                            <label for="exampleInputEmail1">Google Play(Play Market)</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="ссылка на Google Play" name="google_play_url" value="{{old('google_play_url')}}">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -123,6 +132,7 @@
                             {{ Form::checkbox('new', '1', null) }}<label> Новый</label>
                             {{ Form::checkbox('featured', '1', null) }}<label> Избранный</label>
                             {{ Form::checkbox('main_page', '1', null) }}<label> На Главной странице</label>
+                            {{ Form::checkbox('in_stock', '1', true) }}<label> Имееться в наличии</label>
                         </div>
                     </div>
                 </div>

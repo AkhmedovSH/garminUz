@@ -125,6 +125,14 @@
                                 $product->pa_size, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">App Store</label>
+                                <input type="number" class="form-control" id="exampleInputEmail1" name="app_store_url" value="{{ $product->app_store_url }}">
+                                <label for="exampleInputEmail1">Google Play(Play Market)</label>
+                                <input type="number" class="form-control" id="exampleInputEmail1" name="google_play_url" value="{{ $product->google_play_url }}">
+                            </div>
+                        </div>
                     <div class="col-md-6">
                         <div class="form-group">
                                 {{ Form::checkbox('new', '1', $product->new) }}<label> Новый</label>

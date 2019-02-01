@@ -12,10 +12,10 @@ class Product extends Model
     [
      'title', 'notice', 'description', 'part_number',
      'series_title', 'new', 'series_category_id',
-     'main_page', 'featured', 'price',
+     'main_page', 'featured', 'price', 'in_stock',
      'sale', 'status', 'pa_size', 'pa_case_size',
      'pa_pulse_ox', 'pa_saphire', 'pa_music', 'overview',
-      'specs', 'in_the_box'
+      'specs', 'in_the_box' , 'app_store_url' , 'google_play_url'
     ];
     
     use Sluggable;
@@ -73,6 +73,7 @@ class Product extends Model
         if(isset($fields['new'])){ $product->new = $fields['new']; }
         if(isset($fields['featured'])){ $product->featured = $fields['featured']; }
         if(isset($fields['main_page'])){ $product->main_page = $fields['main_page']; }
+        if(isset($fields['in_stock'])){ $product->in_stock = $fields['in_stock']; }
 
         $product->price = $fields['price'];
         $product->sale = $fields['sale'];
