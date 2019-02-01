@@ -52709,9 +52709,17 @@ var render = function() {
               attrs: { href: "/product/" + product.slug }
             },
             [
-              product.new != 0
-                ? _c("div", { staticClass: "new-stick" }, [_vm._m(2, true)])
-                : _vm._e(),
+              _c("div", { staticClass: "new-stick" }, [
+                product.new != 0
+                  ? _c("p", { staticClass: "new-stick-position" }, [
+                      _c("span", { staticClass: "new-stick-style" }, [
+                        _vm._v(
+                          "\r\n                            Новое\r\n                        "
+                        )
+                      ])
+                    ])
+                  : _vm._e()
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "app-products_products-all_image" }, [
                 _c("img", {
@@ -52733,7 +52741,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(3, true)
+              _vm._m(2, true)
             ]
           )
         })
@@ -52785,18 +52793,6 @@ var staticRenderFns = [
         },
         [_vm._v("Filters")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "new-stick-position" }, [
-      _c("span", { staticClass: "new-stick-style" }, [
-        _vm._v(
-          "\r\n                            Новое\r\n                        "
-        )
-      ])
     ])
   },
   function() {

@@ -67,8 +67,8 @@
         </div>
         <div class="app-products_products-all" id="product">
             <a :href="'/product/' + product.slug" class="app-product grid-style" v-for="product in filteredTasks" :key="product.id">
-                <div class="new-stick" v-if="product.new != 0">
-                    <p class="new-stick-position">
+                <div class="new-stick">
+                    <p class="new-stick-position" v-if="product.new != 0">
                         <span class="new-stick-style">
                             Новое
                         </span>
