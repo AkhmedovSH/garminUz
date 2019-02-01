@@ -2890,7 +2890,9 @@ input[type="checkbox"].switch_1 {
     top: 0;
 }
 
-
+.tab-content a{
+    color: #0072ce;
+}
 .one-product_description-tab .tab-menu_description {
     background-color: #F2F2F2;
     border-top: 1px solid #ccc;
@@ -3636,7 +3638,11 @@ input[type="checkbox"].switch_1 {
     border: none !important;
 }
 
-
+iframe{
+    width: 100% !important;
+    height: auto !important;
+    min-height: 400px;
+}
 
 
 /* Checkout Page */
