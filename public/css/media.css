@@ -1,6 +1,6 @@
 @media(max-width: 1280px) {
     .grid-style {
-        max-width: 31vw;
+        max-width: calc(45%);
 
     }
 }
@@ -361,7 +361,9 @@
     .main-sign-up .main-sign-up_input input {
         padding: 0 0em;
     }
-
+    .app-products_products-filters{
+        flex-flow: column nowrap;
+    }
     .app-product {
         margin: 0 !important;
     }

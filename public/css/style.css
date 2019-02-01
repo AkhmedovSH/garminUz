@@ -1379,7 +1379,9 @@ svg{
     max-width: 60vw;
     text-align: center;
 }
-
+.main-page-banners_button{
+    margin-top: 5vh;
+}
 .outline-button_banners-color {
     position: relative;
     width: auto;
@@ -1392,15 +1394,16 @@ svg{
     transition: background .2s;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: #0081a2;
+    color: #0081a2 !important;
     border: 1px solid #0081a2;
     outline: 0;
     background: 0 0;
+
 }
 
 .outline-button_banners-color:hover {
     cursor: pointer;
-    color: #fff;
+    color: #fff !important;
     background: #0081a2;
 }
 
@@ -2052,6 +2055,7 @@ svg{
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 19.2px;
     text-align: end;
+    margin-top: auto;
 }
 
 .app-products_products-all_description p {
@@ -2081,7 +2085,7 @@ sup {
 .grid-style {
     display: flex;
     flex-flow: column nowrap;
-    max-width: 21vw;
+    max-width: calc(33% - 2em);
     padding: 2vh;
     border-bottom: 1px solid #CFCFCF;
 
