@@ -53,12 +53,12 @@ class ProductController extends Controller
                 $products_ids[] = $product->product_id;
             }
            
-            $products = Product::whereIn('id',$products_ids)->orderBy($sort, $sort_value)->paginate(18);
+            $products = Product::whereIn('id',$products_ids)->where('status', 1)
+            ->orderBy('featured', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->orderBy($sort, $sort_value)->paginate(18);
     
             return response()->json(array('products'=>$products));
-
-
-
 
 
 
@@ -104,7 +104,10 @@ class ProductController extends Controller
                 $products_ids[] = $product->product_id;
             }
            
-            $products = Product::whereIn('id',$products_ids)->orderBy($sort, $sort_value)->paginate(18);
+            $products = Product::whereIn('id',$products_ids)->orderBy($sort, $sort_value)
+            ->orderBy('featured', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->where('status', 1)->paginate(18);
             return response()->json(array(
                 'series'=>$series,
                 'features'=>$features,

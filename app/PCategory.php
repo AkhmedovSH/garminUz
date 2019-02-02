@@ -67,6 +67,17 @@ class PCategory extends Model
         $this->menu_categories()->sync($ids);
     }
 
+    public function setProducts($ids){
+        if ($ids == null){ return; }
+        $this->filter_products()->sync($ids);
+    }
+    
+    public function getProductsTitles($ids){
+        return (!$this->filter_products->isEmpty())
+            ? implode(', ', $this->filter_products->pluck('title')->all())
+            : 'Нет продуктов';
+    }
+
 
     public function getTagsTitles(){
         return (!$this->menu_categories->isEmpty())

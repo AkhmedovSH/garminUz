@@ -6,6 +6,7 @@ use App\BCategory;
 use App\PCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Product;
 
 class PCategoryController extends Controller
 {
@@ -47,6 +48,9 @@ class PCategoryController extends Controller
         $tags = BCategory::pluck('title', 'id')->all();
         $selectedTags = $category->menu_categories->pluck('id')->all();
 
+        $products = Product::pluck('title', 'id')->all();
+        $selectedProducts = $category->filter_products->pluck('id')->all();
+
         $menu = BCategory::all();
         $m_builder=\Menu::make('MyNav', function ($m) use($menu){
             foreach ($menu as $item){
@@ -60,7 +64,8 @@ class PCategoryController extends Controller
                 }
             }
         });
-        return view('admin.product_categories.edit',compact('category','m_builder', 'tags', 'selectedTags'));
+        return view('admin.product_categories.edit',
+        compact('category','m_builder', 'tags', 'selectedTags', 'products', 'selectedProducts'));
     }
 
     public function update(Request $request, $id){
@@ -68,8 +73,9 @@ class PCategoryController extends Controller
 
         $category->edit($request->all());
 
+        $category->setProducts($request->get('products'));
         $category->setTags($request->get('tags'));
-
+        
         return redirect()->route('productcategories.index');
     }
 

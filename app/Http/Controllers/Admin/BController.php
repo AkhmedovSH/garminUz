@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Product;
 use App\BCategory;
+use App\PCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\PCategory;
 
 class BController extends Controller
 {
@@ -54,7 +55,11 @@ class BController extends Controller
         $tags = PCategory::pluck('title', 'id')->all();
         $selectedTags = $bcategory->p_categories->pluck('id')->all(); 
         
-        return view('admin.bcategories.edit', compact('bcategory', 'tags' , 'selectedTags'));
+        $products = Product::pluck('title', 'id')->all();
+        $selectedProducts = $bcategory->products->pluck('id')->all();
+
+        return view('admin.bcategories.edit', 
+        compact('bcategory', 'tags' , 'selectedTags', 'products', 'selectedProducts'));
     }
 
 
@@ -63,6 +68,10 @@ class BController extends Controller
         $bcategory = BCategory::find($id);
         $bcategory->update($request->all());
         $bcategory->setTags($request->get('tags'));
+
+        $bcategory->setProducts($request->get('products'));// работает при добавление фильров одновременно
+
+
         $bcategory->uploadImage($request->file('image'));
         $bcategory->uploadImage2($request->file('image2'));
         return redirect()->route('menucategories.index');

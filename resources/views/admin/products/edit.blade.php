@@ -138,6 +138,8 @@
                                 {{ Form::checkbox('new', '1', $product->new) }}<label> Новый</label>
                                 {{ Form::checkbox('featured', '1', $product->featured) }}<label> Избранный</label>
                                 {{ Form::checkbox('main_page', '1', $product->main_page) }}<label> На Главной странице</label>
+                                {{ Form::checkbox('in_stock', '1', $product->in_stock) }}<label> Имееться в наличии</label>
+                                {{ Form::checkbox('status', '1', $product->status) }}<label> Не Скрывать продукт</label>
                         </div>
                     </div>
                 </div>

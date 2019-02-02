@@ -15,7 +15,7 @@
             <p class="product-name">{{ product.title }}</p>
             <div id="product-description">
                 <p class="product-type" v-html="product.notice"></p>
-                <p class="product-part_num">Part Number: <span>010-01988-07</span></p>
+                <p class="product-part_num">Part Number: <span>{{ product.part_number }}</span></p>
                 <p class="product-action_product">
                     <span> Бесплатная доставка</span>
                     <span v-if="product.in_stock != 0"> Имееться в наличии</span>
@@ -71,7 +71,7 @@
                     <ul class="list-style-default ma-0 d-flex flex-row-wrap pa-0">
                         <li v-for="(item,index) in products" :key="item.id">
                             <a @click.prevent="chooseProduct(index,item.slug)" class="product_series_attr enabled-img-product">
-                                <img :src="'/uploads/products/' + product.image" alt="">
+                                <img :src="'/uploads/products/' + item.image">
                              </a>
                         </li>
                     </ul>
@@ -147,8 +147,10 @@
                 }).catch(err=>console.log(err))
             },
             chooseProduct(index,product_slug){
+                
                 axios.get('/one-product-choose', {params:{slug: product_slug}}).then(res =>{
                      this.product = res.data.product
+                     this.jsonParsed = JSON.parse(this.product.slider_image);
                 }).catch(err=>console.log(err)) 
             },
         },

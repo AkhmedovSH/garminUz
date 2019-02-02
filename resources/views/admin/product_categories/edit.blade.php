@@ -28,11 +28,17 @@
                             }}
                         </div>
                         <div class="form-group">
+                            <label>Меню</label>
+                            {{Form::select('products[]',
+                            $products,
+                            $selectedProducts,
+                            ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите теги'])
+                            }}
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Название</label>
-                            <select name="filter_type" id="" class="form-control select2">
-                                <option value="0">Features</option>
-                                <option value="1">Series</option>
-                            </select>
+                            {{ Form::select('filter_type', ['0' => 'Features', '1' => 'Series'],
+                                $category->filter_type, ['class' => 'form-control select2']) }}
                         </div>
                     </div>
                 </div>

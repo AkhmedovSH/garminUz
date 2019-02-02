@@ -49,6 +49,14 @@
                                 ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите теги'])
                                 }}
                             </div>
+                            <div class="form-group">
+                                <label>Меню</label>
+                                {{Form::select('products[]',
+                                $products,
+                                $selectedProducts,
+                                ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите теги'])
+                                }}
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
@@ -59,7 +67,7 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button class="btn btn-success pull-right">Добавить</button>
+                        <button class="btn btn-warning pull-right">Изменить</button>
                     </div>
                     <!-- /.box-footer-->
                     {!! Form::close() !!}

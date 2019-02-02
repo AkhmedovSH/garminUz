@@ -109,6 +109,17 @@ class BCategory extends Model
         $this->delete();
     }
 
+    public function setProducts($ids){
+        if ($ids == null){ return; }
+        $this->products()->sync($ids);
+    }
+    
+    public function getProductsTitles($ids){
+        return (!$this->products->isEmpty())
+            ? implode(', ', $this->products->pluck('title')->all())
+            : 'Нет продуктов';
+    }
+
     public function setTags($ids){
         if ($ids == null){ return; }
         $this->p_categories()->sync($ids);
