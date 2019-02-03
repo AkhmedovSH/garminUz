@@ -120,6 +120,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label>Карта в часах</label>
+                                {{ Form::select('pa_maps', ['1' => 'Да', '0' => 'Нет'],
+                                $product->pa_maps, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Размер часов(Маленький,Средний)</label>
                                 {{ Form::select('pa_size', ['small' => 'Маленький', 'medium' => 'Средний'],
                                 $product->pa_size, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}

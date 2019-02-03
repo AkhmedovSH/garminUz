@@ -14,7 +14,7 @@ class Product extends Model
      'series_title', 'new', 'series_category_id',
      'main_page', 'featured', 'price', 'in_stock',
      'sale', 'status', 'pa_size', 'pa_case_size',
-     'pa_pulse_ox', 'pa_saphire', 'pa_music', 'overview',
+     'pa_pulse_ox', 'pa_saphire', 'pa_music','pa_maps', 'overview',
       'specs', 'in_the_box' , 'app_store_url' , 'google_play_url'
     ];
     
@@ -74,6 +74,8 @@ class Product extends Model
         if(isset($fields['featured'])){ $product->featured = $fields['featured']; }
         if(isset($fields['main_page'])){ $product->main_page = $fields['main_page']; }
         if(isset($fields['in_stock'])){ $product->in_stock = $fields['in_stock']; }
+        if(isset($fields['status'])){ $product->status = $fields['status']; }
+
 
         $product->price = $fields['price'];
         $product->sale = $fields['sale'];
@@ -82,6 +84,7 @@ class Product extends Model
         $product->pa_pulse_ox = $fields['pa_pulse_ox'];
         $product->pa_saphire = $fields['pa_saphire'];
         $product->pa_music = $fields['pa_music'];
+        $product->pa_maps = $fields['pa_maps'];
         $product->overview = $fields['overview'];
         $product->specs = $fields['specs'];
         $product->in_the_box = $fields['in_the_box'];

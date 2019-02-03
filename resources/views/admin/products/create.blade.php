@@ -113,9 +113,17 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label>Карта в часах</label>
+                            {{ Form::select('pa_maps', ['1' => 'Да', '0' => 'Нет'],
+                            null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label>Размер часов(Маленький,Средний)</label>
                             {{ Form::select('pa_size', ['small' => 'Маленький', 'medium' => 'Средний',
-                             'one_size_fits_most' => 'one_size_fits_most','small_medium' => 'small_medium'],
+                             'one_size_fits_most' => 'one_size_fits_most','small_medium' => 'Маленький\Средний',
+                            'big'=>'Большой'],
                             null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
