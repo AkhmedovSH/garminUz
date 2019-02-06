@@ -197,12 +197,6 @@ $( document ).ready(function() {
             }
         }
 
-
-
-
-
-    });
-      $(document).ready(function(){
         $('#product-filter').on( "click", function (event) {
             if(event.target.matches('#tooltip-icon-1')) {
                 addClassToP(event)
@@ -230,11 +224,6 @@ $( document ).ready(function() {
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-
-      
-        
-
-       
 
 
 

@@ -52326,6 +52326,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['category_id'],
@@ -52339,7 +52347,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             sortBy_value: null, // правая сортировка select
             filters_ids: null,
             filter_rows: [],
-            filter_row: [] // для проверки 2 рого клика на один и тотже фильтр
+            filter_row: [], // для проверки 2 рого клика на один и тотже фильтр
+            isActive: false
         };
     },
 
@@ -52421,6 +52430,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/products?page=' + page, { params: { category_id: this.category_id } }).then(function (res) {
                 _this4.products = res.data.products;
             });
+        },
+        filterStyles: function filterStyles() {
+            this.isActive = !this.isActive;
         }
     },
     computed: {
@@ -52484,7 +52496,16 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "label",
-                          { staticClass: "filter_name-custom-label" },
+                          {
+                            staticClass: "filter_name-custom-label",
+                            class: { active: _vm.isActive },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.filterStyles()
+                              }
+                            }
+                          },
                           [
                             _c(
                               "span",
@@ -52741,7 +52762,35 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(2, true)
+              product.price != null
+                ? _c(
+                    "div",
+                    { staticClass: "app-products_products-all_price" },
+                    [
+                      _vm._v(
+                        "\r\n                    690\r\n                    "
+                      ),
+                      _c("sup", [_vm._v("00")]),
+                      _vm._v(" "),
+                      _c("sup", [_vm._v("Сум")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "and_up" }, [_vm._v("и ВЫШЕ")])
+                    ]
+                  )
+                : _c(
+                    "div",
+                    { staticClass: "app-products_products-all_price" },
+                    [
+                      _vm._v(
+                        "\r\n                    690\r\n                    "
+                      ),
+                      _c("sup", [_vm._v("00")]),
+                      _vm._v(" "),
+                      _c("sup", [_vm._v("Сум")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "and_up" }, [_vm._v("и ВЫШЕ")])
+                    ]
+                  )
             ]
           )
         })
@@ -52793,19 +52842,6 @@ var staticRenderFns = [
         },
         [_vm._v("Filters")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "app-products_products-all_price" }, [
-      _vm._v("\r\n                    690\r\n                    "),
-      _c("sup", [_vm._v("00")]),
-      _vm._v(" "),
-      _c("sup", [_vm._v("Сум")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "and_up" }, [_vm._v("и ВЫШЕ")])
     ])
   }
 ]
@@ -53044,6 +53080,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug'],
@@ -53130,7 +53177,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("p", { staticClass: "product-part_num" }, [
-              _vm._v("Part Number: "),
+              _vm._v("Номер товара: "),
               _c("span", [_vm._v(_vm._s(_vm.product.part_number))])
             ]),
             _vm._v(" "),
@@ -53222,9 +53269,39 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
+            _vm.product.maps != null
+              ? _c("div", { staticClass: "product-filter_saphire-edition" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "series_attr_val" }, [
+                    _c(
+                      "ul",
+                      { staticClass: "d-flex list-style-default ma-0 pa-0" },
+                      [
+                        _c("li", [
+                          _c(
+                            "a",
+                            { class: { active: _vm.product.maps == 1 } },
+                            [_vm._v("ДА")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            { class: { active: _vm.product.maps == 0 } },
+                            [_vm._v("НЕТ")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _vm.product.pa_pulse_ox != null
               ? _c("div", { staticClass: "product-filter_pulse-ox" }, [
-                  _vm._m(4),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53336,7 +53413,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "one-product_description-tab" }, [
-      _vm._m(5),
+      _vm._m(6),
       _vm._v(" "),
       _c(
         "div",
@@ -53447,7 +53524,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "series-attribute" }, [
-      _vm._v("Sapphire Edition\r\n                            "),
+      _vm._v("Сапфирная версия\r\n                            "),
       _c(
         "span",
         {
@@ -53466,7 +53543,26 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "series-attribute" }, [
-      _vm._v("Pulse Ox Acclimation\r\n                            "),
+      _vm._v("Карта\r\n                            "),
+      _c(
+        "span",
+        {
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "top",
+            title: "Устройство имеет карту"
+          }
+        },
+        [_vm._v("?")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "series-attribute" }, [
+      _vm._v("Акклимация пульса\r\n                            "),
       _c(
         "span",
         {
@@ -53507,7 +53603,7 @@ var staticRenderFns = [
                   "aria-selected": "true"
                 }
               },
-              [_vm._v("Overview")]
+              [_vm._v("Описание")]
             )
           ]),
           _vm._v(" "),
@@ -53525,7 +53621,7 @@ var staticRenderFns = [
                   "aria-selected": "false"
                 }
               },
-              [_vm._v("Specs")]
+              [_vm._v("Спецификации")]
             )
           ]),
           _vm._v(" "),
@@ -53543,7 +53639,7 @@ var staticRenderFns = [
                   "aria-selected": "false"
                 }
               },
-              [_vm._v("In the box")]
+              [_vm._v("В коробке")]
             )
           ])
         ]

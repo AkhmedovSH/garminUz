@@ -30,8 +30,8 @@
                     @foreach($categories as $category)
                     <tr>
                         <td>{{$category->id}}</td>
-                        <td>{{$category->title}}</td>
-                        <td>{{$category->sale}}%</td>
+                        <td>{{$category->code}}</td>
+                        <td>{{$category->value}}%</td>
                         <td><a href="{{route('coupons.edit', $category->id)}}" class="fa fa-pencil"></a>
 
                             {{Form::open(['route'=>['coupons.destroy', $category->id], 'method'=>'delete'])}}

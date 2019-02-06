@@ -5,7 +5,7 @@
     <h3>Результаты по поиску “<span>{{ $name }}</span>"</h3>
     <br>
     <div class="search-page_shop-tag">
-        <a href="#">Магазин</a>
+        <a>Магазин</a>
     </div>
     <div class="search-page_product-position">
         <ul class="list-style-default ma-0 pa-0">
@@ -16,7 +16,11 @@
                 </a>
                 <div class="search-page_product-description">
                     <a href="/product/{{ $item->slug }}" class="search-page_product-name">{{ $item->title }}</a>
-                    <p class="search-page_product-price">{{ $item->price }} Сум</p>
+                    @if ($item->price != null)
+                        <p class="search-page_product-price">{{ $item->price }} Сум</p>
+                    @else
+                        <p class="search-page_product-price">Не Опубликовано</p>
+                    @endif
                 </div>
             </li>
             @endforeach
