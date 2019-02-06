@@ -31,7 +31,7 @@
     <div class="top-utility-bar">
         <ul class="d-flex list-style-default align-center body-1 pa-0 mx-4">
             <li class="dropdown">
-                <a class="dropbtn"><span class="flag flag-uz"></span>Uzbekistan</a>
+                <a class="dropbtn"><span class="flag flag-uz"></span>Узбекистан</a>
                 <div class="dropdown-content">
                     <ul class=" pa-0 list-style-default dropdown-content-menu flags-menu">
                         <li><span class="flag flag-ar"></span><a href="https://www.garmin.com/es-AR">Argentina</a></li>

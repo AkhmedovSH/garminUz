@@ -128,7 +128,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Размер часов(Маленький,Средний)</label>
-                                {{ Form::select('pa_size', ['small' => 'Маленький', 'medium' => 'Средний'],
+                                {{ Form::select('pa_size', ['small' => 'Маленький', 'medium' => 'Средний',
+                                'one_size_fits_most' => 'one_size_fits_most','small_medium' => 'Маленький\Средний',
+                                'big'=>'Большой'],
                                 $product->pa_size, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                             </div>
                         </div>

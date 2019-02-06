@@ -2801,6 +2801,14 @@ input[type="checkbox"].switch_1 {
     background-color: #5e5e5e;
     border-color: #5e5e5e;
     color: #fff;
+    cursor: default;
+}
+
+.series_attr_val ul li a.active:hover {
+    background-color: #5e5e5e;
+    border-color: #5e5e5e;
+    color: #fff;
+    cursor: default;
 }
 
 .product-filter_color {
@@ -2809,6 +2817,7 @@ input[type="checkbox"].switch_1 {
 
 .product-filter_color li {
     margin: 0 .6em .6em 0;
+    cursor: pointer;
 }
 
 .product-filter_color img {
@@ -3526,7 +3535,7 @@ input[type="checkbox"].switch_1 {
     text-align: center;
 }
 .one-product_product-title .product-guarantee-block span{
-    padding: 8.4px 12px;
+    padding: 6.4px 11px;
     font-size: 12px;
     display: flex;
     color: white;
@@ -3542,7 +3551,7 @@ input[type="checkbox"].switch_1 {
     background-size: 20px 20px;
     width: 20px;
     height: 20px;
-    margin-right: 1vw;
+    margin-right: 0.5vw;
 }
  /* #auto{
     background: url("../img/maps-back-banner/bg_automotive.jpg");
@@ -3715,4 +3724,9 @@ tfoot tr td:nth-child(1){
 
 .checkout_button:hover {
     background: #008cd9;
+}
+
+
+.js-active{
+    background-color: #000;
 }

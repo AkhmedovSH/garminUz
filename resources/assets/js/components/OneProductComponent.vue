@@ -15,7 +15,7 @@
             <p class="product-name">{{ product.title }}</p>
             <div id="product-description">
                 <p class="product-type" v-html="product.notice"></p>
-                <p class="product-part_num">Part Number: <span>{{ product.part_number }}</span></p>
+                <p class="product-part_num">Номер товара: <span>{{ product.part_number }}</span></p>
                 <p class="product-action_product">
                     <span> Бесплатная доставка</span>
                     <span v-if="product.in_stock != 0"> Имееться в наличии</span>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="product-filter_saphire-edition" v-if="product.pa_saphire != null">
-                        <div class="series-attribute">Sapphire Edition
+                        <div class="series-attribute">Сапфирная версия
                             <span data-toggle="tooltip" data-placement="top" title="Имеет устойчивую к царапинам сапфировую линзу.">?</span>
                         </div>
                         <div class="series_attr_val">
@@ -55,8 +55,19 @@
                             </ul>
                         </div>
                 </div>
+                <div class="product-filter_saphire-edition" v-if="product.maps != null">
+                        <div class="series-attribute">Карта
+                            <span data-toggle="tooltip" data-placement="top" title="Устройство имеет карту">?</span>
+                        </div>
+                        <div class="series_attr_val">
+                            <ul class="d-flex list-style-default ma-0 pa-0">
+                                <li><a :class="{ 'active' : product.maps == 1}">ДА</a></li>
+                                <li><a :class="{ 'active' : product.maps == 0}">НЕТ</a></li>
+                            </ul>
+                        </div>
+                </div>
                 <div class="product-filter_pulse-ox" v-if="product.pa_pulse_ox != null">
-                        <div class="series-attribute">Pulse Ox Acclimation
+                        <div class="series-attribute">Акклимация пульса
                             <span data-toggle="tooltip" data-placement="top" title="Показывает уровни насыщения крови кислородом, чтобы помочь контролировать, как вы приспосабливаетесь к большим высотам.">?</span>
                         </div>
                         <div class="series_attr_val">
@@ -99,13 +110,13 @@
     <div class="tab-menu_description">
         <ul class="nav nav-tabs container-85 mg-auto-horizontal" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Overview</a>
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Описание</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Specs</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Спецификации</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">In the box</a>
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">В коробке</a>
             </li>
         </ul>
     </div>

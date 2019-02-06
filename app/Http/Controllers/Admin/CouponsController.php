@@ -21,7 +21,7 @@ class CouponsController extends Controller
 
     public function store(Request $request)
     {
-        $slider = Coupon::create($request->all());
+        $coupon = Coupon::create($request->all());
         return redirect()->route('coupons.index');
     }
 

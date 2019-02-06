@@ -201,10 +201,11 @@ $( document ).ready(function() {
       
 
 
-        $('.filter_name').on( "click", function (event) {
+        /* $('.filter_name').on( "click", function (event) {
             var id = $(this).closest('.filter_name').attr('data-id');
+            console.log('123')
             changeStyles(event.target.closest('.filter_name'))
-        });
+        }); */
      
         function changeStyles(element) {
             var label = $(element).find('.filter_name-custom-label').eq(0)

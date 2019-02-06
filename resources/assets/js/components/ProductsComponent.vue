@@ -7,7 +7,7 @@
                 <div @click.prevent="sortBySeries(index,serie.id)" class="filter_name" id="filter_name-1" :data-id='serie.id'>
                 <span v-if="serie.filter_type == 1">
                     <input type="checkbox" class="switch_1">
-                    <label class="filter_name-custom-label">
+                    <label class="filter_name-custom-label" @click.prevent="filterStyles()" v-bind:class="{ active: isActive }">
                         <span id="agree" class="filter_name-custom-checkbox-notchecked">
                             <svg class="app__products__filters__radio__check" xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 100 100" width="15px">
@@ -85,12 +85,20 @@
                         <p>{{ product.description }}</p>
                     </div>
                 </div>
-                <div class="app-products_products-all_price">
+
+                <div class="app-products_products-all_price" v-if="product.price != null">
                     690
                     <sup>00</sup>
                     <sup>Сум</sup>
                     <span class="and_up">и ВЫШЕ</span>
                 </div>
+                <div class="app-products_products-all_price" v-else>
+                    690
+                    <sup>00</sup>
+                    <sup>Сум</sup>
+                    <span class="and_up">и ВЫШЕ</span>
+                </div>
+
             </a>
         </div>
         <div class="product-page_pagination">
@@ -114,6 +122,7 @@
                 filters_ids: null,
                 filter_rows: [],
                 filter_row: [], // для проверки 2 рого клика на один и тотже фильтр
+                isActive: false
             }
         },
          methods: {
@@ -184,7 +193,10 @@
 				.then(res => {
 					this.products = res.data.products;
 				});
-		    }
+            },
+            filterStyles(){
+                this.isActive = !this.isActive;
+            }
             
          },  
          computed: {
