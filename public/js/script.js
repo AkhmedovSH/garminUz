@@ -168,7 +168,40 @@ $( document ).ready(function() {
     //    }).blur(function() {
     //     $( this ).next( "p" ).css("display", "none");
     //   }); 
-      
+
+
+
+    $(document).ready(function(){ 
+        
+
+        $('.app-products_filter').on( "click", function () {      
+            var id = $(this).closest('.filter_name').attr('data-id');
+            changeStyles(event.target.closest('.filter_name'))
+        });
+     
+        function changeStyles(element) {
+            var label = $(element).find('.filter_name-custom-label').eq(0)
+            var span = $(element).find('#agree').eq(0)
+            var svg = $(element).find('svg.app__products__filters__radio__check').eq(0)
+            var span2 = $(element).find('.filter-text')
+
+            if(span.is('.filter_name-custom-checkbox-notchecked')){
+                span.removeClass('filter_name-custom-checkbox-notchecked').addClass("filter_name-custom-checkbox-checked")
+                svg.css( "display", "block" );
+                span2.addClass("bold-font");
+            }
+            else{
+                span.removeClass('filter_name-custom-checkbox-checked').addClass("filter_name-custom-checkbox-notchecked")
+                svg.css( "display", "none" );
+                span2.removeClass("bold-font");
+            }
+        }
+
+
+
+
+
+    });
       $(document).ready(function(){
         $('#product-filter').on( "click", function (event) {
             if(event.target.matches('#tooltip-icon-1')) {
@@ -199,31 +232,9 @@ $( document ).ready(function() {
         })
 
       
+        
 
-
-        $('.filter_name').on( "click", function (event) {
-            var id = $(this).closest('.filter_name').attr('data-id');
-            changeStyles(event.target.closest('.filter_name'))
-        });
-     
-        function changeStyles(element) {
-            var label = $(element).find('.filter_name-custom-label').eq(0)
-            var span = $(element).find('#agree').eq(0)
-            var svg = $(element).find('svg.app__products__filters__radio__check').eq(0)
-            var span2 = $(element).find('.filter-text')
-
-            if(span.is('.filter_name-custom-checkbox-notchecked')){
-                span.removeClass('filter_name-custom-checkbox-notchecked').addClass("filter_name-custom-checkbox-checked")
-                svg.css( "display", "block" );
-                span2.addClass("bold-font");
-            }
-            else{
-                span.removeClass('filter_name-custom-checkbox-checked').addClass("filter_name-custom-checkbox-notchecked")
-                svg.css( "display", "none" );
-                span2.removeClass("bold-font");
-            }
-        }
-
+       
 
 
 

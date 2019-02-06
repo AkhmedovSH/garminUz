@@ -52767,7 +52767,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "grid_or_list" }, [
-      _c("a", { attrs: { href: "#", id: "grid" } }, [
+      _c("a", { staticClass: "on", attrs: { href: "#", id: "grid" } }, [
         _c("i", { staticClass: "fa fa-th" })
       ]),
       _vm._v(" "),

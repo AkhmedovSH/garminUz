@@ -46,7 +46,7 @@
     <div class="app-products_products">
         <div class="app-products_products-filters">
             <div class="grid_or_list">
-                <a href="#" id="grid"><i class="fa fa-th"></i></a>
+                <a href="#" id="grid" class="on"><i class="fa fa-th"></i></a>
                 <a href="#" id="list"><i class="fa fa-bars"></i></a>
             </div>
             <div class="buttonCollapse_mobile">

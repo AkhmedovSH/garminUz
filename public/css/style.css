@@ -1413,9 +1413,17 @@ svg{
 }
 
 
-
-
-
+.VueCarousel-navigation{
+    position: absolute;
+    top: 50%;
+}
+.VueCarousel-navigation-next{
+    left: 275px;
+}
+.VueCarousel {
+    width: 300px;
+    height: 330px;
+}
 /* Third Carousel Product */
 
 .carousel-three-products {
@@ -2035,7 +2043,10 @@ svg{
 .app-products_products-all_text {
     /* flex: 5; */
 }
-
+.list-style .app-products_products-all_price{
+    min-width: 20vh;
+    margin-left: auto;
+}
 .app-products_products-all_heading p {
     margin-bottom: 0;
     padding-bottom: 0;
