@@ -44,6 +44,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('black_title', DB::table('black_title')->first());
         });
 
+        view()->composer(['layouts.app', 'main', 'cart', 'product','one-product'], function($view){
+            $view->with('dollar', DB::table('dollar')->first());
+            //dd($view);
+        });
+
         Blade::directive('set',function($exp) {
 
             list($name,$val) = explode(',',$exp);

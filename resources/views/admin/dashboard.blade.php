@@ -26,6 +26,20 @@
             </div>
             </div>
             {{Form::close()}}
+
+            {{Form::open(['route'=>['dollar'], 'method'=>'post','files'=>true])}}
+            <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Курс Доллара </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="course" value="{{ $dollar->course }}">
+                        <button class="btn btn-warning pull-left">Изменить</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            {{Form::close()}}
         </div>
 
 

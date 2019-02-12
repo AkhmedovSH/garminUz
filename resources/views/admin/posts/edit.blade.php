@@ -55,13 +55,6 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Описание </label>
-                            <textarea name="description" id="my-editor2" cols="30" rows="10" class="form-control">{{$post->description}}</textarea>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="col-md-12">
-                        <div class="form-group">
                             <label for="exampleInputEmail1">Полный текст </label>
                             <textarea name="content" id="my-editor" cols="30" rows="10" class="form-control">{{$post->content}}</textarea>
                         </div>

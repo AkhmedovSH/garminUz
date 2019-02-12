@@ -23,6 +23,11 @@ class CartController extends Controller
         $title = $request->title;
         $part_number = $request->part_number;
         $price = $request->price;
+        if($price == null){
+            $price = 0;
+
+        }
+
         Cart::add($id, $title, 1, $price)->associate('App\Product');
         return view('cart');
     }

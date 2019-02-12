@@ -52334,9 +52334,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['category_id'],
+    props: ['category_id', 'dollar'],
     data: function data() {
         return {
             products: {},
@@ -52433,6 +52445,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         filterStyles: function filterStyles() {
             this.isActive = !this.isActive;
+        },
+        formatPrice: function formatPrice(value) {
+            var val = (value / 1).toFixed(0).replace('.', ',');
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
     },
     computed: {
@@ -52466,7 +52482,7 @@ var render = function() {
       },
       [
         _c("p", { staticClass: "app-products_filter_name_style" }, [
-          _vm._v("Filter by Series")
+          _vm._v("Фильтровать по серии")
         ]),
         _vm._v(" "),
         _c(
@@ -52557,7 +52573,7 @@ var render = function() {
         _c("hr"),
         _vm._v(" "),
         _c("p", { staticClass: "app-products_filter_name_style" }, [
-          _vm._v("Filter by Features")
+          _vm._v("Фильтровать по функциям")
         ]),
         _vm._v(" "),
         _c(
@@ -52731,11 +52747,21 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "new-stick" }, [
-                product.new != 0
+                product.new == 1
                   ? _c("p", { staticClass: "new-stick-position" }, [
                       _c("span", { staticClass: "new-stick-style" }, [
                         _vm._v(
                           "\r\n                            Новое\r\n                        "
+                        )
+                      ])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                product.sale != null
+                  ? _c("p", { staticClass: "new-stick-position" }, [
+                      _c("span", { staticClass: "new-stick-style" }, [
+                        _vm._v(
+                          "\r\n                            Скидка\r\n                        "
                         )
                       ])
                     ])
@@ -52768,29 +52794,68 @@ var render = function() {
                     { staticClass: "app-products_products-all_price" },
                     [
                       _vm._v(
-                        "\r\n                    690\r\n                    "
+                        "\r\n                    " +
+                          _vm._s(_vm.formatPrice(product.price * _vm.dollar)) +
+                          "\r\n                    "
                       ),
-                      _c("sup", [_vm._v("00")]),
-                      _vm._v(" "),
                       _c("sup", [_vm._v("Сум")]),
                       _vm._v(" "),
                       _c("span", { staticClass: "and_up" }, [_vm._v("и ВЫШЕ")])
                     ]
                   )
-                : _c(
+                : _vm._e(),
+              _vm._v(" "),
+              product.price == null &&
+              product.app_store_url == null &&
+              product.google_play_url == null
+                ? _c(
+                    "div",
+                    { staticClass: "app-products_products-all_price" },
+                    [_c("p", [_vm._v("Не опубликовано")])]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              product.app_store_url != null || product.google_play_url != null
+                ? _c(
                     "div",
                     { staticClass: "app-products_products-all_price" },
                     [
-                      _vm._v(
-                        "\r\n                    690\r\n                    "
-                      ),
-                      _c("sup", [_vm._v("00")]),
-                      _vm._v(" "),
-                      _c("sup", [_vm._v("Сум")]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "and_up" }, [_vm._v("и ВЫШЕ")])
+                      _c("p", { staticClass: "market_href" }, [
+                        product.app_store_url != null
+                          ? _c(
+                              "a",
+                              { attrs: { href: product.app_store_url } },
+                              [
+                                _c("img", {
+                                  attrs: {
+                                    src:
+                                      "https://static.garmincdn.com/en/products/010-000GT-AP/g/ic-app-store.gif",
+                                    title: "Available on the App Store"
+                                  }
+                                })
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        product.google_play_url != null
+                          ? _c(
+                              "a",
+                              { attrs: { href: product.google_play_url } },
+                              [
+                                _c("img", {
+                                  attrs: {
+                                    src:
+                                      "https://static.garmincdn.com/en/icons/google-play-small.png",
+                                    title: "Android App on Google Play"
+                                  }
+                                })
+                              ]
+                            )
+                          : _vm._e()
+                      ])
                     ]
                   )
+                : _vm._e()
             ]
           )
         })
@@ -53093,7 +53158,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['slug'],
+    props: ['slug', 'dollar'],
     data: function data() {
         return {
             product: {},
@@ -53124,6 +53189,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 return console.log(err);
             });
+        },
+        formatPrice: function formatPrice(value) {
+            var val = (value / 1).toFixed(2).replace('.', ',');
+            return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
     },
     created: function created() {
@@ -53176,10 +53245,12 @@ var render = function() {
               domProps: { innerHTML: _vm._s(_vm.product.notice) }
             }),
             _vm._v(" "),
-            _c("p", { staticClass: "product-part_num" }, [
-              _vm._v("Номер товара: "),
-              _c("span", [_vm._v(_vm._s(_vm.product.part_number))])
-            ]),
+            _vm.product.part_number != null
+              ? _c("p", { staticClass: "product-part_num" }, [
+                  _vm._v("Номер товара: "),
+                  _c("span", [_vm._v(_vm._s(_vm.product.part_number))])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("p", { staticClass: "product-action_product" }, [
               _c("span", [_vm._v(" Бесплатная доставка")]),
@@ -53192,12 +53263,29 @@ var render = function() {
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { attrs: { id: "product-price" } }, [
+            _vm.product.price != null
+              ? _c("p", { staticClass: "product-price" }, [
+                  _c("span", [
+                    _vm._v(
+                      _vm._s(_vm.formatPrice(_vm.product.price * _vm.dollar))
+                    )
+                  ]),
+                  _c("span", [_vm._v("Сум")])
+                ])
+              : _c("p", { staticClass: "product-price" }, [
+                  _c("span", [_vm._v("Не Опубликовано")])
+                ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "product-price_add_info" }, [
+              _vm._v("(Цена без НДС)")
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { attrs: { id: "product-filter" } }, [
             _vm.product.pa_case_size != null
               ? _c("div", { staticClass: "product-filter_case-size" }, [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53241,7 +53329,7 @@ var render = function() {
             _vm._v(" "),
             _vm.product.pa_saphire != null
               ? _c("div", { staticClass: "product-filter_saphire-edition" }, [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53271,7 +53359,7 @@ var render = function() {
             _vm._v(" "),
             _vm.product.maps != null
               ? _c("div", { staticClass: "product-filter_saphire-edition" }, [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53301,7 +53389,7 @@ var render = function() {
             _vm._v(" "),
             _vm.product.pa_pulse_ox != null
               ? _c("div", { staticClass: "product-filter_pulse-ox" }, [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("div", { staticClass: "series_attr_val" }, [
                     _c(
@@ -53369,7 +53457,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("div", [
-              _c("p", [_vm._v("Processing time is 1-3 business days.")]),
+              _c("p", [_vm._v("Время обработки до 20 рабочих дней.")]),
               _vm._v(" "),
               _c("form", { attrs: { action: "/cart", method: "post" } }, [
                 _c("input", {
@@ -53413,7 +53501,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "one-product_description-tab" }, [
-      _vm._m(6),
+      _vm._m(5),
       _vm._v(" "),
       _c(
         "div",
@@ -53481,21 +53569,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "product-guarantee-block" }, [
       _c("p", { staticClass: "product-guarantee" }, [
         _c("span", [_vm._v("+1 Год гарантии!")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "product-price" } }, [
-      _c("p", { staticClass: "product-price" }, [
-        _c("span", [_vm._v("3199.00")]),
-        _c("span", [_vm._v("Сум")])
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "product-price_add_info" }, [
-        _vm._v("(Цена без НДС)")
       ])
     ])
   },

@@ -1,7 +1,7 @@
 <template>
 <div class="app-products">
     <div class="app-products_filter flex-column-nowrap align-center" id="app-products_filter">
-        <p class="app-products_filter_name_style">Filter by Series</p>
+        <p class="app-products_filter_name_style">Фильтровать по серии</p>
         <ul class="list-style-default ma-0 pa-0">
             <li v-for="(serie, index) in series" :key="serie.id">
                 <div @click.prevent="sortBySeries(index,serie.id)" class="filter_name" id="filter_name-1" :data-id='serie.id'>
@@ -22,7 +22,7 @@
             </li>
         </ul>
         <hr>
-        <p class="app-products_filter_name_style">Filter by Features</p>
+        <p class="app-products_filter_name_style">Фильтровать по функциям</p>
         <ul class="list-style-default ma-0 pa-0">
             <li v-for="(serie, index) in features" :key="serie.id">
                 <div @click.prevent="sortBySeries(index,serie.id,this.right_sort)" class="filter_name" id="filter_name-1">
@@ -68,9 +68,14 @@
         <div class="app-products_products-all" id="product">
             <a :href="'/product/' + product.slug" class="app-product grid-style" v-for="product in filteredTasks" :key="product.id">
                 <div class="new-stick">
-                    <p class="new-stick-position" v-if="product.new != 0">
+                    <p class="new-stick-position" v-if="product.new == 1">
                         <span class="new-stick-style">
                             Новое
+                        </span>
+                    </p>
+                    <p class="new-stick-position" v-if="product.sale != null">
+                        <span class="new-stick-style">
+                            Скидка
                         </span>
                     </p>
                 </div>
@@ -86,17 +91,24 @@
                     </div>
                 </div>
 
+
                 <div class="app-products_products-all_price" v-if="product.price != null">
-                    690
-                    <sup>00</sup>
+                    {{ formatPrice(product.price * dollar)  }}
                     <sup>Сум</sup>
                     <span class="and_up">и ВЫШЕ</span>
                 </div>
-                <div class="app-products_products-all_price" v-else>
-                    690
-                    <sup>00</sup>
-                    <sup>Сум</sup>
-                    <span class="and_up">и ВЫШЕ</span>
+                <div class="app-products_products-all_price" v-if="product.price == null && product.app_store_url == null && product.google_play_url == null">
+                    <p>Не опубликовано</p>
+                </div>
+                <div class="app-products_products-all_price" v-if="product.app_store_url != null || product.google_play_url != null">
+                    <p class="market_href">
+                        <a :href="product.app_store_url" v-if="product.app_store_url != null">
+                            <img src="https://static.garmincdn.com/en/products/010-000GT-AP/g/ic-app-store.gif" title="Available on the App Store">
+                        </a>
+                        <a :href="product.google_play_url" v-if="product.google_play_url != null">
+                            <img src="https://static.garmincdn.com/en/icons/google-play-small.png" title="Android App on Google Play">
+                        </a>
+                    </p>
                 </div>
 
             </a>
@@ -110,7 +122,7 @@
 
 <script>
     export default {
-        props:['category_id'],
+        props:['category_id','dollar'],
         data(){
             return {
                 products: {},
@@ -196,6 +208,10 @@
             },
             filterStyles(){
                 this.isActive = !this.isActive;
+            },
+            formatPrice(value) {
+                let val = (value/1).toFixed(0).replace('.', ',')
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
             }
             
          },  

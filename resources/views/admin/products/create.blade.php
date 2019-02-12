@@ -60,7 +60,7 @@
                         }}
                     </div> 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Цена в сумах</label>
+                        <label for="exampleInputEmail1">Цена в долларах</label>
                         <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Цена" name="price" value="{{old('price')}}">
                     </div>
                     <div class="form-group">
@@ -123,25 +123,34 @@
                             <label>Размер часов(Маленький,Средний)</label>
                             {{ Form::select('pa_size', ['small' => 'Маленький', 'medium' => 'Средний',
                              'one_size_fits_most' => 'one_size_fits_most','small_medium' => 'Маленький\Средний',
-                            'big'=>'Большой'],
+                             'large' => 'large'],
                             null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">App Store</label>
-                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="ссылка на App Store" name="app_store_url" value="{{old('app_store_url')}}">
-                            <label for="exampleInputEmail1">Google Play(Play Market)</label>
-                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="ссылка на Google Play" name="google_play_url" value="{{old('google_play_url')}}">
+                            <label>Тип ремешка</label>
+                            {{ Form::select('pa_band_type', ['leather' => 'leather', 'metal' => 'metal',
+                             'silicone' => 'silicone','titanium' => 'titanium',
+                             'suede' => 'suede'],
+                            null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
+                    {{-- <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">App Store</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ссылка на App Store" name="app_store_url" value="{{old('app_store_url')}}">
+                            <label for="exampleInputEmail1">Google Play(Play Market)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ссылка на Google Play" name="google_play_url" value="{{old('google_play_url')}}">
+                        </div>
+                    </div> --}}
                     <div class="col-md-6">
                         <div class="form-group">
                             {{ Form::checkbox('new', '1', null) }}<label> Новый</label>
                             {{ Form::checkbox('featured', '1', null) }}<label> Избранный</label>
                             {{ Form::checkbox('main_page', '1', null) }}<label> На Главной странице</label>
                             {{ Form::checkbox('in_stock', '1', true) }}<label> Имееться в наличии</label>
-                            {{ Form::checkbox('status', '1', null) }}<label> Не Скрывать продукт</label>
+                            {{ Form::checkbox('status', '0', true) }}<label> Не Скрывать продукт</label>
                         </div>
                     </div>
                 </div>

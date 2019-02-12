@@ -9,64 +9,30 @@
 </div>
 
 
-<products-component category_id="{{ $bcategory_id }}"></products-component>
+<products-component category_id="{{ $bcategory_id }}" :dollar="{{ $dollar->course }}"></products-component>
 
 
 <div class="product-page_under-product_banner d-flex flex-row-nowrap">
+    @foreach ($posts as $post)
     <div class="product-page_under-product">
-        <a href="#">
-            <div style="position: absolute; z-index: 6;">
-                <p class="product-page_under-product_heading">Explore the vivo family</p>
-                <p class="product-page_under-product_description">FIND AN ACTIVITY TRACKER
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16" class="g__icon__arrow">
-                            <path fill="#fff" d="M5.7 8L0 13.8 2.1 16 10 8 2.1 0 0 2.2 5.7 8z"></path>
-                        </svg>
-                    </span>
-                </p>
-
-            </div>
-
-            <div class="product-page_under-product_img_overlay"></div>
-            <div class="product-page_under-product_img" style="background-image: url(/img/jumper.jpg);"></div>
-        </a>
-    </div>
-    <div class="product-page_under-product">
-        <a href="#">
-            <div style=" position: absolute; z-index: 6;">
-                <p class="product-page_under-product_heading">Explore the vivo family</p>
-                <p class="product-page_under-product_description">FIND AN ACTIVITY trackers
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16" class="g__icon__arrow">
-                            <path fill="#fff" d="M5.7 8L0 13.8 2.1 16 10 8 2.1 0 0 2.2 5.7 8z"></path>
-                        </svg>
-                    </span>
-                </p>
-            </div>
-            <div class="product-page_under-product_img_overlay"></div>
-            <div class="product-page_under-product_img" style="background-image: url(/img/family_connect.jpg);"></div>
-        </a>
-    </div>
-    <div class="product-page_under-product">
-        <a href="#">
-            <div style=" position: absolute; z-index: 6;">
-                <p class="product-page_under-product_heading">Explore the vivo family</p>
-                <p class="product-page_under-product_description">FIND AN ACTIVITY trackers
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16" class="g__icon__arrow">
-                            <path fill="#fff" d="M5.7 8L0 13.8 2.1 16 10 8 2.1 0 0 2.2 5.7 8z"></path>
-                        </svg>
-                    </span>
-                </p>
-            </div>
-            <div class="product-page_under-product_img_overlay"></div>
-            <div class="product-page_under-product_img" style="background-image: url(/img/family_connect.jpg);"></div>
-        </a>
-    </div>
-
-
+            <a href="#">
+                <div style="position: absolute; z-index: 6;">
+                    <p class="product-page_under-product_description">{{ $post->title }}
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16" class="g__icon__arrow">
+                                <path fill="#fff" d="M5.7 8L0 13.8 2.1 16 10 8 2.1 0 0 2.2 5.7 8z"></path>
+                            </svg>
+                        </span>
+                    </p>
+    
+                </div>
+    
+                <div class="product-page_under-product_img_overlay"></div>
+                <div class="product-page_under-product_img" style="background-image: url(/uploads/posts/{{ $post->image }});"></div>
+            </a>
+        </div>      
+    @endforeach
 </div>
-
 @include('seo_sign')
 
 <div class="product-page_additional-information">

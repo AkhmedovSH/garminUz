@@ -9,6 +9,8 @@ Route::get('/blog/{slug}', 'HomeController@blog');
 Route::get('/products/{category_id}', 'HomeController@bcategory')->name('bcategory');
 Route::post('/search', 'HomeController@search');
 Route::get('/maps/{parametr}', 'HomeController@maps');
+Route::get('/checkout', 'HomeController@checkout');
+Route::post('/buyProducts', 'HomeController@buyProducts');
 
 Route::post('/subscribe', 'SubsController@subscribe');
 
@@ -55,6 +57,7 @@ Route::group(['middleware' => 'guest'], function (){
 Route::group(['prefix'=> 'admin', 'namespace' => 'Admin', 'middleware' => 'role:administrator|editor|author|moderator'], function (){
     Route::get('/', 'DashboardController@index');
     Route::post('/edit_black_title', 'DashboardController@edit_black_title')->name('black_title');
+    Route::post('/dollar', 'DashboardController@dollar')->name('dollar');
 
     Route::resource('/categories','CategoriesController');
     Route::resource('/menucategories','BController');

@@ -12,12 +12,12 @@
              <h4>{{ $post->title }}</h4>
          </div>
          <div class="blog_container-date">
-             <p>OCTOBER 29, 2018</p>
-             <p><a href="">SAVED BY GARMIN</a></p>
+             <p>{{ $post->created_at }}</p>
+             <p><a>{!! $post->getCategoryTitle() !!}</a></p>
          </div>
          <div class="blog_container-description">
              <p>
-                {!! $post->description !!}
+                {!! $post->content !!}
              </p>
          </div>
      </div>

@@ -15,7 +15,7 @@
             <p class="product-name">{{ product.title }}</p>
             <div id="product-description">
                 <p class="product-type" v-html="product.notice"></p>
-                <p class="product-part_num">Номер товара: <span>{{ product.part_number }}</span></p>
+                <p class="product-part_num" v-if="product.part_number != null">Номер товара: <span>{{ product.part_number }}</span></p>
                 <p class="product-action_product">
                     <span> Бесплатная доставка</span>
                     <span v-if="product.in_stock != 0"> Имееться в наличии</span>
@@ -27,7 +27,8 @@
         </div>
 
         <div id="product-price">
-                <p class="product-price"><span>3199.00</span><span>Сум</span></p>
+                <p class="product-price" v-if="product.price != null"><span>{{ formatPrice(product.price * dollar)  }}</span><span>Сум</span></p>
+                <p class="product-price" v-else><span>Не Опубликовано</span></p>
                 <p class="product-price_add_info">(Цена без НДС)</p>
         </div>
 
@@ -91,9 +92,8 @@
         <div>
             <div>
                 
-                <p>Processing time is 1-3 business days.</p>
+                <p>Время обработки до 20 рабочих дней.</p>
                 <form action="/cart" method="post">
-                
                     <input type="hidden" name="_token" :value="csrf">
                     <input type="hidden" name="id" :value="product.id">
                     <input type="hidden" name="title" :value="product.title">
@@ -140,7 +140,7 @@
 </template>
 <script>
     export default {
-        props:['slug'],
+        props:['slug','dollar'],
         data(){
             return {
                 product: {}, 
@@ -164,6 +164,10 @@
                      this.jsonParsed = JSON.parse(this.product.slider_image);
                 }).catch(err=>console.log(err)) 
             },
+            formatPrice(value) {
+                let val = (value/1).toFixed(2).replace('.', ',')
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            }
         },
         created(){
             this.AllOrOneProduct();

@@ -25,10 +25,14 @@
 
 </head>
 <body>
-
 <div class="wrap-site">
 <header>
     <div class="top-utility-bar">
+        <ul class="d-flex list-style-default align-center body-1 pa-0 mx-4">
+            <li>Для подробной информации:</li>
+            <li>+998712418288</li>
+            <li>+998974448197</li>
+        </ul>
         <ul class="d-flex list-style-default align-center body-1 pa-0 mx-4">
             <li class="dropdown">
                 <a class="dropbtn"><span class="flag flag-uz"></span>Узбекистан</a>
@@ -382,12 +386,11 @@
         </div>
         <div class="social-media mh-1">
             <ul class="d-flex list-style-default justify-space-between align-center">
-                <li><a href="#"><img src="/img/socialmedia/facebook-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/socialmedia/twitter.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/socialmedia/youtube-symbol.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/socialmedia/pinterest-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/socialmedia/instagram-logo.png" alt=""></a></li>
-                <li><a href="#"><img src="/img/socialmedia/payment.png" class="visa" alt=""></a></li>
+                <li><a href="https://www.facebook.com/garmin.uzbekistan"><img src="/img/socialmedia/facebook-logo.png" alt=""></a></li>
+                <li><a href="https://twitter.com/GarminUz?lang=ru"><img src="/img/socialmedia/twitter.png" alt=""></a></li>
+                <li><a href="https://www.youtube.com/channel/UC17HVSWclv-VxkoXGkCepOw?view_as=subscriber"><img src="/img/socialmedia/youtube-symbol.png" alt=""></a></li>
+                <li><a href="https://www.instagram.com/garmin_uz/?hl=ru"><img src="/img/socialmedia/instagram-logo.png" alt=""></a></li>
+                <li><a href="javascript:void(0);"><img src="/img/socialmedia/payment.png" class="visa" alt=""></a></li>
             </ul>
         </div>
     </div>

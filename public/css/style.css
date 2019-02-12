@@ -84,7 +84,7 @@ a:hover {
     display: flex;
     flex-flow: row nowrap;
     align-content: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     height: 30px;
     width: 100%;
     background-color: #E3E3E3;
@@ -1229,7 +1229,7 @@ svg{
 }
 
 .owl-stage .owl-item:nth-child(even) {
-    background: #F9F9F9;
+    background: #fff;
 }
 
 .owl-stage .owl-item:nth-child(odd) {
@@ -3740,4 +3740,13 @@ tfoot tr td:nth-child(1){
 
 .js-active{
     background-color: #000;
+}
+
+
+.market_href{
+    display: flex;
+}
+
+.app__accessories__item__image{
+    width: 55px;
 }

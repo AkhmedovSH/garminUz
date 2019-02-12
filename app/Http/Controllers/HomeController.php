@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\User;
+use App\Slider;
 use App\Product;
 use App\BCategory;
 use App\PCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Slider;
-use App\Post;
+use Illuminate\Support\Facades\Mail;
 
 
 class HomeController extends Controller
@@ -19,14 +20,33 @@ class HomeController extends Controller
     {
         $sliders = Slider::take(5)->orderBy('id','DESC')->get();
         $posts = Post::orderBy('id','DESC')->take(10)->get();
+        $products = Product::where('main_page',1)->orderBy('id','DESC')->take(10)->get();
         //dd($posts);
         //dd($sliders);
-        return view('main', compact('sliders','posts'));
+        return view('main', compact('sliders','posts','products'));
     }
 
     public function maps($parametr)
     {
         return view('maps', compact('parametr'));
+    }
+
+    public function checkout()
+    {
+        return view('checkout');
+    }
+
+    public function buyProducts()
+    {
+        $to_name = 'Петя';
+        $to_email = 'shurikaxmedov1@gmail.com';
+        $data = array('name'=>"Shokhrukh", "body" => "Test mail");
+        Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+                    ->subject('Garmin.uz | Ваши покупки');
+            $message->from('shurikaxmedov1@gmail.com','С уважением');
+        });
+        return view('checkout');
     }
 
     public function blog($slug)
@@ -48,6 +68,7 @@ class HomeController extends Controller
     public function bcategory($bcategory_id)
     {
         $category = BCategory::where('id',$bcategory_id)->firstOrFail();
-        return view('product', compact('bcategory_id','category'));
+        $posts = Post::all()->random(3);
+        return view('product', compact('bcategory_id','category', 'posts'));
     }
 }

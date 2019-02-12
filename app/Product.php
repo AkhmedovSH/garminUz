@@ -76,6 +76,9 @@ class Product extends Model
         if(isset($fields['in_stock'])){ $product->in_stock = $fields['in_stock']; }
         if(isset($fields['status'])){ $product->status = $fields['status']; }
 
+        //$product->google_play_url = $fields['google_play_url'];
+        //$product->app_store_url = $fields['app_store_url'];
+
 
         $product->price = $fields['price'];
         $product->sale = $fields['sale'];
@@ -103,6 +106,9 @@ class Product extends Model
         if(isset($fields['new'])){ $this->new = $fields['new']; }
         if(isset($fields['featured'])){ $this->featured = $fields['featured']; }
         if(isset($fields['main_page'])){ $this->main_page = $fields['main_page']; }
+
+        //$this->google_play_url = $fields['google_play_url'];
+        //$this->app_store_url = $fields['app_store_url'];
 
         $this->price = $fields['price'];
         $this->sale = $fields['sale'];
