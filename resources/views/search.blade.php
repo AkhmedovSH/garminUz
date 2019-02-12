@@ -25,7 +25,7 @@
             </li>
             @endforeach
         </ul>
-        <div class="product-page_pagination">
+        <div class="search-page-pagination">
             {{ $search_results->links() }}
         </div>
         

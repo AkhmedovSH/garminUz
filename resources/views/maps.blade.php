@@ -36,7 +36,7 @@
                     <a class="nav-link {{ $parametr == "outdoor" ? "active" : "" }}" id="outdoor-tab" data-toggle="tab" href="#outdoor" role="tab"
                         aria-controls="outdoor" aria-selected="false">
                         <img src="/img/maps-back-banner/maps-icon/walk_02.png" alt="">
-                        На открытом воздухе</a>
+                        Внешний</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ $parametr == "cycling" ? "active" : "" }}" id="cycling-tab" data-toggle="tab" href="#cycling" role="tab"
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="tab-pane fade {{ $parametr == "outdoor" ? "show active" : "" }}"  id="outdoor" role="tabpanel" aria-labelledby="outdoor-tab">
-                    <h2 class="tab-pane_heading-sm_and_after">На открытом воздухе</h2>
+                    <h2 class="tab-pane_heading-sm_and_after">Внешний</h2>
                 <div class="maps-page_white-window">
                     <h3>Добавьте карту для себя</h3>
                     <span>Добавьте карты к своему устройству на открытом воздухе, чтобы вести вас в следующем приключении, будь то походы, прогулки, езда на велосипеде или катание на лыжах.</span>

@@ -158,8 +158,7 @@
                             </svg>
                         </a>
                         <div class="search-input">
-                            <form method="POST" action="/search">
-                                @csrf
+                            <form method="GET" action="/search">
                                 <input type="text" name="name" width="200px" placeholder="Поиск..." autocomplete="off">
                                 <button class="close-button" id="search-hide">
                                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"

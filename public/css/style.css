@@ -1913,7 +1913,28 @@ svg{
     font-weight: 700 !important;
 }
 
+.empty_cart {
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aca8a8;
+}
 
+.empty_cart p {
+    letter-spacing: .075em;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 2vh;
+    margin: 0;
+    font-weight: 700 !important;
+}
+
+.search-page-pagination{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
 
 .product-list-page_banner {}
 

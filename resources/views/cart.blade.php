@@ -97,5 +97,8 @@
         </div>
     </div>
 @else
+<div class="empty_cart">
+    <p>Ваша корзина пуста.</p>
+</div>
 @endif
 @endsection
