@@ -12,6 +12,7 @@ Route::get('/maps/{parametr}', 'HomeController@maps');
 Route::get('/checkout', 'HomeController@checkout');
 Route::post('/buyProducts', 'HomeController@buyProducts');
 Route::post('/subscribe', 'SubsController@subscribe');
+//Route::get('/mail', 'HomeController@mail');
 
 
 /*

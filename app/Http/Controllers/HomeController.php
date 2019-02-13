@@ -11,6 +11,7 @@ use App\PCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 
 class HomeController extends Controller
@@ -18,6 +19,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        //dd(Cart::content());
         $sliders = Slider::take(5)->orderBy('id','DESC')->get();
         $posts = Post::orderBy('id','DESC')->take(10)->get();
         $products = Product::where('main_page',1)->orderBy('id','DESC')->take(10)->get();
@@ -35,6 +37,11 @@ class HomeController extends Controller
     {
         return view('checkout');
     }
+    
+    public function mail()
+    {
+        return view('emails.mail');
+    }
 
     public function buyProducts()
     {
@@ -43,7 +50,7 @@ class HomeController extends Controller
         $data = array('name'=>"Shokhrukh", "body" => "Test mail");
         Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
-                    ->subject('Garmin.uz | Ваши покупки');
+                    ->subject('Garmin.uz | Ваши Новые заказы');
             $message->from('shurikaxmedov1@gmail.com','С уважением');
         });
         return view('checkout');

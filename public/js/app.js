@@ -53156,6 +53156,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug', 'dollar'],
@@ -53264,11 +53270,30 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { attrs: { id: "product-price" } }, [
-            _vm.product.price != null
+            _vm.product.price != null && _vm.product.sale == null
               ? _c("p", { staticClass: "product-price" }, [
                   _c("span", [
                     _vm._v(
                       _vm._s(_vm.formatPrice(_vm.product.price * _vm.dollar))
+                    )
+                  ]),
+                  _c("span", [_vm._v("Сум")])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.product.price != null && _vm.product.sale != null
+              ? _c("p", { staticClass: "product-price" }, [
+                  _c("span", [
+                    _vm._v(
+                      _vm._s(
+                        _vm.formatPrice(
+                          _vm.product.price * _vm.dollar -
+                            (_vm.product.price *
+                              _vm.dollar *
+                              _vm.product.sale) /
+                              100
+                        )
+                      ) + "\r\n                "
                     )
                   ]),
                   _c("span", [_vm._v("Сум")])

@@ -29,9 +29,8 @@
 <header>
     <div class="top-utility-bar">
         <ul class="d-flex list-style-default align-center body-1 pa-0 mx-4">
-            <li>Для подробной информации:</li>
-            <li>+998712418288</li>
-            <li>+998974448197</li>
+            <li><i class="fa fa-phone" style="color:#007bff; padding: 0 10px;"></i>(+998) 71 241-82-88</li>
+            <li><i class="fa fa-phone" style="color:#007bff; padding: 0 10px;"></i>(+998) 97 444-81-97</li>
         </ul>
         <ul class="d-flex list-style-default align-center body-1 pa-0 mx-4">
             <li class="dropdown">
@@ -399,5 +398,26 @@
 <script src="/extension/bootstrap/bootstrap.min.js"></script>
 <script src="/extension/owl-carousel/owl.carousel.min.js"></script>
 <script src="/js/script.js"></script>
+<script>
+    (function(){
+        const  classname = document.querySelectorAll('.quantity')
+        Array.from(classname).forEach(function(element){
+            element.addEventListener('change', function(){
+                const id = element.getAttribute('data-id')
+                axios.patch('/cart/update', {
+                    quantity: this.value,
+                    prodid: id,
+                })
+                    .then(function (response) {
+                        //console.log(success);
+                        window.location.href = '{{route('cart')}}'
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            })
+        })
+    })();
+</script>
 </body>
 </html>

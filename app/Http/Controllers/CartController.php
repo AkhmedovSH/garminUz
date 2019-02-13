@@ -17,6 +17,7 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
+        //dd($price = $request->price);
         //dd(Cart::content());
         //dd(Cart::subtotal());
         $id = $request->id;
@@ -25,26 +26,16 @@ class CartController extends Controller
         $price = $request->price;
         if($price == null){
             $price = 0;
-
         }
 
         Cart::add($id, $title, 1, $price)->associate('App\Product');
         return view('cart');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
 
     public function update(Request $request)
     {
-        Cart::update($request->prodid, $request->quantity);
+        $cart = Cart::update($request->prodid, $request->quantity);
         session()->flash('success_message', 'Quantity was updated succesfully!');
         return response()->json(['success' => 'aaa']);
     }

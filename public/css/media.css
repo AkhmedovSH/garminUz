@@ -367,6 +367,11 @@
     .app-product {
         margin: 0 !important;
     }
+    .top-utility-bar ul:first-child{
+        flex-flow: column nowrap;
+    }
+    .dropdown-content {
+        margin-top: 10px;}
 }
 
 

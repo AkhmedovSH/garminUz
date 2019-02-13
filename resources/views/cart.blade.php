@@ -45,7 +45,11 @@
                             {{ number_format($dollar->course *  $item->model->price,0)}} Сум</p>
                     </td>
                     <td>
-                        <a class="shopping-cart_remove"><i class="fa fa-trash-alt"></i></a>
+                        <form action="{{route('cart.destroy',$item->rowId)}}" method="post">
+                            {{csrf_field()}}
+                            {{method_field('DELETE')}}
+                            <button type="submit"><a><span>Удалить</span></a></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -74,11 +78,13 @@
             <tbody>
                 <tr class="r-1">
                     <td>Промежуточный итог</td>
-                    <td>{{ $dollar->course * Cart::subtotal() }} Сум</td>
+                    {{-- <td>{{ (float)Cart::subtotal() }} Сум</td> --}}
+                    <td>{{ number_format((float)Cart::subtotal() * $dollar->course) }} Сум</td>
+                   {{--  <td>{{ $dollar->course * Cart::subtotal() }} Сум</td> --}}
                 </tr>
                 <tr class="r-3">
                     <td>Расчетная сумма заказа</td>
-                    <td><strong>{{ $dollar->course * Cart::subtotal() }} Сум</strong></td>
+                    <td>{{ number_format((float)Cart::subtotal() * $dollar->course) }} Сум</td>
                 </tr>
                 <tr class="r-4">
                     <td>В других валютах</td>

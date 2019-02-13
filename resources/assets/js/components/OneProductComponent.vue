@@ -27,7 +27,13 @@
         </div>
 
         <div id="product-price">
-                <p class="product-price" v-if="product.price != null"><span>{{ formatPrice(product.price * dollar)  }}</span><span>Сум</span></p>
+                <p class="product-price" v-if="product.price != null && product.sale == null">
+                <span>{{ formatPrice(product.price * dollar)  }}</span><span>Сум</span></p>
+
+                <p class="product-price" v-if="product.price != null && product.sale != null">
+                <span>{{ formatPrice( (product.price * dollar) - (product.price * dollar) * product.sale / 100)  }}
+                </span><span>Сум</span></p>
+
                 <p class="product-price" v-else><span>Не Опубликовано</span></p>
                 <p class="product-price_add_info">(Цена без НДС)</p>
         </div>
