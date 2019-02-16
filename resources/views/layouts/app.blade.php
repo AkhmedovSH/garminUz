@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="/extension/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="/extension/owl-carousel/owl.theme.default.css">
     <link rel="stylesheet" href="/extension/animate-css/animate.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
     {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous"> --}}
-    <link rel="stylesheet" href="/extension/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/extension/bootstrap/bootstrap.min.css">   
     <link rel="stylesheet" href="/extension/flags/flags.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/tools.css">
     <link rel="stylesheet" href="/css/media.css">
-
+    
 
 </head>
 <body>
@@ -318,6 +318,13 @@
         <p>{{ $black_title->title }}</p>
     </div>
 
+    @if (session()->has('success'))
+        <div class="spacer"></div>
+        <div class="alert alert-success" style="text-align:center;">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <div id="app">
         @yield('content')
     </div>
@@ -393,7 +400,7 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="/extension/bootstrap/bootstrap.min.js"></script>
 <script src="/extension/owl-carousel/owl.carousel.min.js"></script>

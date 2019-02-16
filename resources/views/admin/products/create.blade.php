@@ -150,7 +150,7 @@
                             {{ Form::checkbox('featured', '1', null) }}<label> Избранный</label>
                             {{ Form::checkbox('main_page', '1', null) }}<label> На Главной странице</label>
                             {{ Form::checkbox('in_stock', '1', true) }}<label> Имееться в наличии</label>
-                            {{ Form::checkbox('status', '0', true) }}<label> Не Скрывать продукт</label>
+                            {{ Form::checkbox('status', '1', true) }}<label> Не Скрывать продукт</label>
                         </div>
                     </div>
                 </div>

@@ -31,7 +31,7 @@
                     <tr>
                         <td>{{$category->id}}</td>
                         <td>{{$category->code}}</td>
-                        <td>{{$category->value}}%</td>
+                        <td>{{$category->percent_off}}%</td>
                         <td><a href="{{route('coupons.edit', $category->id)}}" class="fa fa-pencil"></a>
 
                             {{Form::open(['route'=>['coupons.destroy', $category->id], 'method'=>'delete'])}}

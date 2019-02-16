@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Процент скидки купона</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" name="value" placeholder="Просто число примеру: 5">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="percent_off" placeholder="Просто число примеру: 5">
                         </div>
                     </div>
                 </div>

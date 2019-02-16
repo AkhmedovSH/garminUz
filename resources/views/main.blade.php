@@ -9,7 +9,7 @@
                 <img src="/uploads/slider/{{ $slider->image }}" alt="banner2" class="only-md" />
                 <img src="/uploads/slider/{{ $slider->image }}" alt="banner3" class="only-sm" />
                 <div class="item-caption ">
-                    <a href="" class="style-1 animated fadeInUp">
+                    <a href="{{ $slider->url }}" class="style-1 animated fadeInUp">
                         <!-- Applying animation to Caption using animate.css  -->
                         <!-- add class animated <animation-name> provided by animate.css  -->
                         <div>

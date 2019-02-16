@@ -34,7 +34,8 @@
                 <span>{{ formatPrice( (product.price * dollar) - (product.price * dollar) * product.sale / 100)  }}
                 </span><span>Сум</span></p>
 
-                <p class="product-price" v-else><span>Не Опубликовано</span></p>
+                <p class="product-price" v-if="product.price == null && product.sale == null">
+                    <span>Не Опубликовано</span></p>
                 <p class="product-price_add_info">(Цена без НДС)</p>
         </div>
 
@@ -105,6 +106,7 @@
                     <input type="hidden" name="title" :value="product.title">
                     <input type="hidden" name="part_number" :value="product.part_number">
                     <input type="hidden" name="price" :value="product.price">
+                    <input type="hidden" name="sale" :value="product.sale">
                     <button type="submit" class="add-to-cart_button">Добавить в корзину</button>
                 </form>
             </div>

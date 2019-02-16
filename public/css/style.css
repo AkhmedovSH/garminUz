@@ -1941,6 +1941,7 @@ svg{
 .product-list-page_banner {}
 
 .product-list-page_banner-src {
+    background-size: cover;
     height: 60vh;
     width: 100%;
     background-position: center;

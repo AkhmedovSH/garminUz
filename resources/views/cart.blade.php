@@ -28,7 +28,7 @@
                         <img src="/uploads/products/{{$item->model->image}}" alt="product">
                     </td>
                     <td>
-                        <p class="shopping-cart_name"><a>{{$item->model->title}}</a></p>
+                        <p class="shopping-cart_name"><a>{{ $item->model->title}}</a></p>
                         <p class="shopping-cart_sku">Нумерация: {{$item->model->part_number}}</p>
                     </td>
                     <td>
@@ -41,8 +41,16 @@
                         </select>
                     </td>
                     <td>
-                        <p class="shopping-cart_price ma-0">
-                            {{ number_format($dollar->course *  $item->model->price,0)}} Сум</p>
+                        @if ($item->model->sale == null)
+                            <p class="shopping-cart_price ma-0">
+                                {{ number_format($dollar->course *  $item->model->price,0)}} Сум
+                            </p>
+                        @else
+                            <p class="shopping-cart_price ma-0">
+                                {{ number_format(( ($dollar->course * $item->model->price) - ($dollar->course * $item->model->price) * $item->model->sale / 100), 0) }} Сум
+                            </p>
+                        @endif
+                        
                     </td>
                     <td>
                         <form action="{{route('cart.destroy',$item->rowId)}}" method="post">
@@ -62,10 +70,11 @@
                 <tr>
                     <td>
                         <div class="main-sign-up_input">
-                            <form class="coupon-part" action="/couponEnter" method="POST">
+                            <form class="coupon-part" action="{{ route('coupon.store') }}" method="POST">
+                                @csrf
                                 <span>Купон: </span>
-                                <input type="text" placeholder="Если имееться купон...">
-                                <button>Ввести</button>
+                                <input type="text"  name="coupon_code" placeholder="Если имееться купон...">
+                                <button type="submit">Ввести</button>
                             </form>
                         </div>
                     </td>
@@ -76,20 +85,31 @@
 
         <table class="table shopping-cart_estimated-cost">
             <tbody>
+                @if (session()->has('coupon'))
                 <tr class="r-1">
-                    <td>Промежуточный итог</td>
-                    {{-- <td>{{ (float)Cart::subtotal() }} Сум</td> --}}
-                    <td>{{ number_format((float)Cart::subtotal() * $dollar->course) }} Сум</td>
-                   {{--  <td>{{ $dollar->course * Cart::subtotal() }} Сум</td> --}}
+                    <td>Скидка по({{ session()->get('coupon')['name'] }})</td>
+                    <td> 
+                        -{{ number_format(session()->get('coupon')['discount']) }} Сум
+                    </td>
                 </tr>
+                @endif
                 <tr class="r-3">
                     <td>Расчетная сумма заказа</td>
-                    <td>{{ number_format((float)Cart::subtotal() * $dollar->course) }} Сум</td>
+                        <td>{{ number_format((floatval(str_replace(',', '.', Cart::subtotal())) * $dollar->course)*1000) }} Сум
+                    </td>
                 </tr>
                 <tr class="r-4">
                     <td>В других валютах</td>
                     <td><span>{{ Cart::subtotal() }} USD</span></td>
                 </tr>
+                @if (session()->has('coupon'))
+                <tr class="r-3">
+                    <td>Итого</td>
+                    <td>{{ 
+                        number_format( (str_replace(',', '', Cart::subtotal()) * $dollar->course) - session()->get('coupon')['discount'] )
+                        }} Сум</td>
+                </tr>
+                @endif
             </tbody>
         </table>
         <div class="shopping-cart_rule">

@@ -19,7 +19,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        //dd(Cart::content());
+
         $sliders = Slider::take(5)->orderBy('id','DESC')->get();
         $posts = Post::orderBy('id','DESC')->take(10)->get();
         $products = Product::where('main_page',1)->orderBy('id','DESC')->take(10)->get();
@@ -43,12 +43,21 @@ class HomeController extends Controller
         return view('emails.mail');
     }
 
-    public function buyProducts()
+    public function buyProducts(Request $request)
     {
-        $to_name = 'Петя';
-        $to_email = 'shurikaxmedov1@gmail.com';
-        $data = array('name'=>"Shokhrukh", "body" => "Test mail");
-        Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+        $name = $request->name;
+        $phone = $request->phone;
+        $city = $request->city;
+        $country = $request->country;
+        $street = $request->street;
+        $postcode = $request->postcode;
+
+        $to_name = $request->name;
+        $to_email = 'info.garminuz@gmail.com';//shurikaxmedov1@gmail.com
+        $data = array('name' => $name, "phone" => $phone ,
+                     'city' => $city, "country" => $country,
+                     'street' => $street, "postcode" => $postcode);
+        Mail::send('emails.mail', ["info"=>$data], function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)
                     ->subject('Garmin.uz | Ваши Новые заказы');
             $message->from('shurikaxmedov1@gmail.com','С уважением');

@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Процент скидки купона</label>
-                            <input type="text" name="value" class="form-control" id="exampleInputEmail1" value="{{$category->code}}">
+                            <input type="text" name="percent_off" class="form-control" id="exampleInputEmail1" value="{{$category->percent_off}}">
                         </div>
                     </div>
                 </div>

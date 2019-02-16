@@ -52406,7 +52406,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return query.filters_ids == filters_ids;
             });
             if (this.filter_row.length > 0) {
-                this.filter_rows.splice(this.filter_rows.indexOf(index), 1);
+                this.filter_rows.splice(this.filter_row.indexOf(index), 1);
             } else {
                 if (filters_ids != null) {
                     this.filter_rows.push({ filters_ids: filters_ids });
@@ -52448,6 +52448,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         formatPrice: function formatPrice(value) {
             var val = (value / 1).toFixed(0).replace('.', ',');
+
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
     },
@@ -53162,6 +53163,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug', 'dollar'],
@@ -53298,9 +53301,13 @@ var render = function() {
                   ]),
                   _c("span", [_vm._v("Сум")])
                 ])
-              : _c("p", { staticClass: "product-price" }, [
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.product.price == null && _vm.product.sale == null
+              ? _c("p", { staticClass: "product-price" }, [
                   _c("span", [_vm._v("Не Опубликовано")])
-                ]),
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("p", { staticClass: "product-price_add_info" }, [
               _vm._v("(Цена без НДС)")
@@ -53508,6 +53515,11 @@ var render = function() {
                 _c("input", {
                   attrs: { type: "hidden", name: "price" },
                   domProps: { value: _vm.product.price }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "sale" },
+                  domProps: { value: _vm.product.sale }
                 }),
                 _vm._v(" "),
                 _c(

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
@@ -19,5 +20,26 @@ class Coupon extends Model
     public function edit($fields){
         $this->fill($fields);
         $this->save();
+    }
+
+
+    public static function findByCode($code)
+    {
+        return self::where('code', $code)->first();
+    }
+
+    public function discount($total)
+    {
+        $total = ( str_replace(',', '', $total));
+        $dollar = DB::table('dollar')->first();
+
+        if ($this->type == 'fixed') {
+            return $this->value;
+        } elseif ($this->type == 'percent') {
+           
+            return round((($this->percent_off / 100) * $total) * $dollar->course);
+        } else {
+            return 0;
+        }
     }
 }

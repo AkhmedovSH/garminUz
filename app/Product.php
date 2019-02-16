@@ -70,11 +70,11 @@ class Product extends Model
         $product->description = $fields['description'];
         $product->part_number = $fields['part_number'];
 
-        if(isset($fields['new'])){ $product->new = $fields['new']; }
-        if(isset($fields['featured'])){ $product->featured = $fields['featured']; }
-        if(isset($fields['main_page'])){ $product->main_page = $fields['main_page']; }
-        if(isset($fields['in_stock'])){ $product->in_stock = $fields['in_stock']; }
-        if(isset($fields['status'])){ $product->status = $fields['status']; }
+        if(isset($fields['new'])){ $product->new = $fields['new']; }else{$product->new = 0;}
+        if(isset($fields['featured'])){ $product->featured = $fields['featured']; }else{$product->featured = 0;}
+        if(isset($fields['main_page'])){ $product->main_page = $fields['main_page']; }else{$product->main_page = 0;}
+        if(isset($fields['in_stock'])){ $product->in_stock = $fields['in_stock']; }else{$product->in_stock = 0;}
+        if(isset($fields['status'])){ $product->status = $fields['status']; }else{$product->status = 0;}
 
         //$product->google_play_url = $fields['google_play_url'];
         //$product->app_store_url = $fields['app_store_url'];
@@ -103,9 +103,11 @@ class Product extends Model
         $this->description = $fields['description'];
         $this->part_number = $fields['part_number'];
 
-        if(isset($fields['new'])){ $this->new = $fields['new']; }
-        if(isset($fields['featured'])){ $this->featured = $fields['featured']; }
-        if(isset($fields['main_page'])){ $this->main_page = $fields['main_page']; }
+        if(isset($fields['new'])){ $this->new = $fields['new']; }else{$this->new = 0;}
+        if(isset($fields['featured'])){ $this->featured = $fields['featured']; }else{$this->featured = 0;}
+        if(isset($fields['main_page'])){ $this->main_page = $fields['main_page']; }else{$this->main_page = 0;}
+        if(isset($fields['in_stock'])){ $this->in_stock = $fields['in_stock']; }else{$this->in_stock = 0;}
+        if(isset($fields['status'])){ $this->status = $fields['status']; }else{$this->status = 0;}
 
         //$this->google_play_url = $fields['google_play_url'];
         //$this->app_store_url = $fields['app_store_url'];

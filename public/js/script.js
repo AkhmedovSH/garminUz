@@ -5,8 +5,8 @@ $(document).ready(function () {
         items: 1,
         nav: true,
         dots: false,
-        // autoplay: true,
-        // autoplayTimeOut: 5000, //5sec
+        autoplay: true,
+        autoplayTimeOut: 5000, //5sec
         navText: ['<i class="fa fa-angle-left fa-2x fa-fw" aria-hidden="true"></i>',
             '<i class="fa fa-angle-right fa-2x fa-fw" aria-hidden="true"></i>'
         ], //we will be using font awesome icon here
