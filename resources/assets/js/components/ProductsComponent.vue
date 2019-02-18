@@ -133,7 +133,8 @@
                 sortBy_value: null, // правая сортировка select
                 filters_ids: null,
                 filter_rows: [],
-                filter_row: [], // для проверки 2 рого клика на один и тотже фильтр
+                //filter_row: [], // для проверки 2 рого клика на один и тотже фильтр
+                filtered: [], // для проверки 2 рого клика на один и тотже фильтр
                 isActive: false
             }
         },
@@ -169,17 +170,14 @@
                  }
              },
              sortBySeries(index,filters_ids){
-                this.filter_row =  this.filter_rows.filter(function(query) {
-                    return query.filters_ids == filters_ids;
-                });
-                if(this.filter_row.length > 0){
-                    this.filter_rows.splice(this.filter_row.indexOf(index), 1);
-                }else{
-                    if(filters_ids != null){
-                        this.filter_rows.push({filters_ids});
-                    }
-                      
-                }
+               console.log(index,filters_ids)
+               const selectedRow = this.filter_rows.find(row => row.filters_ids === filters_ids)
+               if (this.filter_rows.length > 0 && selectedRow) {
+                    const filterIndex = this.filter_rows.indexOf(selectedRow)
+                    this.filter_rows.splice(filterIndex, 1)
+               } else {
+                   this.filter_rows.push({ filters_ids })
+               }      
                 axios.get("/products",{params: { 
                      filters: this.filter_rows,
                      category_id: this.category_id,

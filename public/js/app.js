@@ -52359,7 +52359,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             sortBy_value: null, // правая сортировка select
             filters_ids: null,
             filter_rows: [],
-            filter_row: [], // для проверки 2 рого клика на один и тотже фильтр
+            //filter_row: [], // для проверки 2 рого клика на один и тотже фильтр
+            filtered: [], // для проверки 2 рого клика на один и тотже фильтр
             isActive: false
         };
     },
@@ -52402,15 +52403,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sortBySeries: function sortBySeries(index, filters_ids) {
             var _this2 = this;
 
-            this.filter_row = this.filter_rows.filter(function (query) {
-                return query.filters_ids == filters_ids;
+            console.log(index, filters_ids);
+            var selectedRow = this.filter_rows.find(function (row) {
+                return row.filters_ids === filters_ids;
             });
-            if (this.filter_row.length > 0) {
-                this.filter_rows.splice(this.filter_row.indexOf(index), 1);
+            if (this.filter_rows.length > 0 && selectedRow) {
+                var filterIndex = this.filter_rows.indexOf(selectedRow);
+                this.filter_rows.splice(filterIndex, 1);
             } else {
-                if (filters_ids != null) {
-                    this.filter_rows.push({ filters_ids: filters_ids });
-                }
+                this.filter_rows.push({ filters_ids: filters_ids });
             }
             axios.get("/products", { params: {
                     filters: this.filter_rows,
