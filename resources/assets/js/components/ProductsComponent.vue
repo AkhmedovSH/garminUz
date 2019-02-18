@@ -170,7 +170,6 @@
                  }
              },
              sortBySeries(index,filters_ids){
-               console.log(index,filters_ids)
                const selectedRow = this.filter_rows.find(row => row.filters_ids === filters_ids)
                if (this.filter_rows.length > 0 && selectedRow) {
                     const filterIndex = this.filter_rows.indexOf(selectedRow)

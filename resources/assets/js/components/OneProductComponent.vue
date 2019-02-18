@@ -46,9 +46,9 @@
                     </div>
                     <div class="series_attr_val" >
                         <ul class="d-flex list-style-default ma-0 pa-0">
-                            <li><a :class="{ 'active' : product.pa_case_size == 42}">42MM</a></li>
-                            <li><a :class="{ 'active' : product.pa_case_size == 47}">47MM</a></li>
-                            <li><a :class="{ 'active' : product.pa_case_size == 51}">51MM</a></li>
+                            <li><a @click="selectCaseSize(42)" :class="{ 'active' : selectedCaseSize == 42 }">42MM</a></li>
+                            <li><a @click="selectCaseSize(47)" :class="{ 'active' : selectedCaseSize == 47 }">47MM</a></li>
+                            <li><a @click="selectCaseSize(51)" :class="{ 'active' : selectedCaseSize == 51 }">51MM</a></li>
                         </ul>
                     </div>
                 </div>
@@ -89,7 +89,10 @@
                 <div class="product-filter_color" v-if="product.series_category_id != null || product.app_store_url != null">
                     <ul class="list-style-default ma-0 d-flex flex-row-wrap pa-0">
                         <li v-for="(item,index) in products" :key="item.id">
-                            <a @click.prevent="chooseProduct(index,item.slug)" class="product_series_attr enabled-img-product">
+                            <a @click.prevent="chooseProduct(index,item.slug)" 
+                            class="product_series_attr"
+                            :class="[ item.pa_case_size == selectedCaseSize ? 'enabled-img-product' : 'disabled-img-product']"
+                            >
                                 <img :src="'/uploads/products/' + item.image">
                              </a>
                         </li>
@@ -154,14 +157,20 @@
                 product: {}, 
                 products: {}, 
                 jsonParsed: {}, 
+                selectedCaseSize: null,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             }
         },
         methods: {
+            selectCaseSize(pa_case_size){
+
+                this.selectedCaseSize = pa_case_size
+            },
            AllOrOneProduct() {
                 axios.get('/one-product', {params:{slug: this.slug}}).then(res =>{
                     this.products = res.data.products
                     this.product = res.data.product
+                    this.selectedCaseSize = this.product.pa_case_size
                     this.jsonParsed = JSON.parse(this.product.slider_image);
                 }).catch(err=>console.log(err))
             },

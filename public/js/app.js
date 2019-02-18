@@ -52403,7 +52403,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sortBySeries: function sortBySeries(index, filters_ids) {
             var _this2 = this;
 
-            console.log(index, filters_ids);
             var selectedRow = this.filter_rows.find(function (row) {
                 return row.filters_ids === filters_ids;
             });
@@ -53166,6 +53165,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug', 'dollar'],
@@ -53174,17 +53176,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             product: {},
             products: {},
             jsonParsed: {},
+            selectedCaseSize: null,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
 
     methods: {
+        selectCaseSize: function selectCaseSize(pa_case_size) {
+
+            this.selectedCaseSize = pa_case_size;
+        },
         AllOrOneProduct: function AllOrOneProduct() {
             var _this = this;
 
             axios.get('/one-product', { params: { slug: this.slug } }).then(function (res) {
                 _this.products = res.data.products;
                 _this.product = res.data.product;
+                _this.selectedCaseSize = _this.product.pa_case_size;
                 _this.jsonParsed = JSON.parse(_this.product.slider_image);
             }).catch(function (err) {
                 return console.log(err);
@@ -53329,7 +53337,12 @@ var render = function() {
                           _c(
                             "a",
                             {
-                              class: { active: _vm.product.pa_case_size == 42 }
+                              class: { active: _vm.selectedCaseSize == 42 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectCaseSize(42)
+                                }
+                              }
                             },
                             [_vm._v("42MM")]
                           )
@@ -53339,7 +53352,12 @@ var render = function() {
                           _c(
                             "a",
                             {
-                              class: { active: _vm.product.pa_case_size == 47 }
+                              class: { active: _vm.selectedCaseSize == 47 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectCaseSize(47)
+                                }
+                              }
                             },
                             [_vm._v("47MM")]
                           )
@@ -53349,7 +53367,12 @@ var render = function() {
                           _c(
                             "a",
                             {
-                              class: { active: _vm.product.pa_case_size == 51 }
+                              class: { active: _vm.selectedCaseSize == 51 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectCaseSize(51)
+                                }
+                              }
                             },
                             [_vm._v("51MM")]
                           )
@@ -53466,8 +53489,12 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticClass:
-                              "product_series_attr enabled-img-product",
+                            staticClass: "product_series_attr",
+                            class: [
+                              item.pa_case_size == _vm.selectedCaseSize
+                                ? "enabled-img-product"
+                                : "disabled-img-product"
+                            ],
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
