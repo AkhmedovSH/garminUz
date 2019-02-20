@@ -53177,33 +53177,100 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             products: {},
             jsonParsed: {},
             selectedCaseSize: null,
+            selectedSaphireVersion: null,
+            selectedPulseOx: null,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
 
     methods: {
-        selectCaseSize: function selectCaseSize(pa_case_size) {
-
-            this.selectedCaseSize = pa_case_size;
-        },
-        AllOrOneProduct: function AllOrOneProduct() {
+        selectCaseSize: function selectCaseSize(caseSize) {
             var _this = this;
 
+            this.selectedCaseSize = caseSize;
+
+            var activeProducts = this.products.filter(function (product) {
+                return product.pa_case_size == _this.selectedCaseSize && product.pa_saphire == _this.selectedSaphireVersion && product.pa_pulse_ox == _this.selectedPulseOx;
+            });
+            var isExistInActiveProducts = activeProducts.some(function (product) {
+                return product.id === _this.product.id;
+            });
+            if (!isExistInActiveProducts) {
+                var productsWithSelectedCaseSize = this.products.find(function (product) {
+                    return product.pa_case_size == _this.selectedCaseSize;
+                });
+                var changingProduct = productsWithSelectedCaseSize;
+                this.chooseProduct(0, changingProduct.slug);
+            }
+        },
+        selectSaphireVersion: function selectSaphireVersion(saphireVersion) {
+            var _this2 = this;
+
+            this.selectedSaphireVersion = saphireVersion;
+
+            var activeProducts = this.products.filter(function (product) {
+                return product.pa_case_size == _this2.selectedCaseSize && product.pa_saphire == _this2.selectedSaphireVersion && product.pa_pulse_ox == _this2.selectedPulseOx;
+            });
+            var isExistInActiveProducts = activeProducts.some(function (product) {
+                return product.id === _this2.product.id;
+            });
+            if (!isExistInActiveProducts) {
+                var productsWithSelectedSaphireVersion = this.products.find(function (product) {
+                    return product.pa_saphire == _this2.selectedSaphireVersion;
+                });
+                var changingProduct = productsWithSelectedSaphireVersion;
+                this.chooseProduct(0, changingProduct.slug);
+            }
+        },
+        selectPulseOx: function selectPulseOx(pulseOx) {
+            var _this3 = this;
+
+            this.selectedPulseOx = pulseOx;
+
+            var activeProducts = this.products.filter(function (product) {
+                return product.pa_case_size == _this3.selectedCaseSize && product.pa_saphire == _this3.selectedSaphireVersion && product.pa_pulse_ox == _this3.selectedPulseOx;
+            });
+            var isExistInActiveProducts = activeProducts.some(function (product) {
+                return product.id === _this3.product.id;
+            });
+            if (!isExistInActiveProducts) {
+                var productsWithSelectedPulseOx = this.products.find(function (product) {
+                    return product.pa_pulse_ox == _this3.selectedPulseOx;
+                });
+                var changingProduct = productsWithSelectedPulseOx;
+                this.chooseProduct(0, changingProduct.slug);
+            }
+        },
+        isActive: function isActive(product) {
+            var isCaseSizeMatches = this.selectedCaseSize === null ? true : product.pa_case_size == this.selectedCaseSize;
+            var isSaphireVersionMatches = this.selectedSaphireVersion === null ? true : product.pa_saphire == this.selectedSaphireVersion;
+            var isPulseOxMatches = this.selectedPulseOx === null ? true : product.pa_pulse_ox == this.selectedPulseOx;
+            return isCaseSizeMatches && isSaphireVersionMatches && isPulseOxMatches;
+        },
+        AllOrOneProduct: function AllOrOneProduct() {
+            var _this4 = this;
+
             axios.get('/one-product', { params: { slug: this.slug } }).then(function (res) {
-                _this.products = res.data.products;
-                _this.product = res.data.product;
-                _this.selectedCaseSize = _this.product.pa_case_size;
-                _this.jsonParsed = JSON.parse(_this.product.slider_image);
+                _this4.products = res.data.products;
+                _this4.product = res.data.product;
+                _this4.selectedCaseSize = _this4.product.pa_case_size;
+                _this4.selectedSaphireVersion = _this4.product.pa_saphire;
+                _this4.selectedPulseOx = _this4.product.pa_pulse_ox;
+                _this4.jsonParsed = JSON.parse(_this4.product.slider_image);
             }).catch(function (err) {
                 return console.log(err);
             });
         },
         chooseProduct: function chooseProduct(index, product_slug) {
-            var _this2 = this;
+            var _this5 = this;
 
+            console.log('worked');
             axios.get('/one-product-choose', { params: { slug: product_slug } }).then(function (res) {
-                _this2.product = res.data.product;
-                _this2.jsonParsed = JSON.parse(_this2.product.slider_image);
+                _this5.product = res.data.product;
+                _this5.selectedCaseSize = _this5.product.pa_case_size;
+                _this5.selectedSaphireVersion = _this5.product.pa_saphire;
+                _this5.selectedPulseOx = _this5.product.pa_pulse_ox;
+                _this5.jsonParsed = JSON.parse(_this5.product.slider_image);
             }).catch(function (err) {
                 return console.log(err);
             });
@@ -53383,7 +53450,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.product.pa_saphire != null
+            _vm.product.pa_saphire
               ? _c("div", { staticClass: "product-filter_saphire-edition" }, [
                   _vm._m(2),
                   _vm._v(" "),
@@ -53395,7 +53462,16 @@ var render = function() {
                         _c("li", [
                           _c(
                             "a",
-                            { class: { active: _vm.product.pa_saphire == 1 } },
+                            {
+                              class: {
+                                active: _vm.selectedSaphireVersion == 1
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectSaphireVersion(1)
+                                }
+                              }
+                            },
                             [_vm._v("ДА")]
                           )
                         ]),
@@ -53403,7 +53479,16 @@ var render = function() {
                         _c("li", [
                           _c(
                             "a",
-                            { class: { active: _vm.product.pa_saphire == 0 } },
+                            {
+                              class: {
+                                active: _vm.selectedSaphireVersion == 0
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectSaphireVersion(0)
+                                }
+                              }
+                            },
                             [_vm._v("НЕТ")]
                           )
                         ])
@@ -53443,7 +53528,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.product.pa_pulse_ox != null
+            _vm.product.pa_pulse_ox
               ? _c("div", { staticClass: "product-filter_pulse-ox" }, [
                   _vm._m(4),
                   _vm._v(" "),
@@ -53455,7 +53540,14 @@ var render = function() {
                         _c("li", [
                           _c(
                             "a",
-                            { class: { active: _vm.product.pa_pulse_ox == 1 } },
+                            {
+                              class: { active: _vm.selectedPulseOx == 1 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectPulseOx(1)
+                                }
+                              }
+                            },
                             [_vm._v("ДА")]
                           )
                         ]),
@@ -53463,7 +53555,14 @@ var render = function() {
                         _c("li", [
                           _c(
                             "a",
-                            { class: { active: _vm.product.pa_pulse_ox == 0 } },
+                            {
+                              class: { active: _vm.selectedPulseOx == 0 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectPulseOx(0)
+                                }
+                              }
+                            },
                             [_vm._v("НЕТ")]
                           )
                         ])
@@ -53491,7 +53590,7 @@ var render = function() {
                           {
                             staticClass: "product_series_attr",
                             class: [
-                              item.pa_case_size == _vm.selectedCaseSize
+                              _vm.isActive(item)
                                 ? "enabled-img-product"
                                 : "disabled-img-product"
                             ],

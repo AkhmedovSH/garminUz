@@ -52,14 +52,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="product-filter_saphire-edition" v-if="product.pa_saphire != null">
+                <div class="product-filter_saphire-edition" v-if="product.pa_saphire">
                         <div class="series-attribute">Сапфирная версия
                             <span data-toggle="tooltip" data-placement="top" title="Имеет устойчивую к царапинам сапфировую линзу.">?</span>
                         </div>
                         <div class="series_attr_val">
                             <ul class="d-flex list-style-default ma-0 pa-0">
-                                <li><a :class="{ 'active' : product.pa_saphire == 1}">ДА</a></li>
-                                <li><a :class="{ 'active' : product.pa_saphire == 0}">НЕТ</a></li>
+                                <li><a @click="selectSaphireVersion(1)" :class="{ 'active' : selectedSaphireVersion == 1}">ДА</a></li>
+                                <li><a @click="selectSaphireVersion(0)" :class="{ 'active' : selectedSaphireVersion == 0}">НЕТ</a></li>
                             </ul>
                         </div>
                 </div>
@@ -74,14 +74,14 @@
                             </ul>
                         </div>
                 </div>
-                <div class="product-filter_pulse-ox" v-if="product.pa_pulse_ox != null">
+                <div class="product-filter_pulse-ox" v-if="product.pa_pulse_ox">
                         <div class="series-attribute">Акклимация пульса
                             <span data-toggle="tooltip" data-placement="top" title="Показывает уровни насыщения крови кислородом, чтобы помочь контролировать, как вы приспосабливаетесь к большим высотам.">?</span>
                         </div>
                         <div class="series_attr_val">
                             <ul class="d-flex list-style-default ma-0 pa-0">
-                                <li><a :class="{ 'active' : product.pa_pulse_ox == 1}">ДА</a></li>
-                                <li><a :class="{ 'active' : product.pa_pulse_ox == 0}">НЕТ</a></li>
+                                <li><a @click="selectPulseOx(1)" :class="{ 'active' : selectedPulseOx == 1}">ДА</a></li>
+                                <li><a @click="selectPulseOx(0)" :class="{ 'active' : selectedPulseOx == 0}">НЕТ</a></li>
                             </ul>
                         </div>
                 </div>
@@ -91,7 +91,7 @@
                         <li v-for="(item,index) in products" :key="item.id">
                             <a @click.prevent="chooseProduct(index,item.slug)" 
                             class="product_series_attr"
-                            :class="[ item.pa_case_size == selectedCaseSize ? 'enabled-img-product' : 'disabled-img-product']"
+                            :class="[ isActive(item) ? 'enabled-img-product' : 'disabled-img-product']"
                             >
                                 <img :src="'/uploads/products/' + item.image">
                              </a>
@@ -158,27 +158,84 @@
                 products: {}, 
                 jsonParsed: {}, 
                 selectedCaseSize: null,
+                selectedSaphireVersion: null,
+                selectedPulseOx: null,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             }
         },
         methods: {
-            selectCaseSize(pa_case_size){
+            selectCaseSize(caseSize) {
+                this.selectedCaseSize = caseSize
 
-                this.selectedCaseSize = pa_case_size
+                const activeProducts = this.products.filter(product => {
+                    return product.pa_case_size == this.selectedCaseSize &&
+                        product.pa_saphire == this.selectedSaphireVersion &&
+                        product.pa_pulse_ox == this.selectedPulseOx
+                }) 
+                const isExistInActiveProducts = activeProducts.some(product => product.id === this.product.id)
+                if (!isExistInActiveProducts) {
+                    const productsWithSelectedCaseSize = this.products
+                        .find(product => product.pa_case_size == this.selectedCaseSize)
+                    const changingProduct = productsWithSelectedCaseSize
+                    this.chooseProduct(0, changingProduct.slug)
+                }
             },
-           AllOrOneProduct() {
+            selectSaphireVersion(saphireVersion) {
+                this.selectedSaphireVersion = saphireVersion
+
+                const activeProducts = this.products.filter(product => {
+                    return product.pa_case_size == this.selectedCaseSize &&
+                        product.pa_saphire == this.selectedSaphireVersion &&
+                        product.pa_pulse_ox == this.selectedPulseOx
+                }) 
+                const isExistInActiveProducts = activeProducts.some(product => product.id === this.product.id)
+                if (!isExistInActiveProducts) {
+                    const productsWithSelectedSaphireVersion = this.products
+                        .find(product => product.pa_saphire == this.selectedSaphireVersion)
+                    const changingProduct = productsWithSelectedSaphireVersion
+                    this.chooseProduct(0, changingProduct.slug)
+                }
+            },
+            selectPulseOx(pulseOx) {
+                this.selectedPulseOx = pulseOx
+
+                const activeProducts = this.products.filter(product => {
+                    return product.pa_case_size == this.selectedCaseSize &&
+                        product.pa_saphire == this.selectedSaphireVersion &&
+                        product.pa_pulse_ox == this.selectedPulseOx
+                }) 
+                const isExistInActiveProducts = activeProducts.some(product => product.id === this.product.id)
+                if (!isExistInActiveProducts) {
+                    const productsWithSelectedPulseOx = this.products
+                        .find(product => product.pa_pulse_ox == this.selectedPulseOx)
+                    const changingProduct = productsWithSelectedPulseOx
+                    this.chooseProduct(0, changingProduct.slug)
+                }
+            },
+            isActive(product) {
+                const isCaseSizeMatches = this.selectedCaseSize === null ? true : product.pa_case_size == this.selectedCaseSize
+                const isSaphireVersionMatches = this.selectedSaphireVersion === null ? true : product.pa_saphire == this.selectedSaphireVersion
+                const isPulseOxMatches = this.selectedPulseOx === null ? true : product.pa_pulse_ox == this.selectedPulseOx
+                return isCaseSizeMatches && isSaphireVersionMatches && isPulseOxMatches
+            },
+            AllOrOneProduct() {
                 axios.get('/one-product', {params:{slug: this.slug}}).then(res =>{
                     this.products = res.data.products
                     this.product = res.data.product
                     this.selectedCaseSize = this.product.pa_case_size
+                    this.selectedSaphireVersion = this.product.pa_saphire
+                    this.selectedPulseOx = this.product.pa_pulse_ox
                     this.jsonParsed = JSON.parse(this.product.slider_image);
                 }).catch(err=>console.log(err))
             },
             chooseProduct(index,product_slug){
-                
+                console.log('worked')
                 axios.get('/one-product-choose', {params:{slug: product_slug}}).then(res =>{
-                     this.product = res.data.product
-                     this.jsonParsed = JSON.parse(this.product.slider_image);
+                    this.product = res.data.product
+                    this.selectedCaseSize = this.product.pa_case_size
+                    this.selectedSaphireVersion = this.product.pa_saphire
+                    this.selectedPulseOx = this.product.pa_pulse_ox
+                    this.jsonParsed = JSON.parse(this.product.slider_image);
                 }).catch(err=>console.log(err)) 
             },
             formatPrice(value) {
