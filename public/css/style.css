@@ -2922,6 +2922,43 @@ input[type="checkbox"].switch_1 {
     background: #008cd9;
 }
 
+.app__accessories__list {
+    padding: 0;
+    margin-bottom: 3em;
+}
+.app__accessories__item {
+    list-style-type: none;
+    padding: 1em 0;
+    border-bottom: 1px solid #dcdcdc;
+}
+.app__tabs__content__inner img {
+    max-width: 100%;
+    height: auto;
+}
+.app__accessories__item__content{
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+.app__accessories__item__price{
+   
+}
+
+.add-to-cart-accessories-button{
+    font-size: 12px;
+    line-height: 18px;
+    color: #fff;
+    text-decoration: none;
+    border-color: #f29500;
+    padding-right: 6px;
+    padding-left: 6px;
+    display: inline-block;
+    margin-top: .5em;
+    background-color: #ff9d00;
+}
+
+
+
 
 .menu {
     color: black;

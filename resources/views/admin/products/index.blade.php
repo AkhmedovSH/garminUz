@@ -18,6 +18,7 @@
                     <div class="form-group">
                         <a href="{{route('products.create')}}" class="btn btn-success">Добавить</a>
                         <a href="{{route('product-group.index')}}" class="btn btn-success pull-right">Создать группу</a>
+                        {{-- <a href="{{route('accessories-category.index')}}" class="btn btn-success pull-right">Категория Аксессуаров</a> --}}
                     </div>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>

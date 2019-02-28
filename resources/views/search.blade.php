@@ -16,8 +16,10 @@
                 </a>
                 <div class="search-page_product-description">
                     <a href="/product/{{ $item->slug }}" class="search-page_product-name">{{ $item->title }}</a>
-                    @if ($item->price != null)
-                        <p class="search-page_product-price">{{ $item->price }} Сум</p>
+                    @if ($item->price != null && $item->sale == null)
+                        <p class="search-page_product-price"> {{ number_format($dollar->course * $item->price, 0) }} Сум</p>
+                    @elseif($item->sale != null && $item->price != null)
+                    {{ number_format(( ($dollar->course * $item->price) - ($dollar->course * $item->price) * $item->sale / 100), 0) }} Сум
                     @else
                         <p class="search-page_product-price">Не Опубликовано</p>
                     @endif
@@ -26,7 +28,7 @@
             @endforeach
         </ul>
         <div class="search-page-pagination">
-            {{ $search_results->links() }}
+            {{$search_results->appends(Request::only('name'))->links()}}
         </div>
         
     </div>

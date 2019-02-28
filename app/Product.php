@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\AccessoriesCategory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Facades\Storage;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 class Product extends Model
 {
     protected $table = 'products';
@@ -20,8 +22,6 @@ class Product extends Model
     
     use Sluggable;
 
-
-    
     public function p_categories(){
         return $this->belongsToMany(
             BCategory::class,
@@ -39,14 +39,12 @@ class Product extends Model
         );
     }
 
-    public function p_filters2(){ // for count opposite of filters
-        return $this->belongsToMany(
-            Product::class,
-            'p_filter_product',
-            'p_filter_id',
-            'product_id'
-        );
+    public function accessories()
+    {
+        return $this->belongsToMany(Product::class, 'products_accessories', 'product_id', 'accessories_id');
     }
+
+
 
     public function productGroup(){
         return $this->belongsTo(ProductGroup::class, 'series_category_id', 'id');
@@ -131,6 +129,7 @@ class Product extends Model
         $this->removeSliderImages();
         $this->p_filters()->detach();
         $this->p_categories()->detach();
+        $this->accessories()->detach();
         $this->delete();
     }
 
@@ -156,6 +155,11 @@ class Product extends Model
     public function setFilters($ids){
         if ($ids == null){ return; }
         $this->p_filters()->sync($ids);
+    }
+
+    public function setAccessories($ids){
+        if ($ids == null){ $this->accessories()->sync([]); }
+        $this->accessories()->sync($ids);
     }
 
 

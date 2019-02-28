@@ -26,8 +26,8 @@ class ProductController extends Controller
         $tags = BCategory::pluck('title', 'id')->all();
         $filters = PCategory::pluck('title', 'id')->all();
         $productGroup = ProductGroup::pluck('title', 'id')->all();
-
-        return view('admin.products.create',compact('tags','filters','productGroup'));
+        $accessories = Product::pluck('title', 'id')->all();
+        return view('admin.products.create',compact('tags','accessories','filters','productGroup'));
     }
 
  
@@ -43,6 +43,7 @@ class ProductController extends Controller
        $product->uploadMultipleImages($request->file('slider_image'));
        $product->setTags($request->get('categories'));
        $product->setFilters($request->get('filters'));
+       $product->setAccessories($request->get('accessories'));
        return redirect()->route('products.index');
     }
 
@@ -55,12 +56,15 @@ class ProductController extends Controller
         $tags = BCategory::pluck('title', 'id')->all();
         $filters = PCategory::pluck('title', 'id')->all();
         $productGroup = ProductGroup::pluck('title', 'id')->all();
+        $accessories = Product::pluck('title', 'id')->all();
         
         $selectedTags = $product->p_categories->pluck('id')->all(); 
-        $selectedFilters = $product->p_filters->pluck('id')->all(); 
+        $selectedFilters = $product->p_filters->pluck('id')->all();
+        $selectedAccessories = $product->accessories->pluck('id')->all();
 
         return view('admin.products.edit', 
-        compact('product', 'tags' , 'filters', 'selectedTags','selectedFilters', 'productGroup','slider_image'));
+        compact('product', 'tags' , 'filters','productGroup','slider_image', 'accessories',
+         'selectedTags','selectedFilters','selectedAccessories'));
     }
 
 
@@ -72,6 +76,7 @@ class ProductController extends Controller
        $product->uploadMultipleImages($request->file('slider_image'));
        $product->setTags($request->get('categories'));
        $product->setFilters($request->get('filters'));
+       $product->setAccessories($request->get('accessories'));
        return redirect()->route('products.index');
     }
 

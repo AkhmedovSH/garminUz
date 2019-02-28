@@ -53168,6 +53168,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug', 'dollar'],
@@ -53179,6 +53240,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             selectedCaseSize: null,
             selectedSaphireVersion: null,
             selectedPulseOx: null,
+            selectedMusic: null,
+            selectedBandType: null,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         };
     },
@@ -53190,7 +53253,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selectedCaseSize = caseSize;
 
             var activeProducts = this.products.filter(function (product) {
-                return product.pa_case_size == _this.selectedCaseSize && product.pa_saphire == _this.selectedSaphireVersion && product.pa_pulse_ox == _this.selectedPulseOx;
+                return product.pa_case_size == _this.selectedCaseSize && product.pa_saphire == _this.selectedSaphireVersion && product.pa_music == _this.selectedMusic && product.pa_pulse_ox == _this.selectedPulseOx;
             });
             var isExistInActiveProducts = activeProducts.some(function (product) {
                 return product.id === _this.product.id;
@@ -53209,7 +53272,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selectedSaphireVersion = saphireVersion;
 
             var activeProducts = this.products.filter(function (product) {
-                return product.pa_case_size == _this2.selectedCaseSize && product.pa_saphire == _this2.selectedSaphireVersion && product.pa_pulse_ox == _this2.selectedPulseOx;
+                return product.pa_case_size == _this2.selectedCaseSize && product.pa_saphire == _this2.selectedSaphireVersion && product.pa_music == _this2.selectedMusic && product.pa_pulse_ox == _this2.selectedPulseOx;
             });
             var isExistInActiveProducts = activeProducts.some(function (product) {
                 return product.id === _this2.product.id;
@@ -53228,7 +53291,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selectedPulseOx = pulseOx;
 
             var activeProducts = this.products.filter(function (product) {
-                return product.pa_case_size == _this3.selectedCaseSize && product.pa_saphire == _this3.selectedSaphireVersion && product.pa_pulse_ox == _this3.selectedPulseOx;
+                return product.pa_case_size == _this3.selectedCaseSize && product.pa_saphire == _this3.selectedSaphireVersion && product.pa_music == _this3.selectedMusic && product.pa_pulse_ox == _this3.selectedPulseOx;
             });
             var isExistInActiveProducts = activeProducts.some(function (product) {
                 return product.id === _this3.product.id;
@@ -53241,36 +53304,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.chooseProduct(0, changingProduct.slug);
             }
         },
+        selectMusic: function selectMusic(Music) {
+            var _this4 = this;
+
+            this.selectedMusic = Music;
+
+            var activeProducts = this.products.filter(function (product) {
+                return product.pa_case_size == _this4.selectedCaseSize && product.pa_saphire == _this4.selectedSaphireVersion && product.pa_pulse_ox == _this4.selectedPulseOx;
+                product.pa_music == _this4.selectedMusic;
+            });
+            var isExistInActiveProducts = activeProducts.some(function (product) {
+                return product.id === _this4.product.id;
+            });
+            if (!isExistInActiveProducts) {
+                var productsWithSelectedPulseOx = this.products.find(function (product) {
+                    return product.pa_pulse_ox == _this4.selectedPulseOx;
+                });
+                var changingProduct = productsWithSelectedPulseOx;
+                this.chooseProduct(0, changingProduct.slug);
+            }
+        },
+        selectBandType: function selectBandType(BandType) {
+            var _this5 = this;
+
+            this.selectedBandType = BandType;
+
+            var activeProducts = this.products.filter(function (product) {
+                return product.pa_case_size == _this5.selectedCaseSize && product.pa_saphire == _this5.selectedSaphireVersion && product.pa_pulse_ox == _this5.selectedPulseOx;
+                product.pa_band_type == _this5.selectedBandType;
+            });
+            var isExistInActiveProducts = activeProducts.some(function (product) {
+                return product.id === _this5.product.id;
+            });
+            if (!isExistInActiveProducts) {
+                var productsWithSelectedPulseOx = this.products.find(function (product) {
+                    return product.pa_pulse_ox == _this5.selectedPulseOx;
+                });
+                var changingProduct = productsWithSelectedPulseOx;
+                this.chooseProduct(0, changingProduct.slug);
+            }
+        },
         isActive: function isActive(product) {
             var isCaseSizeMatches = this.selectedCaseSize === null ? true : product.pa_case_size == this.selectedCaseSize;
             var isSaphireVersionMatches = this.selectedSaphireVersion === null ? true : product.pa_saphire == this.selectedSaphireVersion;
             var isPulseOxMatches = this.selectedPulseOx === null ? true : product.pa_pulse_ox == this.selectedPulseOx;
-            return isCaseSizeMatches && isSaphireVersionMatches && isPulseOxMatches;
+            var isMusic = this.selectedMusic === null ? true : product.pa_music == this.selectedMusic;
+            var isBandType = this.selectedBandType === null ? true : product.pa_band_type == this.selectedBandType;
+            return isCaseSizeMatches && isSaphireVersionMatches && isPulseOxMatches && isMusic && isBandType;
         },
         AllOrOneProduct: function AllOrOneProduct() {
-            var _this4 = this;
+            var _this6 = this;
 
             axios.get('/one-product', { params: { slug: this.slug } }).then(function (res) {
-                _this4.products = res.data.products;
-                _this4.product = res.data.product;
-                _this4.selectedCaseSize = _this4.product.pa_case_size;
-                _this4.selectedSaphireVersion = _this4.product.pa_saphire;
-                _this4.selectedPulseOx = _this4.product.pa_pulse_ox;
-                _this4.jsonParsed = JSON.parse(_this4.product.slider_image);
+                _this6.products = res.data.products;
+                _this6.product = res.data.product;
+                _this6.selectedCaseSize = _this6.product.pa_case_size;
+                _this6.selectedSaphireVersion = _this6.product.pa_saphire;
+                _this6.selectedPulseOx = _this6.product.pa_pulse_ox;
+                _this6.selectedMusic = _this6.product.pa_music;
+                _this6.selectedBandType = _this6.product.pa_band_type;
+                _this6.jsonParsed = JSON.parse(_this6.product.slider_image);
             }).catch(function (err) {
                 return console.log(err);
             });
         },
         chooseProduct: function chooseProduct(index, product_slug) {
-            var _this5 = this;
+            var _this7 = this;
 
-            console.log('worked');
             axios.get('/one-product-choose', { params: { slug: product_slug } }).then(function (res) {
-                _this5.product = res.data.product;
-                _this5.selectedCaseSize = _this5.product.pa_case_size;
-                _this5.selectedSaphireVersion = _this5.product.pa_saphire;
-                _this5.selectedPulseOx = _this5.product.pa_pulse_ox;
-                _this5.jsonParsed = JSON.parse(_this5.product.slider_image);
+                _this7.product = res.data.product;
+                _this7.selectedCaseSize = _this7.product.pa_case_size;
+                _this7.selectedSaphireVersion = _this7.product.pa_saphire;
+                _this7.selectedPulseOx = _this7.product.pa_pulse_ox;
+                _this7.jsonParsed = JSON.parse(_this7.product.slider_image);
             }).catch(function (err) {
                 return console.log(err);
             });
@@ -53391,7 +53497,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { attrs: { id: "product-filter" } }, [
-            _vm.product.pa_case_size != null
+            _vm.product.pa_case_size
               ? _c("div", { staticClass: "product-filter_case-size" }, [
                   _vm._m(1),
                   _vm._v(" "),
@@ -53498,7 +53604,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.product.maps != null
+            _vm.product.maps
               ? _c("div", { staticClass: "product-filter_saphire-edition" }, [
                   _vm._m(3),
                   _vm._v(" "),
@@ -53572,7 +53678,100 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _c("div", { staticClass: "series-attribute" }, [_vm._v("Цвета")]),
+            _vm.product.pa_music
+              ? _c("div", { staticClass: "product-filter_pulse-ox" }, [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "series_attr_val" }, [
+                    _c(
+                      "ul",
+                      { staticClass: "d-flex list-style-default ma-0 pa-0" },
+                      [
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              class: { active: _vm.selectedMusic == 1 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectMusic(1)
+                                }
+                              }
+                            },
+                            [_vm._v("ДА")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              class: { active: _vm.selectedMusic == 0 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectMusic(0)
+                                }
+                              }
+                            },
+                            [_vm._v("НЕТ")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.product.band_type
+              ? _c("div", { staticClass: "product-filter_pulse-ox" }, [
+                  _vm._m(6),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "series_attr_val" }, [
+                    _c(
+                      "ul",
+                      { staticClass: "d-flex list-style-default ma-0 pa-0" },
+                      [
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              class: { active: _vm.selectedBandType == 1 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectBandType(1)
+                                }
+                              }
+                            },
+                            [_vm._v("ДА")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              class: { active: _vm.selectedBandType == 0 },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectBandType(0)
+                                }
+                              }
+                            },
+                            [_vm._v("НЕТ")]
+                          )
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.product.series_category_id != null ||
+            _vm.product.app_store_url != null
+              ? _c("div", { staticClass: "series-attribute" }, [
+                  _vm._v("Цвета")
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _vm.product.series_category_id != null ||
             _vm.product.app_store_url != null
@@ -53665,7 +53864,96 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "one-product_description-tab" }, [
-      _vm._m(5),
+      _c("div", { staticClass: "tab-menu_description" }, [
+        _c(
+          "ul",
+          {
+            staticClass: "nav nav-tabs container-85 mg-auto-horizontal",
+            attrs: { id: "myTab", role: "tablist" }
+          },
+          [
+            _vm.product.overview
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link active",
+                      attrs: {
+                        id: "home-tab",
+                        "data-toggle": "tab",
+                        href: "#home",
+                        role: "tab",
+                        "aria-controls": "home",
+                        "aria-selected": "true"
+                      }
+                    },
+                    [_vm._v("Описание")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.product.specs
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: {
+                        id: "profile-tab",
+                        "data-toggle": "tab",
+                        href: "#profile",
+                        role: "tab",
+                        "aria-controls": "profile",
+                        "aria-selected": "false"
+                      }
+                    },
+                    [_vm._v("Спецификации")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.product.in_the_box
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: {
+                        id: "contact-tab",
+                        "data-toggle": "tab",
+                        href: "#contact",
+                        role: "tab",
+                        "aria-controls": "contact",
+                        "aria-selected": "false"
+                      }
+                    },
+                    [_vm._v("В коробке")]
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.product.accessories
+              ? _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: {
+                        id: "accessories-tab",
+                        "data-toggle": "tab",
+                        href: "#accessories",
+                        role: "tab",
+                        "aria-controls": "accessories",
+                        "aria-selected": "false"
+                      }
+                    },
+                    [_vm._v("Аксессуары")]
+                  )
+                ])
+              : _vm._e()
+          ]
+        )
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -53719,6 +54007,163 @@ var render = function() {
                 domProps: { innerHTML: _vm._s(_vm.product.in_the_box) }
               })
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade",
+              attrs: {
+                id: "accessories",
+                role: "tabpanel",
+                "aria-labelledby": "accessories-tab"
+              }
+            },
+            [
+              _c("div", [
+                _c(
+                  "ul",
+                  { staticClass: "app__accessories__list" },
+                  _vm._l(_vm.product.accessories, function(accessories) {
+                    return _c(
+                      "li",
+                      {
+                        key: accessories.id,
+                        staticClass: "app__accessories__item"
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "app__accessories__item__image",
+                          staticStyle: { "min-width": "9%", height: "auto" },
+                          attrs: {
+                            src: "/uploads/products/" + accessories.image
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "app__accessories__item__content" },
+                          [
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "/product/" + accessories.slug }
+                              },
+                              [_vm._v(_vm._s(accessories.title))]
+                            ),
+                            _vm._v(" "),
+                            _c("span", { staticStyle: { display: "flex" } }, [
+                              _vm._v(_vm._s(accessories.part_number))
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "app__accessories__item__price" },
+                              [
+                                accessories.price != null &&
+                                accessories.sale == null
+                                  ? _c("p", { staticClass: "product-price" }, [
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.formatPrice(
+                                              accessories.price * _vm.dollar
+                                            )
+                                          )
+                                        )
+                                      ]),
+                                      _c("span", [_vm._v("Сум")])
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                accessories.price != null &&
+                                accessories.sale != null
+                                  ? _c("p", { staticClass: "product-price" }, [
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.formatPrice(
+                                              accessories.price * _vm.dollar -
+                                                (accessories.price *
+                                                  _vm.dollar *
+                                                  accessories.sale) /
+                                                  100
+                                            )
+                                          ) +
+                                            "\r\n                                "
+                                        )
+                                      ]),
+                                      _c("span", [_vm._v("Сум")])
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                accessories.price == null &&
+                                accessories.sale == null
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "product-price" },
+                                      [_c("span", [_vm._v("Не Опубликовано")])]
+                                    )
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "form",
+                              { attrs: { action: "/cart", method: "post" } },
+                              [
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "_token" },
+                                  domProps: { value: _vm.csrf }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "id" },
+                                  domProps: { value: accessories.id }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "title" },
+                                  domProps: { value: accessories.title }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: {
+                                    type: "hidden",
+                                    name: "part_number"
+                                  },
+                                  domProps: { value: accessories.part_number }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "price" },
+                                  domProps: { value: accessories.price }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "sale" },
+                                  domProps: { value: accessories.sale }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "add-to-cart-accessories-button",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [_vm._v("Добавить в корзину")]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  })
+                )
+              ])
+            ]
           )
         ]
       )
@@ -53741,7 +54186,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "series-attribute" }, [
-      _vm._v("Case Size\r\n                        "),
+      _vm._v("Размер\r\n                    "),
       _c(
         "span",
         {
@@ -53761,7 +54206,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "series-attribute" }, [
-      _vm._v("Сапфирная версия\r\n                            "),
+      _vm._v("Сапфирная версия\r\n                    "),
       _c(
         "span",
         {
@@ -53780,7 +54225,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "series-attribute" }, [
-      _vm._v("Карта\r\n                            "),
+      _vm._v("Карта\r\n                        "),
       _c(
         "span",
         {
@@ -53799,7 +54244,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "series-attribute" }, [
-      _vm._v("Акклимация пульса\r\n                            "),
+      _vm._v("Акклимация пульса\r\n                        "),
       _c(
         "span",
         {
@@ -53818,68 +54263,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tab-menu_description" }, [
+    return _c("div", { staticClass: "series-attribute" }, [
+      _vm._v("Музыка\r\n                        "),
       _c(
-        "ul",
+        "span",
         {
-          staticClass: "nav nav-tabs container-85 mg-auto-horizontal",
-          attrs: { id: "myTab", role: "tablist" }
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "top",
+            title: "Музыка в часах"
+          }
         },
-        [
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link active",
-                attrs: {
-                  id: "home-tab",
-                  "data-toggle": "tab",
-                  href: "#home",
-                  role: "tab",
-                  "aria-controls": "home",
-                  "aria-selected": "true"
-                }
-              },
-              [_vm._v("Описание")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: {
-                  id: "profile-tab",
-                  "data-toggle": "tab",
-                  href: "#profile",
-                  role: "tab",
-                  "aria-controls": "profile",
-                  "aria-selected": "false"
-                }
-              },
-              [_vm._v("Спецификации")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "nav-item" }, [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link",
-                attrs: {
-                  id: "contact-tab",
-                  "data-toggle": "tab",
-                  href: "#contact",
-                  role: "tab",
-                  "aria-controls": "contact",
-                  "aria-selected": "false"
-                }
-              },
-              [_vm._v("В коробке")]
-            )
-          ])
-        ]
+        [_vm._v("?")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "series-attribute" }, [
+      _vm._v("Тип ремешка\r\n                        "),
+      _c(
+        "span",
+        {
+          attrs: {
+            "data-toggle": "tooltip",
+            "data-placement": "top",
+            title: "Тип ремешка"
+          }
+        },
+        [_vm._v("?")]
       )
     ])
   }

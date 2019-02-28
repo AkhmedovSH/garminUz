@@ -7,7 +7,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/blog/{slug}', 'HomeController@blog');
 
 Route::get('/products/{category_id}', 'HomeController@bcategory')->name('bcategory');
-Route::get('/search', 'HomeController@search');
+Route::get('/search', ['as' => 'search', 'uses' => 'HomeController@search']);
 Route::get('/maps/{parametr}', 'HomeController@maps');
 Route::get('/checkout', 'HomeController@checkout');
 Route::post('/buyProducts', 'HomeController@buyProducts');

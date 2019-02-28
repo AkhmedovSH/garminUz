@@ -85,6 +85,16 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label>Если товар имеет аксессуары</label>
+                            {{Form::select('accessories[]',
+                            $accessories,
+                            null,
+                            ['class' => 'form-control select2', 'multiple'=>'multiple', 'data-placeholder' =>'Выберите категории'])
+                            }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label>Размер часов(41,47,51) мм</label>
                             {{ Form::select('pa_case_size', ['42' => '42', '47' => '47', '51' => '51'],
                             null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
@@ -127,7 +137,7 @@
                             null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="form-group">
                             <label>Тип ремешка</label>
                             {{ Form::select('pa_band_type', ['leather' => 'leather', 'metal' => 'metal',
@@ -135,7 +145,7 @@
                              'suede' => 'suede'],
                             null, ['class' => 'form-control select2','placeholder' => 'Выберите категории']) }}
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="col-md-6">
                         <div class="form-group">
                             <label for="exampleInputEmail1">App Store</label>

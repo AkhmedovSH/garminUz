@@ -132,8 +132,13 @@ class ProductController extends Controller
 
      public function oneProduct(Request $request){
         $slug = $request->slug;
-        $product = Product::where('slug',$slug)->firstOrFail();
-        $products = Product::where('series_category_id', $product->series_category_id)->get();
+        $product = Product::where('slug',$slug)->with('accessories')->firstOrFail();
+        if($product->series_category_id != null){
+            $products = Product::where('series_category_id', '=', $product->series_category_id)->get();
+        }else{
+            $products = [];
+        }
+       
         return response()->json(array(
             'product'=>$product,
             'products'=>$products

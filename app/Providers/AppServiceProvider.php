@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('black_title', DB::table('black_title')->first());
         });
 
-        view()->composer(['layouts.app', 'main', 'cart', 'product','one-product','emails.mail'], function($view){
+        view()->composer(['layouts.app', 'main','search', 'cart', 'product','one-product','emails.mail'], function($view){
             $view->with('dollar', DB::table('dollar')->first());
             //dd($view);
         });
