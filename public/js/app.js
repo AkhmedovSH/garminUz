@@ -53229,6 +53229,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slug', 'dollar'],
@@ -53376,6 +53377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this7.selectedCaseSize = _this7.product.pa_case_size;
                 _this7.selectedSaphireVersion = _this7.product.pa_saphire;
                 _this7.selectedPulseOx = _this7.product.pa_pulse_ox;
+                _this7.selectedMusic = _this7.product.pa_music;
                 _this7.jsonParsed = JSON.parse(_this7.product.slider_image);
             }).catch(function (err) {
                 return console.log(err);
@@ -53458,11 +53460,9 @@ var render = function() {
             _vm.product.price != null && _vm.product.sale == null
               ? _c("p", { staticClass: "product-price" }, [
                   _c("span", [
-                    _vm._v(
-                      _vm._s(_vm.formatPrice(_vm.product.price * _vm.dollar))
-                    )
+                    _vm._v(_vm._s(_vm.formatPrice(_vm.product.price)))
                   ]),
-                  _c("span", [_vm._v("Сум")])
+                  _c("span", [_vm._v("$")])
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -53472,16 +53472,13 @@ var render = function() {
                     _vm._v(
                       _vm._s(
                         _vm.formatPrice(
-                          _vm.product.price * _vm.dollar -
-                            (_vm.product.price *
-                              _vm.dollar *
-                              _vm.product.sale) /
-                              100
+                          _vm.product.price -
+                            (_vm.product.price * _vm.product.sale) / 100
                         )
                       ) + "\r\n                "
                     )
                   ]),
-                  _c("span", [_vm._v("Сум")])
+                  _c("span", [_vm._v("$")])
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -53815,6 +53812,12 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("div", [
+              _c("p", [
+                _vm._v(
+                  "Курс доллара установлен Центральным банком Узбекистана."
+                )
+              ]),
+              _vm._v(" "),
               _c("p", [_vm._v("Время обработки до 20 рабочих дней.")]),
               _vm._v(" "),
               _c("form", { attrs: { action: "/cart", method: "post" } }, [
@@ -53932,7 +53935,7 @@ var render = function() {
                 ])
               : _vm._e(),
             _vm._v(" "),
-            _vm.product.accessories
+            _vm.product.accessories && _vm.product.accessories.length > 0
               ? _c("li", { staticClass: "nav-item" }, [
                   _c(
                     "a",
@@ -54066,9 +54069,7 @@ var render = function() {
                                       _c("span", [
                                         _vm._v(
                                           _vm._s(
-                                            _vm.formatPrice(
-                                              accessories.price * _vm.dollar
-                                            )
+                                            _vm.formatPrice(accessories.price)
                                           )
                                         )
                                       ]),
@@ -54083,9 +54084,8 @@ var render = function() {
                                         _vm._v(
                                           _vm._s(
                                             _vm.formatPrice(
-                                              accessories.price * _vm.dollar -
+                                              accessories.price -
                                                 (accessories.price *
-                                                  _vm.dollar *
                                                   accessories.sale) /
                                                   100
                                             )

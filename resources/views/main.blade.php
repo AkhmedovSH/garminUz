@@ -51,14 +51,14 @@
                     </div>
                     @if ($product->sale == null)
                     <div class="carousel-product_price">
-                        {{ number_format($dollar->course * $product->price, 0) }} сум
+                        {{ number_format($product->price, 0) }} $
                     </div>
                     @else
                     <div class="carousel-product_price">
                         <p class="carousel-product_price_first">
-                            {{ number_format($dollar->course * $product->price, 0) }}
+                            {{ number_format($product->price, 0) }}
                         </p>
-                        {{ number_format(( ($dollar->course * $product->price) - ($dollar->course * $product->price) * $product->sale / 100), 0) }} сум
+                        {{ number_format(( ($product->price) - ($product->price) * $product->sale / 100), 0) }} $
                     </div>
                     @endif
                 </a>

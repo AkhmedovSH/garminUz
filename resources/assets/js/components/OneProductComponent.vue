@@ -28,11 +28,11 @@
 
         <div id="product-price">
                 <p class="product-price" v-if="product.price != null && product.sale == null">
-                <span>{{ formatPrice(product.price * dollar)  }}</span><span>Сум</span></p>
+                <span>{{ formatPrice(product.price) }}</span><span>$</span></p>
 
                 <p class="product-price" v-if="product.price != null && product.sale != null">
-                <span>{{ formatPrice( (product.price * dollar) - (product.price * dollar) * product.sale / 100)  }}
-                </span><span>Сум</span></p>
+                <span>{{ formatPrice( (product.price) - (product.price) * product.sale / 100)  }}
+                </span><span>$</span></p>
 
                 <p class="product-price" v-if="product.price == null && product.sale == null">
                     <span>Не Опубликовано</span></p>
@@ -124,6 +124,7 @@
         <div>
             <div>
                 
+                <p>Курс доллара установлен Центральным банком Узбекистана.</p>
                 <p>Время обработки до 20 рабочих дней.</p>
                 <form action="/cart" method="post">
                     <input type="hidden" name="_token" :value="csrf">
@@ -151,7 +152,7 @@
             <li class="nav-item" v-if="product.in_the_box">
                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">В коробке</a>
             </li>
-            <li class="nav-item" v-if="product.accessories">
+            <li class="nav-item" v-if="product.accessories && product.accessories.length > 0">
                 <a class="nav-link" id="accessories-tab" data-toggle="tab" href="#accessories" role="tab" aria-controls="accessories" aria-selected="false">Аксессуары</a>
             </li>
         </ul>
@@ -180,11 +181,11 @@
                             <span style="display:flex;">{{ accessories.part_number }}</span>
                             <div class="app__accessories__item__price">
                                 <p class="product-price" v-if="accessories.price != null && accessories.sale == null">
-                                <span>{{ formatPrice(accessories.price * dollar)  }}</span><span>Сум</span>
+                                <span>{{ formatPrice(accessories.price)  }}</span><span>Сум</span>
                                 </p>
                                 
                                 <p class="product-price" v-if="accessories.price != null && accessories.sale != null">
-                                <span>{{ formatPrice( (accessories.price * dollar) - (accessories.price * dollar) * accessories.sale / 100)  }}
+                                <span>{{ formatPrice( (accessories.price) - (accessories.price) * accessories.sale / 100)  }}
                                 </span><span>Сум</span></p>
 
                                 <span class="product-price" v-if="accessories.price == null && accessories.sale == null">
@@ -338,6 +339,7 @@
                     this.selectedCaseSize = this.product.pa_case_size
                     this.selectedSaphireVersion = this.product.pa_saphire
                     this.selectedPulseOx = this.product.pa_pulse_ox
+                    this.selectedMusic = this.product.pa_music
                     this.jsonParsed = JSON.parse(this.product.slider_image);
                 }).catch(err=>console.log(err)) 
             },

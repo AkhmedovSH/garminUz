@@ -17,9 +17,9 @@
                 <div class="search-page_product-description">
                     <a href="/product/{{ $item->slug }}" class="search-page_product-name">{{ $item->title }}</a>
                     @if ($item->price != null && $item->sale == null)
-                        <p class="search-page_product-price"> {{ number_format($dollar->course * $item->price, 0) }} Сум</p>
+                        <p class="search-page_product-price"> {{ number_format($item->price, 0) }} $</p>
                     @elseif($item->sale != null && $item->price != null)
-                    {{ number_format(( ($dollar->course * $item->price) - ($dollar->course * $item->price) * $item->sale / 100), 0) }} Сум
+                    {{ number_format(( ($item->price) - ($item->price) * $item->sale / 100), 0) }} $
                     @else
                         <p class="search-page_product-price">Не Опубликовано</p>
                     @endif
