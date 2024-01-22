@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="google-site-verification" content="WRGPfCQwt4wOaYez7-3Ai6TJkhSs8Lvx8Q8WuE38xlg" />
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="shortcut icon" href="/favicon1.png" type="image/png/ico">
     <link rel="stylesheet" href="/extension/owl-carousel/owl.carousel.css">
@@ -29,8 +29,6 @@
 <header>
     <div class="top-utility-bar">
         <ul class="d-flex list-style-default align-center body-1 pa-0 mx-4">
-            <li><i class="fa fa-phone" style="color:#007bff; padding: 0 10px;"></i>(+998) 71 241-82-88</li>
-            <li><i class="fa fa-phone" style="color:#007bff; padding: 0 10px;"></i>(+998) 97 444-81-97</li>
         </ul>
         <ul class="d-flex list-style-default align-center body-1 pa-0 mx-4">
             <li class="dropdown">
@@ -84,7 +82,7 @@
                 </button>
             </div>
             <div class="logo_menu_part__logo">
-                <a href="/"><img src="/img/logo.png" alt="logo"></a>
+                <a href="/"><img src="/img/logo2.png" alt="logo" width="200"></a>
             </div>
             <div class="logo_menu_part__menu ">
                 <ul class="d-flex list-style-default first-level">
@@ -332,7 +330,7 @@
 
 
     <div class="footer">
-        <div class="d-flex flex-row-nowrap container-90 mg-auto-horizontal">
+        <!-- <div class="d-flex flex-row-nowrap container-90 mg-auto-horizontal">
             <div class="footer-item">
                 <p class="footer-item_heading">Обслуживание клиентов</p>
                 <ul class="footer-item_list list-style-default d-flex flex-column-nowrap ">
@@ -380,13 +378,14 @@
                     <li><a href="http://garmin-gear.com/">Garmin механизм</a></li>
                 </ul>
             </div>
-        </div>
+        </div> -->
         <div>
+						<div class="text-center">Адрес: Улица Абая, 20, Шайхантахурский район, Ташкент, 100128</div>
             <ul class="d-flex flex-row-nowrap list-style-default pa-0 my-1">
                 <li><a href="https://www8.garmin.com/siteIndex.html">Карта сайта • </a></li>
                 <li><a href="https://www.garmin.ae/terms-of-use/">Условия использования •  </a></li>
                 <li><a href="https://www.garmin.ae/statement-of-privacy/">Заявление о конфиденциальности •  </a></li>
-                <li><a href="#">Все права защищены © 1996-2019 Garmin. </a></li>
+                <li><a href="#">Все права защищены © 1996-2023 Garmin. </a></li>
             </ul>
         </div>
         <div class="social-media mh-1">
@@ -394,7 +393,7 @@
                 <li><a href="https://www.facebook.com/garmin.uzbekistan"><img src="/img/socialmedia/facebook-logo.png" alt=""></a></li>
                 <li><a href="https://twitter.com/GarminUz?lang=ru"><img src="/img/socialmedia/twitter.png" alt=""></a></li>
                 <li><a href="https://www.youtube.com/channel/UC17HVSWclv-VxkoXGkCepOw?view_as=subscriber"><img src="/img/socialmedia/youtube-symbol.png" alt=""></a></li>
-                <li><a href="https://www.instagram.com/garmin_uz/?hl=ru"><img src="/img/socialmedia/instagram-logo.png" alt=""></a></li>
+                <li><a href="https://www.instagram.com/garmin.uz/?hl=ru"><img src="/img/socialmedia/instagram-logo.png" alt=""></a></li>
                 <li><a href="javascript:void(0);"><img src="/img/socialmedia/payment.png" class="visa" alt=""></a></li>
             </ul>
         </div>
