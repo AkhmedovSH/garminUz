@@ -43,11 +43,11 @@
                     <td>
                         @if ($item->model->sale == null)
                             <p class="shopping-cart_price ma-0">
-                                {{ number_format($item->model->price,0)}} $
+                                {{ number_format($item->model->price,0)}}
                             </p>
                         @else
                             <p class="shopping-cart_price ma-0">
-                                {{ number_format(( ($item->model->price) - ($item->model->price) * $item->model->sale / 100), 0) }} $
+                                {{ number_format(( ($item->model->price) - ($item->model->price) * $item->model->sale / 100), 0) }}
                             </p>
                         @endif
                         
@@ -89,13 +89,13 @@
                 <tr class="r-1">
                     <td>Скидка по({{ session()->get('coupon')['name'] }})</td>
                     <td> 
-                        -{{ number_format(session()->get('coupon')['discount']) }} $
+                        -{{ number_format(session()->get('coupon')['discount']) }}
                     </td>
                 </tr>
                 @endif
                 <tr class="r-3">
                     <td>Расчетная сумма заказа</td>
-                        <td>{{ number_format((floatval(str_replace(',', '.', Cart::subtotal())))) }} $
+                        <td>{{ number_format((floatval(str_replace(',', '.', Cart::subtotal())))) }}
                     </td>
                 </tr>
                {{--  <tr class="r-4">
